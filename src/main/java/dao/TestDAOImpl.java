@@ -1,7 +1,5 @@
 package dao;
 
-import entities.test_entities.TableUn;
-
 import javax.ejb.Local;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -20,12 +18,19 @@ public class TestDAOImpl implements TestDAOLocal {
     @PersistenceContext
     private EntityManager em;
 
-    public void addRecord(){
+    public void addRecord(Object o){
         //em.persist();
     }
 
+    //WORKING QUERY
+    //Retrieving all records from event_causes table
+    /*public Collection<EventCause> getAll(){
+        return (List<EventCause>)em.createQuery("FROM EventCause").getResultList()  ;
+    }*/
+
     public Collection<?> getAll(){
-        return em.createQuery("FROM TableUn").getResultList();
+        System.out.println("QUERY!!!");
+        return (List<Object>)em.createQuery("FROM FailureEvent").getResultList();
     }
 
 }

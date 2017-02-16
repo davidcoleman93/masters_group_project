@@ -13,23 +13,23 @@ public class FailureClass implements Serializable {
 
 
     @Id
-    @Column(name="failure_class") private Integer failure_class;
+    @Column(name="failure_class") private Integer failureClass;
 
     @Column(name="description") private String description;
 
     public FailureClass(){}
 
-    public FailureClass(Integer failure_class, String description) {
-        this.failure_class = failure_class;
+    public FailureClass(Integer failureClass, String description) {
+        this.failureClass = failureClass;
         this.description = description;
     }
 
-    public Integer getFailure_class() {
-        return failure_class;
+    public Integer getFailureClass() {
+        return failureClass;
     }
 
-    public void setFailure_class(Integer failure_class) {
-        this.failure_class = failure_class;
+    public void setFailureClass(Integer failureClass) {
+        this.failureClass = failureClass;
     }
 
     public String getDescription() {

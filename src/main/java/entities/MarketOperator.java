@@ -15,7 +15,6 @@ public class MarketOperator implements Serializable {
     private MarketOperatorID marketOpID;
 
     @Column(name="country") private String country;
-
     @Column(name="operator") private String operator;
 
     public MarketOperator() {

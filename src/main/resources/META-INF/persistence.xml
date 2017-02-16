@@ -4,7 +4,7 @@
     <persistence-unit name="lteFailureSystem">
 
         <provider>org.hibernate.ejb.HibernatePersistence</provider>
-        <jta-data-source>java:/lteDB</jta-data-source>
+        <jta-data-source>java:/lteFailureSystem</jta-data-source>
         <properties>
             <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5Dialect"/>
         </properties>

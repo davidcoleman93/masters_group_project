@@ -1,6 +1,5 @@
 package entities;
 
-import javax.naming.directory.SearchResult;
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -13,7 +12,6 @@ import java.io.Serializable;
 public class UserEventType implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "tac") private Integer tac;
 
     @Column(name = "marketing_name") private String marketingName;
@@ -26,12 +24,10 @@ public class UserEventType implements Serializable {
     @Column(name = "input_mode") private String inputMode;
 
     public UserEventType() {
-
     }
 
-    public UserEventType(String marketingName, String manufacturer,
-                         String accessCapability, String model, String vendorName,
-                         String ueDevice, String operatingSystem, String inputMode) {
+    public UserEventType(Integer tac, String marketingName, String manufacturer, String accessCapability, String model, String vendorName, String ueDevice, String operatingSystem, String inputMode) {
+        this.tac = tac;
         this.marketingName = marketingName;
         this.manufacturer = manufacturer;
         this.accessCapability = accessCapability;

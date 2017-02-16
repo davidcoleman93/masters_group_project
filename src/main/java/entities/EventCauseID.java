@@ -13,32 +13,32 @@ import java.io.Serializable;
 @Embeddable
 public class EventCauseID implements Serializable {
 
-    @Column(name = "event_id") public Integer event_id;
-    @Column(name = "cause_code") public Integer cause_code;
+    @Column(name = "event_id") public Integer eventID;
+    @Column(name = "cause_code") public Integer causeCode;
 
     public EventCauseID(){}
 
-    public EventCauseID(int event_id, Integer cause_code){
+    public EventCauseID(int eventID, Integer causeCode){
 
-        this.event_id = event_id;
-        this.cause_code = cause_code;
+        this.eventID = eventID;
+        this.causeCode = causeCode;
 
     }
 
     public Integer getEventID() {
-        return event_id;
+        return eventID;
     }
 
-    public void setEventID(Integer event_id) {
-        this.event_id = event_id;
+    public void setEventID(Integer eventID) {
+        this.eventID = eventID;
     }
 
     public Integer getCauseCode() {
-        return cause_code;
+        return causeCode;
     }
 
-    public void setCauseCode(Integer cause_code) {
-        this.cause_code = cause_code;
+    public void setCauseCode(Integer causeCode) {
+        this.causeCode = causeCode;
     }
 
 }

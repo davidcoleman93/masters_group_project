@@ -1,13 +1,14 @@
 package business;
 
 import dao.TestDAOLocal;
-import entities.test_entities.TableUn;
+import entities.EventCause;
 
 import javax.annotation.Resource;
 import javax.ejb.Local;
 import javax.ejb.SessionContext;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -24,14 +25,13 @@ public class TestBusinessImpl implements TestBusinessLocal {
     @Resource
     private SessionContext session;
 
-    public void addRecord(){
+    public void addRecord(Object o){
     }
 
-    public List<TableUn> getAll(){
+    public Collection<?> getAll(){
 
         return daoBean.getAll();
 
     }
-
 
 }

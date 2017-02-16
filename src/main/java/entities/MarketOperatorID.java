@@ -2,6 +2,7 @@ package entities;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
+import java.io.Serializable;
 
 /**
  * Created by C06590861 on 16/02/2017.
@@ -10,7 +11,7 @@ import javax.persistence.Embeddable;
 //@Embeddable allows us to use a composite key as a primary key in the parent table
 
 @Embeddable
-public class MarketOperatorID {
+public class MarketOperatorID implements Serializable {
 
     @Column(name = "mcc") public Integer marketCode;
     @Column(name = "mnc") public Integer operatorCode;
@@ -24,21 +25,20 @@ public class MarketOperatorID {
 
     }
 
-    public Integer getEventID() {
+    public Integer getMarketCode() {
         return marketCode;
     }
 
-    public void setEventID(Integer marketCode) {
+    public void setMarketCode(Integer marketCode) {
         this.marketCode = marketCode;
     }
 
-    public Integer getCauseCode() {
+    public Integer getOperatorCode() {
         return operatorCode;
     }
 
-    public void setCauseCode(Integer operatorCode) {
+    public void setOperatorCode(Integer operatorCode) {
         this.operatorCode = operatorCode;
     }
-
 }
 
