@@ -12,7 +12,7 @@ import java.io.Serializable;
 public class EventCause implements Serializable {
 
     @EmbeddedId
-    @Column(name="cause_code") private EventCauseID eventCauseID;
+    private EventCauseID eventCauseID;
 
     @Column(name="description") private String description;
 
