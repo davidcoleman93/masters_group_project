@@ -1,4 +1,4 @@
-package listener;
+package handler;
 
 import java.io.*;
 import java.nio.file.*;
@@ -33,7 +33,7 @@ public class FileListener {
 		// ONCE THE SYSTEM ADMIN UPLOADS A FILE ...................
 		while (true) {
 
-			targetDirectory = Paths.get("Files"); // DIRECTORY WHICH WILL STORE
+			targetDirectory = Paths.get("/Users/bobaikato/Documents/project/"); // DIRECTORY WHICH WILL STORE
 													// THE FILES
 
 			try {
