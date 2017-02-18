@@ -24,15 +24,13 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
 
 public class FileConverter {
-	/// Users/bobaikato/Documents/project/
+
 	/* List of Exentions */
-	private static ArrayList<String> EXTENSIONS = new ArrayList<String>(Arrays.asList("xls", "xla", "xlam", "xlsb", "xlsm",
-			"xlsx", "xlt", "xltm", "xltx", "xlw", "xlw", "xml", "xps"));
+	private static ArrayList<String> EXTENSIONS = new ArrayList<String>(Arrays.asList("xls", "xla", "xlam", "xlsb",
+			"xlsm", "xlsx", "xlt", "xltm", "xltx", "xlw", "xlw", "xml", "xps"));
 
 	/* Directory path to read from */
-
 	FileConverter(String DIR_PATH) {
-
 		File folder = new File(DIR_PATH);
 		File[] listOfFiles = folder.listFiles();
 		InputStream FILE_INPUT = null;
@@ -104,10 +102,4 @@ public class FileConverter {
 		writer.flush();
 		writer.close();
 	}
-
-	// "99.0";"Jane";"Mcdonald";"Female";"Female";
-	/*public static void main(String[] args) throws IOException {
-
-		new FileConverter("/Users/bobaikato/Documents/project/");
-	}*/
 }

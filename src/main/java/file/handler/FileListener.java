@@ -62,8 +62,4 @@ public class FileListener {
 			System.err.println(ex);
 		}
 	}
-
-	public static void main(String[] args) {
-		new FileListener("/Users/bobaikato/Documents/project/");
-	}
 }
