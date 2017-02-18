@@ -3,6 +3,6 @@ to be watched.
 
 Everything else is automated.
 
-Example: new FileListener("path/to/directory/here")
+#Example: new FileListener("path/to/directory/here")
 
 
