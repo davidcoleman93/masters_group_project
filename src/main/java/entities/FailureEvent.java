@@ -16,7 +16,7 @@ public class FailureEvent implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id") private Integer id;
 
-    @Column(name = "date_time") private String dateTime;
+    @Column(name = "date_time") private Date dateTime;
 
     @MapsId("eventCauseID")
     @JoinColumns({
@@ -44,17 +44,17 @@ public class FailureEvent implements Serializable {
     @ManyToOne
     private MarketOperator marketOperator;
 
-    @Column(name = "cell_id") private int cellID;
-    @Column(name = "duration") private int duration;
-    @Column(name = "ne_version") private int neVersion;
+    @Column(name = "cell_id") private Integer cellID;
+    @Column(name = "duration") private Integer duration;
+    @Column(name = "ne_version") private Integer neVersion;
     @Column(name = "imsi") private long imsi;
 
     public FailureEvent() {
     }
 
-    public FailureEvent(String dateTime, EventCause eventCause, FailureClass failureClass,
-                        UserEventType userEventType, MarketOperator marketOperator, int cellID,
-                        int duration, int neVersion, long imsi) {
+    public FailureEvent(Date dateTime, EventCause eventCause, FailureClass failureClass,
+                        UserEventType userEventType, MarketOperator marketOperator, Integer cellID,
+                        Integer duration, Integer neVersion, long imsi) {
         this.dateTime = dateTime;
         this.eventCause = eventCause;
         this.failureClass = failureClass;
@@ -74,11 +74,11 @@ public class FailureEvent implements Serializable {
         this.id = id;
     }
 
-    public String getDateTime() {
+    public Date getDateTime() {
         return dateTime;
     }
 
-    public void setDateTime(String dateTime) {
+    public void setDateTime(Date dateTime) {
         this.dateTime = dateTime;
     }
 
@@ -114,27 +114,27 @@ public class FailureEvent implements Serializable {
         this.marketOperator = marketOperator;
     }
 
-    public int getCellID() {
+    public Integer getCellID() {
         return cellID;
     }
 
-    public void setCellID(int cellID) {
+    public void setCellID(Integer cellID) {
         this.cellID = cellID;
     }
 
-    public int getDuration() {
+    public Integer getDuration() {
         return duration;
     }
 
-    public void setDuration(int duration) {
+    public void setDuration(Integer duration) {
         this.duration = duration;
     }
 
-    public int getNeVersion() {
+    public Integer getNeVersion() {
         return neVersion;
     }
 
-    public void setNeVersion(int neVersion) {
+    public void setNeVersion(Integer neVersion) {
         this.neVersion = neVersion;
     }
 
