@@ -4,14 +4,10 @@
 * @Project: ValidatingFiles
 **/
 
-package file.handler;
+package com.filelistener.main;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.logging.Level;
@@ -19,9 +15,12 @@ import java.util.logging.Logger;
 
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
+import org.apache.poi.ss.usermodel.DateUtil;
+
 
 public class FileConverter {
 
@@ -30,76 +29,74 @@ public class FileConverter {
 			"xlsm", "xlsx", "xlt", "xltm", "xltx", "xlw", "xlw", "xml", "xps"));
 
 	/* Directory path to read from */
-	FileConverter(String DIR_PATH) {
-		File folder = new File(DIR_PATH);
-		File[] listOfFiles = folder.listFiles();
+	FileConverter(String FILE_PATH) {
+
 		InputStream FILE_INPUT = null;
-		for (File file : listOfFiles) {
-			if (file.isFile()) {
+
 				/* split filename from it's extension */
-				String[] filename = file.getName().split("\\.(?=[^\\.]+$)");
+		String[] filename = FILE_PATH.split("\\.(?=[^\\.]+$)");
 
 				/* matching defined filename (VALIDATE) */
-				if (EXTENSIONS.contains(filename[1])) {
+		if (EXTENSIONS.contains(filename[1])) {
 
-					/* Output the paths */
-					System.out.println("\n" + DIR_PATH + filename[0] + "." + EXTENSIONS.get(0));
-					try {
+			try {
 						/* Set Path */
-						FILE_INPUT = new FileInputStream(DIR_PATH + filename[0] + "." + filename[1]);
-						Workbook workbook = WorkbookFactory.create(FILE_INPUT);
+				FILE_INPUT = new FileInputStream(filename[0] + "." + filename[1]);
+				Workbook workbook = WorkbookFactory.create(FILE_INPUT);
 
-						for (int i = 0; i < workbook.getNumberOfSheets(); i++) {
-							// System.out.println(workbook.getSheetAt(i).getSheetName());
+						/* Calling the CSV handler */
+				writeToFile(workbook.getSheetAt(0), filename[0] + ".csv");
 
-							/* Calling the CSV handler */
-							writeToFile(workbook.getSheetAt(i), DIR_PATH + filename[0] + ".csv");
-						}
-					} catch (InvalidFormatException ex) {
-						Logger.getLogger(FileConverter.class.getName()).log(Level.SEVERE, null, ex);
-					} catch (FileNotFoundException ex) {
-						Logger.getLogger(FileConverter.class.getName()).log(Level.SEVERE, null, ex);
-					} catch (IOException ex) {
-						Logger.getLogger(FileConverter.class.getName()).log(Level.SEVERE, null, ex);
-					} finally {
-						try {
-							FILE_INPUT.close();
-						} catch (IOException ex) {
-							Logger.getLogger(FileConverter.class.getName()).log(Level.SEVERE, null, ex);
-						}
-					}
-				}
-				/* Catching the invalid files */
-				else if (!EXTENSIONS.contains(filename[1]) && !filename[1].equals("csv")) {
-					System.out.println("INVALID: " + DIR_PATH + filename[0] + "." + filename[1]);
-				}
-				/* do something here if its a csv file */
-				if (filename[1].equals("csv")) {
-					System.out.println("CSV FOUND: . . ." + DIR_PATH + filename[0] + "." + filename[1]);
+			} catch (InvalidFormatException ex) {
+				Logger.getLogger(FileConverter.class.getName()).log(Level.SEVERE, null, ex);
+			} catch (FileNotFoundException ex) {
+				Logger.getLogger(FileConverter.class.getName()).log(Level.SEVERE, null, ex);
+			} catch (IOException ex) {
+				Logger.getLogger(FileConverter.class.getName()).log(Level.SEVERE, null, ex);
+			} finally {
+				try {
+					FILE_INPUT.close();
+				} catch (IOException ex) {
+					Logger.getLogger(FileConverter.class.getName()).log(Level.SEVERE, null, ex);
 				}
 			}
+		}
+				/* Catching the invalid files */
+		else if (!EXTENSIONS.contains(filename[1]) && !filename[1].equals("csv")) {
+			System.out.println("INVALID: " + filename[0] + "." + filename[1]);
+		}
+				/* do something here if its a csv file */
+		if (filename[1].equals("csv")) {
+			System.out.println("CSV FOUND: . . ." + filename[0] + "." + filename[1]);
 		}
 	}
 
-	public static void writeToFile(Sheet sheet, String FULL_DIR_PATH) throws IOException {
-		Row row = null;
-		File folder = new File(FULL_DIR_PATH);
-		// creates the file
-		folder.createNewFile();
-		// creates a FileWriter Object
-		FileWriter writer = new FileWriter(folder);
+	public static void writeToFile(Sheet sheet, String FILE_PATH) throws IOException {
+		FileOutputStream fos = new FileOutputStream(new File(FILE_PATH));
+		StringBuffer buffer = new StringBuffer();
 
-		for (int i = 0; i < sheet.getLastRowNum(); i++) {
-			row = sheet.getRow(i);
-			for (int j = 0; j < row.getLastCellNum(); j++) {
-				// Writes the content to the file
-				writer.write(row.getCell(j) + ",");
-				System.out.print(row.getCell(j) + ",");
+		for(Row r : sheet){
+			for(Cell c : r){
+
+				switch(c.getCellType()){
+					case Cell.CELL_TYPE_NUMERIC:
+						if(DateUtil.isCellDateFormatted(c)){
+							SimpleDateFormat dt = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+							buffer.append(dt.format(c.getDateCellValue()) + ",");
+							break;
+						}
+						buffer.append((long)c.getNumericCellValue() + ",");
+						break;
+					case Cell.CELL_TYPE_STRING:
+						buffer.append(c.getStringCellValue() + ",");
+						break;
+				}
+
 			}
-			writer.write("\n");
-			System.out.println();
+			buffer.append("\n");
 		}
-		writer.flush();
-		writer.close();
+
+		fos.write(buffer.toString().getBytes());
+		fos.close();
 	}
 }
