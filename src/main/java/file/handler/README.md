@@ -1,8 +1,0 @@
-FileListner.Java - Should be instantiated with the directory path that needs
-to be watched.
-
-Everything else is automated.
-
-#Example: new FileListener("path/to/directory/here")
-
-
