@@ -1,6 +1,7 @@
 package dao;
 
 import entities.EventCause;
+import entities.EventCauseID;
 
 import javax.ejb.Local;
 import javax.ejb.Stateless;
@@ -22,6 +23,12 @@ public class EventCauseDAOImpl implements EventCauseDAOLocal {
 
     public Collection<?> getAllEventCauses(){
         return (List<EventCause>)em.createQuery("FROM EventCause ").getResultList();
+    }
+
+    public EventCause getEventCause(EventCauseID eventCauseID){
+        return (EventCause)em.createQuery("SELECT o FROM EventCause o WHERE o.eventCauseID.causeCode=:eventCauseID")
+                .setParameter("eventCauseID", eventCauseID)
+                .getSingleResult();
     }
 
 }

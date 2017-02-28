@@ -19,6 +19,10 @@ public class FailureClass implements Serializable {
 
     public FailureClass(){}
 
+    public FailureClass(Integer failureClass) {
+        this.failureClass = failureClass;
+    }
+
     public FailureClass(Integer failureClass, String description) {
         this.failureClass = failureClass;
         this.description = description;

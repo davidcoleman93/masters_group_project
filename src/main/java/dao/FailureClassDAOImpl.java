@@ -1,5 +1,8 @@
 package dao;
 
+import com.sun.net.httpserver.Authenticator;
+import entities.EventCause;
+import entities.EventCauseID;
 import entities.FailureClass;
 
 import javax.ejb.Local;
@@ -22,6 +25,12 @@ public class FailureClassDAOImpl implements FailureClassDAOLocal {
 
     public Collection<?> getAllFailureClasses(){
         return (List<FailureClass>)em.createQuery("FROM FailureClass ").getResultList();
+    }
+
+    public FailureClass getFailureClass(int failureClass){
+        return (FailureClass)em.createQuery("SELECT o FROM FailureClass o WHERE o.failureClass=:failureClass")
+                .setParameter("failureClass", failureClass).getSingleResult();
+
     }
 
 }

@@ -1,5 +1,6 @@
 package dao;
 
+import entities.FailureClass;
 import entities.UserEventType;
 
 import javax.ejb.Local;
@@ -22,6 +23,12 @@ public class UserEventTypeDAOImpl implements UserEventTypeDAOLocal {
 
     public Collection<?> getAllUserEventTypes(){
         return (List<UserEventType>)em.createQuery("FROM UserEventType ").getResultList();
+    }
+
+    public UserEventType getUserEventType(int tac){
+        return (UserEventType)em.createQuery("SELECT o FROM UserEventType o WHERE o.tac=:tac")
+                .setParameter("tac", tac).getSingleResult();
+
     }
 
 }

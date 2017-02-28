@@ -2,7 +2,7 @@ package entities;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.sql.Date;
+import java.util.Date;
 
 /**
  * Created by C06590861 on 15/02/2017.
@@ -16,27 +16,24 @@ public class FailureEvent implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id") private Integer id;
 
-    @Column(name = "date_time") private Date dateTime;
+    //Just need to get DATE data type working!
+    @Column(name = "date_time") private String dateTime;
 
-    @MapsId("eventCauseID")
     @JoinColumns({
-            @JoinColumn(name = "event_id", referencedColumnName = "event_id"),
-            @JoinColumn(name = "cause_code", referencedColumnName = "cause_code")
+            @JoinColumn(name = "cause_code", referencedColumnName = "cause_code"),
+            @JoinColumn(name = "event_id", referencedColumnName = "event_id")
     })
     @ManyToOne
     private EventCause eventCause;
 
-    @MapsId("failureClass")
     @JoinColumn(name = "failure_class", referencedColumnName = "failure_class")
     @ManyToOne
     private FailureClass failureClass;
 
-    @MapsId("tac")
     @JoinColumn(name = "ue_type", referencedColumnName = "tac")
     @ManyToOne
     private UserEventType userEventType;
 
-    @MapsId("marketOpID")
     @JoinColumns({
             @JoinColumn(name = "market", referencedColumnName = "mcc"),
             @JoinColumn(name = "operator", referencedColumnName = "mnc")
@@ -46,15 +43,21 @@ public class FailureEvent implements Serializable {
 
     @Column(name = "cell_id") private Integer cellID;
     @Column(name = "duration") private Integer duration;
-    @Column(name = "ne_version") private Integer neVersion;
-    @Column(name = "imsi") private long imsi;
+    @Column(name = "ne_version") private String neVersion;
+    @Column(name = "imsi") private Long imsi;
 
     public FailureEvent() {
     }
 
-    public FailureEvent(Date dateTime, EventCause eventCause, FailureClass failureClass,
-                        UserEventType userEventType, MarketOperator marketOperator, Integer cellID,
-                        Integer duration, Integer neVersion, long imsi) {
+    public FailureEvent(String dateTime,
+                        EventCause eventCause,
+                        FailureClass failureClass,
+                        UserEventType userEventType,
+                        MarketOperator marketOperator,
+                        Integer cellID,
+                        Integer duration,
+                        String neVersion,
+                        Long imsi) {
         this.dateTime = dateTime;
         this.eventCause = eventCause;
         this.failureClass = failureClass;
@@ -74,11 +77,11 @@ public class FailureEvent implements Serializable {
         this.id = id;
     }
 
-    public Date getDateTime() {
+    public String getDateTime() {
         return dateTime;
     }
 
-    public void setDateTime(Date dateTime) {
+    public void setDateTime(String dateTime) {
         this.dateTime = dateTime;
     }
 
@@ -130,19 +133,19 @@ public class FailureEvent implements Serializable {
         this.duration = duration;
     }
 
-    public Integer getNeVersion() {
+    public String getNeVersion() {
         return neVersion;
     }
 
-    public void setNeVersion(Integer neVersion) {
+    public void setNeVersion(String neVersion) {
         this.neVersion = neVersion;
     }
 
-    public long getImsi() {
+    public Long getImsi() {
         return imsi;
     }
 
-    public void setImsi(long imsi) {
+    public void setImsi(Long imsi) {
         this.imsi = imsi;
     }
 

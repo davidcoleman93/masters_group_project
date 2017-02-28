@@ -1,5 +1,7 @@
 package dao;
 
+import entities.FailureClass;
+
 import javax.ejb.Local;
 import java.util.Collection;
 
@@ -10,4 +12,5 @@ import java.util.Collection;
 @Local
 public interface FailureClassDAOLocal {
     Collection<?> getAllFailureClasses();
+    FailureClass getFailureClass(int failureClass);
 }

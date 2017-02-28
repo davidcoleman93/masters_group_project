@@ -1,4 +1,4 @@
-package business;
+package service;
 
 import javax.ejb.Local;
 import java.util.Collection;

@@ -1,6 +1,6 @@
 package dao;
 
-import entities.MarketOperator;
+import entities.*;
 
 import javax.ejb.Local;
 import javax.ejb.Stateless;
@@ -22,6 +22,11 @@ public class MarketOperatorDAOImpl implements MarketOperatorDAOLocal {
 
     public Collection<?> getAllMarketOperators(){
         return (List<MarketOperator>)em.createQuery("FROM MarketOperator ").getResultList();
+    }
+
+    public MarketOperator getMarketOperator(MarketOperatorID marketOpID){
+        return (MarketOperator)em.createQuery("SELECT o FROM MarketOperator o WHERE o.marketOpID=:marketOpID")
+                .setParameter("marketOpID", marketOpID).getSingleResult();
     }
 
 }

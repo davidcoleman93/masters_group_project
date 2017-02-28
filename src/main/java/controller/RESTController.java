@@ -1,11 +1,13 @@
 package controller;
 
-import business.*;
+import service.*;
 import entities.*;
+import file.*;
 
 import javax.ejb.EJB;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+
 import java.util.Collection;
 import java.util.List;
 
@@ -13,8 +15,10 @@ import java.util.List;
  * Created by C06590861 on 15/02/2017.
  */
 
-@Path("/test")
+@Path("/main")
 public class RESTController {
+
+    //private final String DIR_NAME = "Files";
 
     @EJB
     private EventCauseBusinessLocal eventCauseEJB;
@@ -27,6 +31,12 @@ public class RESTController {
     @EJB
     private UserEventTypeBusinessLocal userEventEJB;
 
+    @POST
+    @Path("/import")
+    public void importFile(){
+
+        new FileChecker();
+    }
 
     @GET
     @Path("/fail_events")

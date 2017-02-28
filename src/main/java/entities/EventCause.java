@@ -18,6 +18,10 @@ public class EventCause implements Serializable {
 
     public EventCause(){}
 
+    public EventCause(EventCauseID eventCauseID){
+        this.eventCauseID = eventCauseID;
+    }
+
     public EventCause(EventCauseID eventCauseID, String description){
         this.eventCauseID = eventCauseID;
         this.description = description;

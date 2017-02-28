@@ -1,5 +1,8 @@
 package dao;
 
+import entities.MarketOperator;
+import entities.MarketOperatorID;
+
 import javax.ejb.Local;
 import java.util.Collection;
 
@@ -9,4 +12,5 @@ import java.util.Collection;
 @Local
 public interface MarketOperatorDAOLocal {
     Collection<?> getAllMarketOperators();
+    MarketOperator getMarketOperator(MarketOperatorID marketOperatorID);
 }
