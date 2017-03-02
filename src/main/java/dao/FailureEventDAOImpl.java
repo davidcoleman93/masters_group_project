@@ -6,6 +6,7 @@ import javax.ejb.Local;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+
 import java.util.Collection;
 import java.util.List;
 
@@ -23,5 +24,10 @@ public class FailureEventDAOImpl implements FailureEventDAOLocal {
     public Collection<?> getAllFailureEvents(){
         return (List<FailureEvent>)em.createQuery("FROM FailureEvent ").getResultList();
     }
+
+	public void addFailEvent(FailureEvent fEvent) {
+			em.persist(fEvent);
+			
+	}
 
 }

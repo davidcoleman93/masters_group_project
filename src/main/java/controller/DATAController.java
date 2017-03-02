@@ -22,7 +22,7 @@ public class DATAController {
     @Path("/upload_data")
     @Consumes(MediaType.APPLICATION_JSON)
     public void addGoodData(){
-        dataEJB.addData();
+        //dataEJB.addData();
     }
 
     @GET

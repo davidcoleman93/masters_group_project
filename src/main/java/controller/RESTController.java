@@ -1,8 +1,7 @@
 package controller;
 
-import service.*;
 import entities.*;
-import file.*;
+import service.*;
 
 import javax.ejb.EJB;
 import javax.ws.rs.*;
@@ -35,8 +34,21 @@ public class RESTController {
     @Path("/import")
     public void importFile(){
 
-        new FileChecker();
+        //new FileChecker();
     }
+    
+	@POST
+	@Path("/csv")
+	public void postCSV() {
+		failEventEJB.postCSV();
+	}
+	
+
+	@POST
+	@Consumes(MediaType.APPLICATION_JSON)
+	public void addFaiLEvent(FailureEvent fEvent) {
+		failEventEJB.addFailEvent(fEvent);
+	}
 
     @GET
     @Path("/fail_events")

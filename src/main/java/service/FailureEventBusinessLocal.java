@@ -1,6 +1,9 @@
 package service;
 
 import javax.ejb.Local;
+
+import entities.FailureEvent;
+
 import java.util.Collection;
 
 /**
@@ -10,4 +13,10 @@ import java.util.Collection;
 @Local
 public interface FailureEventBusinessLocal {
     Collection<?> getAllFailureEvents();
+
+	public void postCSV();
+
+	
+
+	public void addFailEvent(FailureEvent fEvent);
 }

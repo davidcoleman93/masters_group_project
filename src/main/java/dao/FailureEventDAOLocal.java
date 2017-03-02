@@ -1,6 +1,9 @@
 package dao;
 
 import javax.ejb.Local;
+
+import entities.FailureEvent;
+
 import java.util.Collection;
 
 /**
@@ -10,4 +13,6 @@ import java.util.Collection;
 @Local
 public interface FailureEventDAOLocal {
     Collection<?> getAllFailureEvents();
+
+	public void addFailEvent(FailureEvent fEvent);
 }

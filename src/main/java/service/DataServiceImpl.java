@@ -7,6 +7,7 @@ import javax.ejb.Local;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import java.util.Collection;
+import java.util.Date;
 
 /**
  * Created by C06590861 on 23/02/2017.
@@ -32,20 +33,21 @@ public class DataServiceImpl implements DataServiceLocal {
     private UserEventTypeDAOLocal ueTypeBean;
 
     //BELOW IS A HARD CODED, 'SUCCESSFUL', FAILURE EVENT
-    private String date = "11/01/2013  17:31:00";
-    private String neVersion = "11B";
-    private int eventID = 4098;
-    private int failureClass = 1;
-    private int ueType = 21060800;
-    private int market = 238;
-    private int operator = 1;
-    private int cellID = 4;
-    private int duration = 1000;
-    private int causeCode = 0;
-    long imsi = 344930000000011L;
+//    private String date = "11/01/2013  17:31:00";
+//    private String neVersion = "11B";
+//    private int eventID = 4098;
+//    private int failureClass = 1;
+//    private int ueType = 21060800;
+//    private int market = 238;
+//    private int operator = 1;
+//    private int cellID = 4;
+//    private int duration = 1000;
+//    private int causeCode = 0;
+//    long imsi = 344930000000011L;
 
-    public void addData(){
-
+    public void addData(Date date, String neVersion, Integer eventID, Integer failureClass, Integer ueType, Integer market, Integer operator, Integer cellID, Integer duration, Integer causeCode, long imsi){
+    	//System.out.println("\n\n\nData Start\n\n\n\n");
+    	
         if(checkEventCause(causeCode, eventID) && checkFailureClass(failureClass)
                 && checkMarketOperator(market, operator) && checkUserEventType(ueType)){
 
@@ -93,13 +95,14 @@ public class DataServiceImpl implements DataServiceLocal {
         } else{
             System.out.println("WRONG DATA SUPPLIED");
         }
+        //System.out.println("\n\n\nData End\n\n\n\n");
     }
 
     public Collection<?> getCallFailures(){
         return dataBean.getCallFailures();
     }
 
-    public boolean checkEventCause(int causeCode, int eventID){
+    public boolean checkEventCause(Integer causeCode, Integer eventID){
         EventCauseID temp = new EventCauseID(causeCode, eventID);
         EventCause tempEvent;
         try{
@@ -113,7 +116,7 @@ public class DataServiceImpl implements DataServiceLocal {
         }
     }
 
-    public boolean checkFailureClass(int failureClass){
+    public boolean checkFailureClass(Integer failureClass){
         FailureClass temp;
         try{
             temp = failureClassBean.getFailureClass(failureClass);
@@ -126,7 +129,7 @@ public class DataServiceImpl implements DataServiceLocal {
         }
     }
 
-    public boolean checkMarketOperator(int market, int operator){
+    public boolean checkMarketOperator(Integer market, Integer operator){
         MarketOperatorID temp = new MarketOperatorID(market, operator);
         MarketOperator tempMarketOp;
         try{
@@ -140,7 +143,7 @@ public class DataServiceImpl implements DataServiceLocal {
         }
     }
 
-    public boolean checkUserEventType(int userEventType){
+    public boolean checkUserEventType(Integer userEventType){
         UserEventType temp;
         try{
             temp = ueTypeBean.getUserEventType(userEventType);

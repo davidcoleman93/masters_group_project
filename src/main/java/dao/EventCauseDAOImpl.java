@@ -26,7 +26,7 @@ public class EventCauseDAOImpl implements EventCauseDAOLocal {
     }
 
     public EventCause getEventCause(EventCauseID eventCauseID){
-        return (EventCause)em.createQuery("SELECT o FROM EventCause o WHERE o.eventCauseID.causeCode=:eventCauseID")
+        return (EventCause)em.createQuery("SELECT o FROM EventCause o WHERE o.eventCauseID=:eventCauseID")
                 .setParameter("eventCauseID", eventCauseID)
                 .getSingleResult();
     }

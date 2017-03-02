@@ -16,8 +16,7 @@ public class FailureEvent implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id") private Integer id;
 
-    //Just need to get DATE data type working!
-    @Column(name = "date_time") private String dateTime;
+    @Column(name = "date_time") private Date dateTime;
 
     @JoinColumns({
             @JoinColumn(name = "cause_code", referencedColumnName = "cause_code"),
@@ -49,7 +48,7 @@ public class FailureEvent implements Serializable {
     public FailureEvent() {
     }
 
-    public FailureEvent(String dateTime,
+    public FailureEvent(Date dateTime,
                         EventCause eventCause,
                         FailureClass failureClass,
                         UserEventType userEventType,
@@ -77,11 +76,11 @@ public class FailureEvent implements Serializable {
         this.id = id;
     }
 
-    public String getDateTime() {
+    public Date getDateTime() {
         return dateTime;
     }
 
-    public void setDateTime(String dateTime) {
+    public void setDateTime(Date dateTime) {
         this.dateTime = dateTime;
     }
 
