@@ -1,13 +1,15 @@
 package controller;
 
 import entities.*;
-import service.*;
+import service.data.*;
+import service.file.DirectoryWatcher;
 
 import javax.ejb.EJB;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -30,25 +32,14 @@ public class RESTController {
     @EJB
     private UserEventTypeBusinessLocal userEventEJB;
 
-    @POST
+    /*@POST
     @Path("/import")
-    public void importFile(){
-
-        //new FileChecker();
-    }
-    
-	@POST
-	@Path("/csv")
-	public void postCSV() {
-		failEventEJB.postCSV();
-	}
-	
-
-	@POST
-	@Consumes(MediaType.APPLICATION_JSON)
-	public void addFaiLEvent(FailureEvent fEvent) {
-		failEventEJB.addFailEvent(fEvent);
-	}
+    @Produces(MediaType.APPLICATION_JSON)
+    public FailureEvent importFile(){
+        //new DirectoryWatcher().listen();
+        System.out.println("HERE");
+        //return dataEJB.addData();
+    }*/
 
     @GET
     @Path("/fail_events")

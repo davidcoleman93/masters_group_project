@@ -29,4 +29,13 @@ public class MarketOperatorDAOImpl implements MarketOperatorDAOLocal {
                 .setParameter("marketOpID", marketOpID).getSingleResult();
     }
 
+    public boolean checkMarketOperator(MarketOperatorID marketOperatorID){
+        //RETURN TRUE IF NOT FOUND
+        return em.createQuery("SELECT o FROM MarketOperator o WHERE o.marketOpID=:marketOpID")
+                .setParameter("marketOpID", marketOperatorID)
+                .setMaxResults(1)
+                .getResultList()
+                .isEmpty();
+    }
+
 }

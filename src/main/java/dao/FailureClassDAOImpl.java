@@ -27,10 +27,19 @@ public class FailureClassDAOImpl implements FailureClassDAOLocal {
         return (List<FailureClass>)em.createQuery("FROM FailureClass ").getResultList();
     }
 
-    public FailureClass getFailureClass(int failureClass){
+    public FailureClass getFailureClass(Integer failureClass){
         return (FailureClass)em.createQuery("SELECT o FROM FailureClass o WHERE o.failureClass=:failureClass")
                 .setParameter("failureClass", failureClass).getSingleResult();
 
+    }
+
+    public boolean checkFailureClass(Integer failureClass){
+        //RETURN TRUE IF NOT FOUND
+        return em.createQuery("SELECT o FROM FailureClass o WHERE o.failureClass=:failureClass")
+                .setParameter("failureClass", failureClass)
+                .setMaxResults(1)
+                .getResultList()
+                .isEmpty();
     }
 
 }

@@ -1,5 +1,6 @@
 package dao;
 
+import entities.DataImportLog;
 import entities.FailureEvent;
 
 import javax.ejb.Local;
@@ -19,6 +20,10 @@ public class DataDAOImpl implements DataDAOLocal {
 
     @PersistenceContext
     private EntityManager em;
+
+    public void addDataImport(DataImportLog log){
+        em.persist(log);
+    }
 
     public void addFailureEvent(FailureEvent fe){
         em.persist(fe);

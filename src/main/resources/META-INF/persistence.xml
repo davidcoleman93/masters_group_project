@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <persistence xmlns="http://java.sun.com/xml/ns/persistence" version="1.0">
 
-    <persistence-unit name="lteFailureSystem">
+    <persistence-unit name="TestProject">
 
         <provider>org.hibernate.ejb.HibernatePersistence</provider>
         <jta-data-source>java:/lteFailureSystem</jta-data-source>

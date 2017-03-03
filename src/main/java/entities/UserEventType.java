@@ -26,6 +26,10 @@ public class UserEventType implements Serializable {
     public UserEventType() {
     }
 
+    public UserEventType(Integer tac){
+        this.tac = tac;
+    }
+
     public UserEventType(Integer tac, String marketingName, String manufacturer, String accessCapability, String model, String vendorName, String ueDevice, String operatingSystem, String inputMode) {
         this.tac = tac;
         this.marketingName = marketingName;

@@ -4,9 +4,10 @@ import entities.FailureEvent;
 
 import javax.ejb.Local;
 import javax.ejb.Stateless;
+import javax.ejb.TransactionAttribute;
+import javax.ejb.TransactionAttributeType;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-
 import java.util.Collection;
 import java.util.List;
 
@@ -16,6 +17,7 @@ import java.util.List;
 
 @Local
 @Stateless
+
 public class FailureEventDAOImpl implements FailureEventDAOLocal {
 
     @PersistenceContext
@@ -25,9 +27,7 @@ public class FailureEventDAOImpl implements FailureEventDAOLocal {
         return (List<FailureEvent>)em.createQuery("FROM FailureEvent ").getResultList();
     }
 
-	public void addFailEvent(FailureEvent fEvent) {
-			em.persist(fEvent);
-			
-	}
-
+    public void addFailureEvent(FailureEvent fe){
+        em.persist(fe);
+    }
 }
