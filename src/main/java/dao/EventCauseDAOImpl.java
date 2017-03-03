@@ -7,8 +7,7 @@ import javax.ejb.Local;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by david on 19/02/2017.
@@ -29,6 +28,15 @@ public class EventCauseDAOImpl implements EventCauseDAOLocal {
         return (EventCause)em.createQuery("SELECT o FROM EventCause o WHERE o.eventCauseID=:eventCauseID")
                 .setParameter("eventCauseID", eventCauseID)
                 .getSingleResult();
+    }
+
+    public boolean checkEventCause(EventCauseID eventCauseID){
+        //RETURN TRUE IF NOT FOUND
+        return em.createQuery("SELECT o FROM EventCause o WHERE o.eventCauseID=:eventCauseID")
+                .setParameter("eventCauseID", eventCauseID)
+                .setMaxResults(1)
+                .getResultList()
+                .isEmpty();
     }
 
 }

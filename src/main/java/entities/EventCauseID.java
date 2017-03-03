@@ -19,10 +19,8 @@ public class EventCauseID implements Serializable {
     public EventCauseID(){}
 
     public EventCauseID(Integer causeCode, Integer eventID){
-
         this.eventID = eventID;
         this.causeCode = causeCode;
-
     }
 
     public Integer getEventID() {

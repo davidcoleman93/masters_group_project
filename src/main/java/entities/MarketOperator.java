@@ -20,6 +20,10 @@ public class MarketOperator implements Serializable {
     public MarketOperator() {
     }
 
+    public MarketOperator(MarketOperatorID marketOpID){
+        this.marketOpID = marketOpID;
+    }
+
     public MarketOperator(MarketOperatorID marketOpID, String country, String operator) {
         this.marketOpID = marketOpID;
         this.country = country;

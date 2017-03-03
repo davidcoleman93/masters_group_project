@@ -1,6 +1,7 @@
 package dao;
 
 import entities.FailureClass;
+import entities.MarketOperator;
 import entities.UserEventType;
 
 import javax.ejb.Local;
@@ -25,10 +26,19 @@ public class UserEventTypeDAOImpl implements UserEventTypeDAOLocal {
         return (List<UserEventType>)em.createQuery("FROM UserEventType ").getResultList();
     }
 
-    public UserEventType getUserEventType(int tac){
+    public UserEventType getUserEventType(Integer tac){
         return (UserEventType)em.createQuery("SELECT o FROM UserEventType o WHERE o.tac=:tac")
                 .setParameter("tac", tac).getSingleResult();
 
+    }
+
+    public boolean checkUserEventType(Integer userEventType){
+        //RETURN TRUE IF NOT FOUND
+        return em.createQuery("SELECT o FROM UserEventType o WHERE o.tac=:tac")
+                .setParameter("tac", userEventType)
+                .setMaxResults(1)
+                .getResultList()
+                .isEmpty();
     }
 
 }

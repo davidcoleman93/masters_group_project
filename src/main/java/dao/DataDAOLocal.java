@@ -1,5 +1,6 @@
 package dao;
 
+import entities.DataImportLog;
 import entities.FailureEvent;
 
 import java.util.Collection;
@@ -10,4 +11,5 @@ import java.util.Collection;
 public interface DataDAOLocal {
     void addFailureEvent(FailureEvent fe);
     Collection<?> getCallFailures();
+    void addDataImport(DataImportLog log);
 }

@@ -12,5 +12,6 @@ import java.util.Collection;
 @Local
 public interface UserEventTypeDAOLocal {
     Collection<?> getAllUserEventTypes();
-    UserEventType getUserEventType(int tac);
+    UserEventType getUserEventType(Integer tac);
+    boolean checkUserEventType(Integer userEventType);
 }
