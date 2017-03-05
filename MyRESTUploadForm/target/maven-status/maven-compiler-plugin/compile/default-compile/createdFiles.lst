@@ -1,6 +1,0 @@
-com\group\dao\CompactDiscDAOLocal.class
-com\group\ejb\CompactDiscServiceLocal.class
-com\group\ejb\CompactDiscService.class
-com\group\dao\CompactDiscDAO.class
-com\group\rest\UploadRESTService.class
-com\group\entities\CompactDisc.class
