@@ -17,16 +17,16 @@ import java.util.Collection;
 @Stateless
 public class EventCauseBusinessImpl implements EventCauseBusinessLocal {
 
-	@Inject
-	private EventCauseDAOLocal daoBean;
+    @Inject
+    private EventCauseDAOLocal daoBean;
 
-	@Resource
-	private SessionContext session;
+    @Resource
+    private SessionContext session;
 
-	public Collection<?> getAllEventCauses() {
+    public Collection<?> getAllEventCauses(){
 
-		return daoBean.getAllEventCauses();
+        return daoBean.getAllEventCauses();
 
-	}
+    }
 
 }

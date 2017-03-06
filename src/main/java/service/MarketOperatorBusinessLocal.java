@@ -9,5 +9,5 @@ import java.util.Collection;
 
 @Local
 public interface MarketOperatorBusinessLocal {
-	Collection<?> getAllMarketOperators();
+    Collection<?> getAllMarketOperators();
 }

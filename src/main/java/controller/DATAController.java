@@ -12,14 +12,14 @@ import javax.ws.rs.*;
 @Path("/data")
 public class DATAController {
 
-	@EJB
-	private DirectoryWatcherLocal directoryWatcher;
+    @EJB
+    private DirectoryWatcherLocal directoryWatcher;
 
-	@POST
-	@Path("/dir_watcher")
-	public void runDirectoryWatcher() {
-		// DirectoryListener.getInstance().setDIR_PATH("Files");
-		directoryWatcher.listen();
-	}
+    @POST
+    @Path("/dir_watcher")
+    public void runDirectoryWatcher(){
+        //DirectoryListener.getInstance().setDIR_PATH("Files");
+        directoryWatcher.listen();
+    }
 
 }

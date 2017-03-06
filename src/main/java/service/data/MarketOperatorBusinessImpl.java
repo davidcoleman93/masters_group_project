@@ -17,16 +17,16 @@ import java.util.Collection;
 @Stateless
 public class MarketOperatorBusinessImpl implements MarketOperatorBusinessLocal {
 
-	@Inject
-	private MarketOperatorDAOLocal daoBean;
+    @Inject
+    private MarketOperatorDAOLocal daoBean;
 
-	@Resource
-	private SessionContext session;
+    @Resource
+    private SessionContext session;
 
-	public Collection<?> getAllMarketOperators() {
+    public Collection<?> getAllMarketOperators(){
 
-		return daoBean.getAllMarketOperators();
+        return daoBean.getAllMarketOperators();
 
-	}
+    }
 
 }

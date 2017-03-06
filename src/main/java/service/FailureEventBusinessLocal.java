@@ -12,9 +12,11 @@ import java.util.Collection;
 
 @Local
 public interface FailureEventBusinessLocal {
-	Collection<?> getAllFailureEvents();
+    Collection<?> getAllFailureEvents();
 
 	public void postCSV();
+
+	
 
 	public void addFailEvent(FailureEvent fEvent);
 }

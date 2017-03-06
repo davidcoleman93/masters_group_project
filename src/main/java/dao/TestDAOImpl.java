@@ -15,23 +15,22 @@ import java.util.List;
 @Stateless
 public class TestDAOImpl implements TestDAOLocal {
 
-	@PersistenceContext
-	private EntityManager em;
+    @PersistenceContext
+    private EntityManager em;
 
-	public void addRecord(Object o) {
-		// em.persist();
-	}
+    public void addRecord(Object o){
+        //em.persist();
+    }
 
-	// WORKING QUERY
-	// Retrieving all records from event_causes table
-	/*
-	 * public Collection<EventCause> getAll(){ return
-	 * (List<EventCause>)em.createQuery("FROM EventCause").getResultList() ; }
-	 */
+    //WORKING QUERY
+    //Retrieving all records from event_causes table
+    /*public Collection<EventCause> getAll(){
+        return (List<EventCause>)em.createQuery("FROM EventCause").getResultList()  ;
+    }*/
 
-	public Collection<?> getAll() {
-		System.out.println("QUERY!!!");
-		return em.createQuery("FROM FailureEvent").getResultList();
-	}
+    public Collection<?> getAll(){
+        System.out.println("QUERY!!!");
+        return (List<Object>)em.createQuery("FROM FailureEvent").getResultList();
+    }
 
 }

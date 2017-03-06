@@ -1,6 +1,7 @@
 package service.data;
 
 import javax.ejb.Local;
+import javax.ejb.TransactionAttribute;
 import java.util.Collection;
 
 /**
@@ -9,7 +10,6 @@ import java.util.Collection;
 
 @Local
 public interface FailureEventBusinessLocal {
-	Collection<?> getAllFailureEvents();
-
-	void postCSV(String fileName);
+    Collection<?> getAllFailureEvents();
+    void postCSV(String fileName);
 }

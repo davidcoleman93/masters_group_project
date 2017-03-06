@@ -19,57 +19,56 @@ import static java.nio.file.StandardWatchEventKinds.ENTRY_DELETE;
 @Stateless
 public class DirectoryWatcher implements DirectoryWatcherLocal {
 
-	/* Set Directory path to listen to */
-	private static WatchService dirWatcher; // JAVA Watcher API.
-	private static Path targetDirectory;
-	private static WatchKey watcherKey; // The WatchKey determines the types of
-										// events to listen for.
-	private static String DIR_PATH = "C:\\Software\\Programming\\workspace\\TestProject\\Files";
+    /* Set Directory path to listen to */
+    private static WatchService dirWatcher; //JAVA Watcher API.
+    private static Path targetDirectory;
+    private static WatchKey watcherKey; //The WatchKey determines the types of events to listen for.
+    private static String DIR_PATH = "C:\\Software\\Programming\\workspace\\TestProject\\Files";
 
-	@EJB
-	private FailureEventBusinessLocal failureEventBean;
+    @EJB
+    private FailureEventBusinessLocal failureEventBean;
 
-	public void listen() {
+    public void listen() {
 
-		System.out.println("LISTENING");
+        System.out.println("LISTENING");
 
-		try {
-			dirWatcher = FileSystems.getDefault().newWatchService();
-			targetDirectory = Paths.get(DIR_PATH);
-			targetDirectory.register(dirWatcher, ENTRY_CREATE, ENTRY_DELETE);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+        try {
+            dirWatcher = FileSystems.getDefault().newWatchService();
+            targetDirectory = Paths.get(DIR_PATH);
+            targetDirectory.register(dirWatcher, ENTRY_CREATE, ENTRY_DELETE);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
-		// POLL THE SYSTEM FOR CHANGES ON THE DIRECTORY
-		// OR IS IT THIS
-		// ONCE THE SYSTEM ADMIN UPLOADS A FILE ...................
-		while (true) {
-			try {
-				watcherKey = dirWatcher.take();
-			} catch (InterruptedException ex) {
-				return;
-			}
-			for (WatchEvent<?> event : watcherKey.pollEvents()) {
+        //POLL THE SYSTEM FOR CHANGES ON THE DIRECTORY
+        //OR IS IT THIS
+        //ONCE THE SYSTEM ADMIN UPLOADS A FILE ...................
+        while (true) {
+            try {
+                watcherKey = dirWatcher.take();
+            } catch (InterruptedException ex) {
+                return;
+            }
+            for (WatchEvent<?> event : watcherKey.pollEvents()) {
 
-				WatchEvent.Kind<?> eventKind = event.kind();
+                WatchEvent.Kind<?> eventKind = event.kind();
 
-				@SuppressWarnings("unchecked")
-				WatchEvent<Path> ev = (WatchEvent<Path>) event;
+                @SuppressWarnings("unchecked")
+                WatchEvent<Path> ev = (WatchEvent<Path>) event;
 
-				if (eventKind == ENTRY_CREATE) {
-					// VALIDATE FILE TYPE .xls/.csv etc....
+                if (eventKind == ENTRY_CREATE) {
+                    //VALIDATE FILE TYPE .xls/.csv etc....
 
-					String file = DIR_PATH + "\\" + ev.context();
-					System.out.println(file);
-					// ATM WE SEND THE BASE DATA WORKBOOK
-					failureEventBean.postCSV(file);
-				}
-			}
-			boolean valid = watcherKey.reset();
-			if (!valid) {
-				break;
-			}
-		}
-	}
+                    String file = DIR_PATH + "\\" + ev.context();
+                    System.out.println(file);
+                    //ATM WE SEND THE BASE DATA WORKBOOK
+                    failureEventBean.postCSV(file);
+                }
+            }
+            boolean valid = watcherKey.reset();
+            if (!valid) {
+                break;
+            }
+        }
+    }
 }

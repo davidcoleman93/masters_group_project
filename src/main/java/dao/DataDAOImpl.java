@@ -18,19 +18,20 @@ import java.util.List;
 @Stateless
 public class DataDAOImpl implements DataDAOLocal {
 
-	@PersistenceContext
-	private EntityManager em;
+    @PersistenceContext
+    private EntityManager em;
 
-	public void addDataImport(DataImportLog log) {
-		em.persist(log);
-	}
+    public void addDataImport(DataImportLog log){
+        em.persist(log);
+    }
 
-	public void addFailureEvent(FailureEvent fe) {
-		em.persist(fe);
-	}
+    public void addFailureEvent(FailureEvent fe){
+        em.persist(fe);
+    }
 
-	public Collection<?> getCallFailures() {
-		return em.createQuery("SELECT DISTINCT(o.imsi), COUNT(o), SUM(o.duration) FROM FailureEvent o").getResultList();
-	}
+    public Collection<?> getCallFailures(){
+        return (List<Object>)em.createQuery("SELECT DISTINCT(o.imsi), COUNT(o), SUM(o.duration) FROM FailureEvent o")
+                .getResultList();
+    }
 
 }

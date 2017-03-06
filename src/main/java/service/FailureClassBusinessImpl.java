@@ -17,14 +17,14 @@ import java.util.Collection;
 @Stateless
 public class FailureClassBusinessImpl implements FailureClassBusinessLocal {
 
-	@Inject
-	private FailureClassDAOLocal daoBean;
+    @Inject
+    private FailureClassDAOLocal daoBean;
 
-	@Resource
-	private SessionContext session;
+    @Resource
+    private SessionContext session;
 
-	public Collection<?> getAllFailureClasses() {
-		return daoBean.getAllFailureClasses();
-	}
+    public Collection<?> getAllFailureClasses(){
+        return daoBean.getAllFailureClasses();
+    }
 
 }

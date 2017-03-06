@@ -11,9 +11,7 @@ import java.util.Collection;
  */
 @Local
 public interface MarketOperatorDAOLocal {
-	Collection<?> getAllMarketOperators();
-
-	MarketOperator getMarketOperator(MarketOperatorID marketOperatorID);
-
-	boolean checkMarketOperator(MarketOperatorID marketOperatorID);
+    Collection<?> getAllMarketOperators();
+    MarketOperator getMarketOperator(MarketOperatorID marketOperatorID);
+    boolean checkMarketOperator(MarketOperatorID marketOperatorID);
 }
