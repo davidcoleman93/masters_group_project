@@ -28,20 +28,20 @@ import java.util.Date;
 @Stateless
 public class FailureEventBusinessImpl implements FailureEventBusinessLocal {
 
-    @Inject
-    private FailureEventDAOLocal daoBean;
-    
-    @EJB
-    private DataServiceLocal dataServiceEJB;
+	@Inject
+	private FailureEventDAOLocal daoBean;
 
-    @Resource
-    private SessionContext session;
+	@EJB
+	private DataServiceLocal dataServiceEJB;
 
-    public Collection<?> getAllFailureEvents(){
+	@Resource
+	private SessionContext session;
 
-        return daoBean.getAllFailureEvents();
+	public Collection<?> getAllFailureEvents() {
 
-    }
+		return daoBean.getAllFailureEvents();
+
+	}
 
 	public void postCSV() {
 		System.out.println("\n\n\nStart\n\n\n\n");
@@ -56,7 +56,7 @@ public class FailureEventBusinessImpl implements FailureEventBusinessLocal {
 		try {
 
 			br = new BufferedReader(new FileReader(csvFile));
-			//int count = 1;
+			// int count = 1;
 			while ((line = br.readLine()) != null) {
 
 				String[] fEvents = line.split(csvSplitBy);
@@ -86,23 +86,21 @@ public class FailureEventBusinessImpl implements FailureEventBusinessLocal {
 				Integer duration = Integer.parseInt(fEvents[7]);
 				Integer causeCode = Integer.parseInt(fEvents[8]);
 				String neVersion = fEvents[9];
-				//BigInteger imsi = new BigInteger(fEvents[10]);
+				// BigInteger imsi = new BigInteger(fEvents[10]);
 				long imsi = Long.parseLong(fEvents[10]);
-				
-				try{
-					dataServiceEJB.addData(dateTime, neVersion, eventId, failureClass, ueType, market, operator, cellId, duration, causeCode, imsi);
-				}catch(Exception e)
-				{
+
+				try {
+					dataServiceEJB.addData(dateTime, neVersion, eventId, failureClass, ueType, market, operator, cellId,
+							duration, causeCode, imsi);
+				} catch (Exception e) {
 					System.out.println("EXCEPTION FOUND: ");
 				}
-//				FailureEvent fEvent = new FailureEvent(dateTime, eventId, failureClass, ueType, market, operator, cellId,
-//						duration, causeCode, neVersion, imsi);
+				// FailureEvent fEvent = new FailureEvent(dateTime, eventId,
+				// failureClass, ueType, market, operator, cellId,
+				// duration, causeCode, neVersion, imsi);
 
-				
-				
-				
-//				System.out.println("Added #" + count);
-//				count++;
+				// System.out.println("Added #" + count);
+				// count++;
 
 			}
 
@@ -124,7 +122,7 @@ public class FailureEventBusinessImpl implements FailureEventBusinessLocal {
 
 	public void addFailEvent(FailureEvent fEvent) {
 		daoBean.addFailEvent(fEvent);
-		
+
 	}
 
 }

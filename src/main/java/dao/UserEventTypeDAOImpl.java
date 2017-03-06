@@ -1,7 +1,5 @@
 package dao;
 
-import entities.FailureClass;
-import entities.MarketOperator;
 import entities.UserEventType;
 
 import javax.ejb.Local;
@@ -19,26 +17,23 @@ import java.util.List;
 @Stateless
 public class UserEventTypeDAOImpl implements UserEventTypeDAOLocal {
 
-    @PersistenceContext
-    private EntityManager em;
+	@PersistenceContext
+	private EntityManager em;
 
-    public Collection<?> getAllUserEventTypes(){
-        return (List<UserEventType>)em.createQuery("FROM UserEventType ").getResultList();
-    }
+	public Collection<?> getAllUserEventTypes() {
+		return em.createQuery("FROM UserEventType ").getResultList();
+	}
 
-    public UserEventType getUserEventType(Integer tac){
-        return (UserEventType)em.createQuery("SELECT o FROM UserEventType o WHERE o.tac=:tac")
-                .setParameter("tac", tac).getSingleResult();
+	public UserEventType getUserEventType(Integer tac) {
+		return (UserEventType) em.createQuery("SELECT o FROM UserEventType o WHERE o.tac=:tac").setParameter("tac", tac)
+				.getSingleResult();
 
-    }
+	}
 
-    public boolean checkUserEventType(Integer userEventType){
-        //RETURN TRUE IF NOT FOUND
-        return em.createQuery("SELECT o FROM UserEventType o WHERE o.tac=:tac")
-                .setParameter("tac", userEventType)
-                .setMaxResults(1)
-                .getResultList()
-                .isEmpty();
-    }
+	public boolean checkUserEventType(Integer userEventType) {
+		// RETURN TRUE IF NOT FOUND
+		return em.createQuery("SELECT o FROM UserEventType o WHERE o.tac=:tac").setParameter("tac", userEventType)
+				.setMaxResults(1).getResultList().isEmpty();
+	}
 
 }

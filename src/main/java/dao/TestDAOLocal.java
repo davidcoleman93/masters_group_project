@@ -9,6 +9,7 @@ import java.util.Collection;
 
 @Local
 public interface TestDAOLocal {
-    void addRecord(Object o);
-    Collection<?> getAll();
+	void addRecord(Object o);
+
+	Collection<?> getAll();
 }

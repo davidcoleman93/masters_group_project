@@ -5,9 +5,6 @@ import entities.EventCauseID;
 
 import javax.ejb.Local;
 import java.util.Collection;
-import java.util.HashMap;
-import java.util.Hashtable;
-import java.util.List;
 
 /**
  * Created by david on 19/02/2017.
@@ -15,7 +12,9 @@ import java.util.List;
 
 @Local
 public interface EventCauseDAOLocal {
-    Collection<?> getAllEventCauses();
-    EventCause getEventCause(EventCauseID eventCauseID);
-    boolean checkEventCause(EventCauseID eventCauseID);
+	Collection<?> getAllEventCauses();
+
+	EventCause getEventCause(EventCauseID eventCauseID);
+
+	boolean checkEventCause(EventCauseID eventCauseID);
 }

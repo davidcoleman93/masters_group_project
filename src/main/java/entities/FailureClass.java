@@ -11,37 +11,39 @@ import java.io.Serializable;
 @Table(name = "failure_classes")
 public class FailureClass implements Serializable {
 
+	@Id
+	@Column(name = "failure_class")
+	private Integer failureClass;
 
-    @Id
-    @Column(name="failure_class") private Integer failureClass;
+	@Column(name = "description")
+	private String description;
 
-    @Column(name="description") private String description;
+	public FailureClass() {
+	}
 
-    public FailureClass(){}
+	public FailureClass(Integer failureClass) {
+		this.failureClass = failureClass;
+	}
 
-    public FailureClass(Integer failureClass) {
-        this.failureClass = failureClass;
-    }
+	public FailureClass(Integer failureClass, String description) {
+		this.failureClass = failureClass;
+		this.description = description;
+	}
 
-    public FailureClass(Integer failureClass, String description) {
-        this.failureClass = failureClass;
-        this.description = description;
-    }
+	public Integer getFailureClass() {
+		return failureClass;
+	}
 
-    public Integer getFailureClass() {
-        return failureClass;
-    }
+	public void setFailureClass(Integer failureClass) {
+		this.failureClass = failureClass;
+	}
 
-    public void setFailureClass(Integer failureClass) {
-        this.failureClass = failureClass;
-    }
+	public String getDescription() {
+		return description;
+	}
 
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
+	public void setDescription(String description) {
+		this.description = description;
+	}
 
 }

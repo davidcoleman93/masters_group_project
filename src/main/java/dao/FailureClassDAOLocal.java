@@ -11,7 +11,9 @@ import java.util.Collection;
 
 @Local
 public interface FailureClassDAOLocal {
-    Collection<?> getAllFailureClasses();
-    FailureClass getFailureClass(Integer failureClass);
-    boolean checkFailureClass(Integer failureClass);
+	Collection<?> getAllFailureClasses();
+
+	FailureClass getFailureClass(Integer failureClass);
+
+	boolean checkFailureClass(Integer failureClass);
 }

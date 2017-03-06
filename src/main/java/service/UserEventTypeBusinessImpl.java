@@ -17,14 +17,14 @@ import java.util.Collection;
 @Stateless
 public class UserEventTypeBusinessImpl implements UserEventTypeBusinessLocal {
 
-    @Inject
-    private UserEventTypeDAOLocal daoBean;
+	@Inject
+	private UserEventTypeDAOLocal daoBean;
 
-    @Resource
-    private SessionContext session;
+	@Resource
+	private SessionContext session;
 
-    public Collection<?> getAllUserEventTypes(){
-        return daoBean.getAllUserEventTypes();
-    }
+	public Collection<?> getAllUserEventTypes() {
+		return daoBean.getAllUserEventTypes();
+	}
 
 }

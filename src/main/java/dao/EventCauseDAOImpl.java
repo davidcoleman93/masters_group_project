@@ -17,26 +17,22 @@ import java.util.*;
 @Stateless
 public class EventCauseDAOImpl implements EventCauseDAOLocal {
 
-    @PersistenceContext
-    private EntityManager em;
+	@PersistenceContext
+	private EntityManager em;
 
-    public Collection<?> getAllEventCauses(){
-        return (List<EventCause>)em.createQuery("FROM EventCause ").getResultList();
-    }
+	public Collection<?> getAllEventCauses() {
+		return em.createQuery("FROM EventCause ").getResultList();
+	}
 
-    public EventCause getEventCause(EventCauseID eventCauseID){
-        return (EventCause)em.createQuery("SELECT o FROM EventCause o WHERE o.eventCauseID=:eventCauseID")
-                .setParameter("eventCauseID", eventCauseID)
-                .getSingleResult();
-    }
+	public EventCause getEventCause(EventCauseID eventCauseID) {
+		return (EventCause) em.createQuery("SELECT o FROM EventCause o WHERE o.eventCauseID=:eventCauseID")
+				.setParameter("eventCauseID", eventCauseID).getSingleResult();
+	}
 
-    public boolean checkEventCause(EventCauseID eventCauseID){
-        //RETURN TRUE IF NOT FOUND
-        return em.createQuery("SELECT o FROM EventCause o WHERE o.eventCauseID=:eventCauseID")
-                .setParameter("eventCauseID", eventCauseID)
-                .setMaxResults(1)
-                .getResultList()
-                .isEmpty();
-    }
+	public boolean checkEventCause(EventCauseID eventCauseID) {
+		// RETURN TRUE IF NOT FOUND
+		return em.createQuery("SELECT o FROM EventCause o WHERE o.eventCauseID=:eventCauseID")
+				.setParameter("eventCauseID", eventCauseID).setMaxResults(1).getResultList().isEmpty();
+	}
 
 }

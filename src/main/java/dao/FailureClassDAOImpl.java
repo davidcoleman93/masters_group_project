@@ -1,8 +1,5 @@
 package dao;
 
-import com.sun.net.httpserver.Authenticator;
-import entities.EventCause;
-import entities.EventCauseID;
 import entities.FailureClass;
 
 import javax.ejb.Local;
@@ -20,26 +17,23 @@ import java.util.List;
 @Stateless
 public class FailureClassDAOImpl implements FailureClassDAOLocal {
 
-    @PersistenceContext
-    private EntityManager em;
+	@PersistenceContext
+	private EntityManager em;
 
-    public Collection<?> getAllFailureClasses(){
-        return (List<FailureClass>)em.createQuery("FROM FailureClass ").getResultList();
-    }
+	public Collection<?> getAllFailureClasses() {
+		return em.createQuery("FROM FailureClass ").getResultList();
+	}
 
-    public FailureClass getFailureClass(Integer failureClass){
-        return (FailureClass)em.createQuery("SELECT o FROM FailureClass o WHERE o.failureClass=:failureClass")
-                .setParameter("failureClass", failureClass).getSingleResult();
+	public FailureClass getFailureClass(Integer failureClass) {
+		return (FailureClass) em.createQuery("SELECT o FROM FailureClass o WHERE o.failureClass=:failureClass")
+				.setParameter("failureClass", failureClass).getSingleResult();
 
-    }
+	}
 
-    public boolean checkFailureClass(Integer failureClass){
-        //RETURN TRUE IF NOT FOUND
-        return em.createQuery("SELECT o FROM FailureClass o WHERE o.failureClass=:failureClass")
-                .setParameter("failureClass", failureClass)
-                .setMaxResults(1)
-                .getResultList()
-                .isEmpty();
-    }
+	public boolean checkFailureClass(Integer failureClass) {
+		// RETURN TRUE IF NOT FOUND
+		return em.createQuery("SELECT o FROM FailureClass o WHERE o.failureClass=:failureClass")
+				.setParameter("failureClass", failureClass).setMaxResults(1).getResultList().isEmpty();
+	}
 
 }
