@@ -65,7 +65,7 @@ public class FailureEventBusinessImpl implements FailureEventBusinessLocal {
 
                 if(lineNum == 0){
                     lineNum++;
-                }else if(lineNum == 1) {
+                }else {
                     lineNum++;
 
                     boolean error = false;
