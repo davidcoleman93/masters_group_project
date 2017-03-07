@@ -23,7 +23,7 @@ public class DirectoryWatcher implements DirectoryWatcherLocal {
     private static WatchService dirWatcher; //JAVA Watcher API.
     private static Path targetDirectory;
     private static WatchKey watcherKey; //The WatchKey determines the types of events to listen for.
-    private static String DIR_PATH = "C:\\Software\\Programming\\workspace\\TestProject\\Files";
+    private static String DIR_PATH = "/home/bobaikato/workspace/Group3Project/masters_group_project/csvfiledir/";
 
     @EJB
     private FailureEventBusinessLocal failureEventBean;
@@ -59,7 +59,7 @@ public class DirectoryWatcher implements DirectoryWatcherLocal {
                 if (eventKind == ENTRY_CREATE) {
                     //VALIDATE FILE TYPE .xls/.csv etc....
 
-                    String file = DIR_PATH + "\\" + ev.context();
+                    String file = DIR_PATH + "//" + ev.context();
                     System.out.println(file);
                     //ATM WE SEND THE BASE DATA WORKBOOK
                     failureEventBean.postCSV(file);
