@@ -42,7 +42,15 @@ public class FailureEventBusinessImpl implements FailureEventBusinessLocal {
 
     public Collection<?> getAllFailureEvents(){
 
-        return failureEventBean.getAllFailureEvents();
+    	List<Object[]> objsFail = null;
+
+        try{
+            objsFail = (List<Object[]>)failureEventBean.getAllFailureEvents();
+        }catch(Exception e){
+            System.out.println("THERE IS A PROBLEM WITH DAO");
+        }
+
+        return objsFail;
 
     }
 

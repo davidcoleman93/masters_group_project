@@ -20,14 +20,25 @@ import java.util.List;
 
 public class FailureEventDAOImpl implements FailureEventDAOLocal {
 
-    @PersistenceContext
-    private EntityManager em;
+	@PersistenceContext
+	private EntityManager em;
 
-    public Collection<?> getAllFailureEvents(){
-        return (List<FailureEvent>)em.createQuery("FROM FailureEvent ").getResultList();
-    }
+	public Collection<?> getAllFailureEvents() {
+		List<Object[]> objsFail = null;
 
-    public void addFailureEvent(FailureEvent fe){
-        em.persist(fe);
-    }
+	       try{
+	           objsFail = (List<Object[]>)em
+	                   .createQuery(
+	                           "SELECT o.id, o.dateTime, o.eventCause.eventCauseID.causeCode, o.eventCause.eventCauseID.eventID, o.failureClass.failureClass, o.userEventType.tac, o.marketOperator.marketOpID.marketCode, o.marketOperator.marketOpID.operatorCode, o.cellID, o.duration, o.neVersion, o.imsi FROM FailureEvent o")
+	                   .getResultList();
+	       }catch(Exception e){
+	           System.out.println("THERE IS A PROBLEM WITH THE QUERY");
+	       }
+
+	       return objsFail;
+	}
+
+	public void addFailureEvent(FailureEvent fe) {
+		em.persist(fe);
+	}
 }

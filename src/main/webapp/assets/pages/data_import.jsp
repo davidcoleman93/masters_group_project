@@ -18,7 +18,7 @@
 <meta name="keyword"
 	content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
 
-<title>LTE Failure System</title>
+<title>File Upload</title>
 
 <!-- Bootstrap core CSS -->
 <link href="../css/bootstrap.css" rel="stylesheet">
@@ -55,7 +55,7 @@
 				<div class="fa fa-bars tooltips"></div>
 			</div>
 			<!--logo start-->
-			<a href="../../index.html" class="logo"><b>LTE Failure System</b></a>
+			<a href="../../index.html" class="logo"><b>DAta ViBes</b></a>
 			<!--logo end-->
 			<div class="nav notify-row" id="top_menu"></div>
 			<div class="top-menu">
@@ -73,44 +73,59 @@
 		<aside>
 			<div id="sidebar" class="nav-collapse ">
 				<!-- sidebar menu start-->
-				<ul class="sidebar-menu" id="nav-accordion">
+                 <ul class="sidebar-menu" id="nav-accordion">
 
-					<li class="mt"><a href="../../index.html"> <i
-							class="fa fa-dashboard"></i> <span>Dashboard</span>
-					</a></li>
+                     <li class="mt">
+                         <a href="../../index.html">
+                             <i class="fa fa-dashboard"></i>
+                             <span>Dashboard</span>
+                         </a>
+                     </li>
 
-					<li class="sub-menu"><a href="javascript:;"> <i
-							class="fa fa-tasks"></i> <span>Data Analysis</span>
-					</a>
-						<ul class="sub">
-							<li><a href="data_analysis.html">Search for data!</a></li>
-						</ul></li>
+                     <!--<li class="sub-menu">
+                         <a href="javascript:;" >
+                             <i class="fa fa-tasks"></i>
+                             <span>Data Analysis</span>
+                         </a>
+                         <ul class="sub">
+                             <li><a  href="assets/pages/data_analysis.html">Search for data!</a></li>
+                         </ul>
+                     </li>
 
-					<li class="sub-menu"><a href="javascript:;"> <i
-							class="fa fa-th"></i> <span>Data Tables</span>
-					</a>
-						<ul class="sub">
-							<li><a href="basic_table.html">Basic Table</a></li>
-							<li><a href="responsive_table.html">Responsive Table</a></li>
-						</ul></li>
-					<li class="sub-menu"><a href="javascript:;"> <i
-							class=" fa fa-bar-chart-o"></i> <span>Data Charts</span>
-					</a>
-						<ul class="sub">
-							<li><a href="morris.html">Morris</a></li>
-							<li><a href="chartjs.html">Chartjs</a></li>
-						</ul></li>
+                     <li class="sub-menu">
+                         <a href="javascript:;" >
+                             <i class="fa fa-th"></i>
+                             <span>Data Tables</span>
+                         </a>
+                         <ul class="sub">
+                             <li><a  href="assets/pages/basic_table.html">Basic Table</a></li>
+                             <li><a  href="assets/pages/responsive_table.html">Responsive Table</a></li>
+                         </ul>
+                     </li>
+                     <li class="sub-menu">
+                         <a href="javascript:;" >
+                             <i class=" fa fa-bar-chart-o"></i>
+                             <span>Data Charts</span>
+                         </a>
+                         <ul class="sub">
+                             <li><a  href="assets/pages/morris.html">Morris</a></li>
+                             <li><a  href="assets/pages/chartjs.html">Chartjs</a></li>
+                         </ul>
+                     </li>-->
 
-					<li class="sub-menu"><a href="javascript:;"> <i
-							class="fa fa-cogs"></i> <span>Components</span>
-					</a>
-						<ul class="active" class="sub">
-							<li><a class="active" href="data_import.jsp">Data Import</a></li>
-							<li><a href="todo_list.html">Todo List</a></li>
-						</ul></li>
+                     <li class="sub-menu">
+                         <a class = "active" href="data_import.jsp">
+                             <i class="fa fa-cogs"></i>
+                             <span>Data Import</span>
+                         </a>
+                         <!--<ul class="sub">
+                             <li><a  href="assets/pages/data_import.jsp">Data Import</a></li>
+                             <li><a  href="assets/pages/todo_list.html">Todo List</a></li>
+                         </ul>-->
+                     </li>
 
-				</ul>
-				<!-- sidebar menu end-->
+                 </ul>
+                 <!-- sidebar menu end-->
 			</div>
 		</aside>
 		<!--sidebar end-->
@@ -258,8 +273,7 @@
 		<!--main content end-->
 		<!--footer start-->
 		<footer class="site-footer">
-			<div class="text-center">
-				2014 - Alvarez.is <a href="../../index.html#" class="go-top"> <i
+			<div class="text-center"> <a href="../../index.html#" class="go-top"> <i
 					class="fa fa-angle-up"></i>
 				</a>
 			</div>
