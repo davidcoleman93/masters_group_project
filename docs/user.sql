@@ -25,7 +25,7 @@ CREATE TABLE IF NOT EXISTS `lte_failure_system`.`users` (
   `user_name` VARCHAR(45) NOT NULL,
   `email` VARCHAR(45) NULL,
   `password` VARCHAR(45) NOT NULL,
-  'user_role' ENUM('admin', 'support_eng', 'netw_eng', 'cutomer_serv') NOT NULL,
+  `user_role` ENUM('admin', 'support_eng', 'netw_eng', 'cutomer_serv') NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `id_UNIQUE` (`id` ASC),
   UNIQUE INDEX `user_name_UNIQUE` (`user_name` ASC),
