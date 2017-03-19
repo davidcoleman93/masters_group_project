@@ -21,14 +21,13 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 DROP TABLE IF EXISTS `lte_failure_system`.`users` ;
 
 CREATE TABLE IF NOT EXISTS `lte_failure_system`.`users` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `user_name` VARCHAR(45) NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,  
   `email` VARCHAR(45) NULL,
   `password` VARCHAR(45) NOT NULL,
   `user_role` ENUM('admin', 'support_eng', 'netw_eng', 'cutomer_serv') NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `id_UNIQUE` (`id` ASC),
-  UNIQUE INDEX `user_name_UNIQUE` (`user_name` ASC),
+  UNIQUE INDEX `email_UNIQUE` (`user_name` ASC),
   UNIQUE INDEX `password_UNIQUE` (`password` ASC))
 ENGINE = InnoDB;
 
