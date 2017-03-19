@@ -20,7 +20,7 @@ CREATE TABLE IF NOT EXISTS `lte_failure_system`.`users` (
   `id` INT NOT NULL AUTO_INCREMENT,  
   `email` VARCHAR(45) NOT NULL,
   `password` VARCHAR(45) NOT NULL,
-  `user_role` ENUM('admin', 'support_eng', 'netw_eng', 'cutomer_serv') NOT NULL,
+  `user_role` ENUM('admin', 'support_eng', 'netw_eng', 'customer_serv') NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `id_UNIQUE` (`id` ASC),
   UNIQUE INDEX `email_UNIQUE` (`user_name` ASC) 
