@@ -23,8 +23,7 @@ CREATE TABLE IF NOT EXISTS `lte_failure_system`.`users` (
   `user_role` ENUM('admin', 'support_eng', 'netw_eng', 'cutomer_serv') NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `id_UNIQUE` (`id` ASC),
-  UNIQUE INDEX `email_UNIQUE` (`user_name` ASC),
-  UNIQUE INDEX `password_UNIQUE` (`password` ASC))
+  UNIQUE INDEX `email_UNIQUE` (`user_name` ASC) 
 ENGINE = InnoDB;
 
 
