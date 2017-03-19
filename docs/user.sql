@@ -17,12 +17,12 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 DROP TABLE IF EXISTS `lte_failure_system`.`users` ;
 
 CREATE TABLE IF NOT EXISTS `lte_failure_system`.`users` (
-  `id` INT NOT NULL AUTO_INCREMENT,  
+  `user_id` INT NOT NULL AUTO_INCREMENT,  
   `email` VARCHAR(45) NOT NULL,
   `password` VARCHAR(45) NOT NULL,
   `user_role` ENUM('admin', 'support_eng', 'netw_eng', 'customer_serv') NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE INDEX `id_UNIQUE` (`id` ASC),
+  PRIMARY KEY (`user_id`),
+  UNIQUE INDEX `user_id_UNIQUE` (`user_id` ASC),
   UNIQUE INDEX `email_UNIQUE` (`user_name` ASC) 
 ENGINE = InnoDB;
 
