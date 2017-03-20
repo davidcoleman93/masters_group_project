@@ -4,14 +4,13 @@ import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Multimap;
 import dao.*;
 import entities.*;
-import org.apache.commons.io.FileUtils;
-import org.apache.commons.io.LineIterator;
+import org.apache.commons.io.*;
+import org.apache.commons.csv.*;
 
 import javax.ejb.*;
 import javax.inject.Inject;
 import java.io.*;
 import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -59,13 +58,33 @@ public class FailureEventBusinessImpl implements FailureEventBusinessLocal {
     }
 
     public void postCSV(String fileName) {
-
+        /*
+            Objects for scanning CSV file
+         */
         File temp = null;
         LineIterator lineIterator = null;
-        Long numErrors = 0L;
-        Long numImports = 0L;
-        int lineNum = 0;
+        /*
+            Failure event variables
+         */
+        Date dateTime;
+        Integer eventID, failureClass, ueType, market, operator, cellID, duration, causeCode;
+        String neVersion;
+        Long imsi;
 
+        String[] fEvents;
+
+        List<FailureEvent> failureEventList = new ArrayList<FailureEvent>();
+        List<FailureEventLog> failureLogList = new ArrayList<FailureEventLog>();
+
+        //DATE format objects
+        SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+        DateFormat srcDf = new SimpleDateFormat("dd/MM/yyy HH:mm");
+        Date retrievedDate;
+        String startDateString;
+
+        /*
+            Data Structures to store foreign key tables
+         */
         Multimap<Integer, Integer> eventMap = ArrayListMultimap.create();
         Multimap<Integer, Integer> marketMap = ArrayListMultimap.create();
         HashSet<Integer> failureMap = null;
@@ -101,37 +120,52 @@ public class FailureEventBusinessImpl implements FailureEventBusinessLocal {
         }catch(Exception ioe){
         }
 
+        /*
+            Meta Data variables
+         */
+        Long numErrors = 0L;
+        Long numImports = 0L;
+        int lineNum = 0;
+
+        /*
+            Error boolean(trigger)
+         */
+        boolean error;
+
         try{
             System.out.println("STARTED");
             while(lineIterator.hasNext()){
-                String line = lineIterator.nextLine();
                 if(lineNum == 0){
                     lineNum++;
                 }else {
-                    lineNum++;
+                    /*
+                        Split the next line into the String array using the delimiter ','
+                     */
+                    fEvents = lineIterator.nextLine().split(",");
+                    /*
+                        Reset Failure event/error variables
+                     */
+                    error = false;
 
-                    boolean error = false;
+                    dateTime = null;
+                    eventID = null;
+                    failureClass = null;
+                    ueType = null;
+                    market = null;
+                    operator = null;
+                    cellID = null;
+                    duration = null;
+                    causeCode = null;
+                    neVersion = null;
+                    imsi = null;
 
-                    String[] fEvents = line.split(",");
-
-                    Date dateTime = null;
-                    Integer eventID = null;
-                    Integer failureClass = null;
-                    Integer ueType = null;
-                    Integer market = null;
-                    Integer operator = null;
-                    Integer cellID = null;
-                    Integer duration = null;
-                    Integer causeCode = null;
-                    String neVersion = null;
-                    Long imsi = null;
-
+                    /*
+                        Try parse the values to each corresponding data type
+                     */
                     try{
-                        String startDateString = fEvents[0];
-                        SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+                        startDateString = fEvents[0];
                         if (startDateString.contains("/")) {
-                            DateFormat srcDf = new SimpleDateFormat("dd/MM/yyy HH:mm");
-                            Date retrievedDate = srcDf.parse(startDateString);
+                            retrievedDate = srcDf.parse(startDateString);
                             startDateString = df.format(retrievedDate);
                         }
                         dateTime = df.parse(startDateString);
@@ -198,57 +232,52 @@ public class FailureEventBusinessImpl implements FailureEventBusinessLocal {
                     }catch(Exception e){
                         if(!error) error = true;
                     }
-
-                    if(!error){
-                        if(eventMap.containsEntry(causeCode, eventID) &&
-                                failureMap.contains(failureClass) &&
-                                marketMap.containsEntry(market, operator) &&
-                                ueMap.contains(ueType)){
-                            failureEventBean.addFailureEvent(new FailureEvent(
-                                    dateTime,
-                                    new EventCause(new EventCauseID(causeCode, eventID)),
-                                    new FailureClass(failureClass),
-                                    new UserEventType(ueType),
-                                    new MarketOperator(new MarketOperatorID(market, operator)),
-                                    cellID,
-                                    duration,
-                                    neVersion,
-                                    imsi));
-                            numImports++;
-                        }else{
-                            //This is duplicated BELOW....need to look at this!!!
-                            feLogBean.addLogRecord(
-                                    new FailureEventLog(
-                                            dateTime,
-                                            eventID,
-                                            failureClass,
-                                            ueType,
-                                            market,
-                                            operator,
-                                            cellID,
-                                            duration,
-                                            causeCode,
-                                            neVersion,
-                                            imsi)
-                            );
-                            numErrors++;
-                        }
-                    }else{
-                        //Add erroneous record to the log table
-                        feLogBean.addLogRecord(
-                                new FailureEventLog(
+                    /*
+                        As long as there were no errors in parsing the data, process.
+                     */
+                    if(!error) {
+                        /*
+                            Check relationships
+                         */
+                        if (eventMap.containsEntry(causeCode, eventID)
+                                && failureMap.contains(failureClass)
+                                && marketMap.containsEntry(market, operator)
+                                && ueMap.contains(ueType)) {
+                            /*
+                                Adding the Failure Events to a List sped up data import of 30k records from 3 minutes to 14 seconds.
+                             */
+                            failureEventList.add(
+                                    new FailureEvent(
                                         dateTime,
-                                        eventID,
-                                        failureClass,
-                                        ueType,
-                                        market,
-                                        operator,
+                                        new EventCause(new EventCauseID(causeCode, eventID)),
+                                        new FailureClass(failureClass),
+                                        new UserEventType(ueType),
+                                        new MarketOperator(new MarketOperatorID(market, operator)),
                                         cellID,
                                         duration,
-                                        causeCode,
                                         neVersion,
-                                        imsi)
-                        );
+                                        imsi
+                                    )
+                            );
+                            numImports++;
+                        }
+                    }
+                    /*
+                        Process erroneous records.
+                     */
+                    if(error){
+                        failureLogList.add(new FailureEventLog(
+                            dateTime,
+                            eventID,
+                            failureClass,
+                            ueType,
+                            market,
+                            operator,
+                            cellID,
+                            duration,
+                            causeCode,
+                            neVersion,
+                            imsi));
                         numErrors++;
                     }
                 }
@@ -256,13 +285,19 @@ public class FailureEventBusinessImpl implements FailureEventBusinessLocal {
         }finally {
             LineIterator.closeQuietly(lineIterator);
         }
-        System.out.println("COMPLETED");
-
-        if(numErrors == (long)(lineNum)){
+        /*
+            Send Failure Event and Failure Logs to be persisted to the database
+         */
+        failureEventBean.addFailureList(failureEventList);
+        feLogBean.addFailureLogList(failureLogList);
+        /*
+            Insert the meta data for this import to the database.
+            (If EVERY record in the file was erroneous then it was not a successful import)
+         */
+        if(numErrors == ((long)(lineNum) - 1)){
             dataBean.addDataImport(new DataImportLog(new Date(), false, numImports, numErrors));
         }else{
             dataBean.addDataImport(new DataImportLog(new Date(), true, numImports, numErrors));
         }
-
     }
 }
