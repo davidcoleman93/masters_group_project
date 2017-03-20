@@ -187,7 +187,7 @@
                                 String fileName = request.getParameter("fileName");
                                 //making sure content has been posted.
                                 if (content != null) {
-                                    String filePath = "C:\\Code\\JEEProject\\masters_group_project\\Files\\" + fileName
+                                    String filePath = "C:\\Code\\TestProject\\Files\\" + fileName
                                             + ".csv";
                                     try {
                                         out.println(filePath);
