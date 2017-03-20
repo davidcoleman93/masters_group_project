@@ -35,4 +35,11 @@ public class FailureEventDAOImpl implements FailureEventDAOLocal {
     public void addFailureEvent(FailureEvent fe){
         em.persist(fe);
     }
+
+    public void addFailureList(List<FailureEvent> fes){
+        for(FailureEvent fe : fes){
+            em.persist(fe);
+        }
+    }
+
 }
