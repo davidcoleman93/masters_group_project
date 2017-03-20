@@ -1,0 +1,44 @@
+1. Review the Brief and the initial Dataset
+
+	First week as a group -> Database Design and defining relationships
+	Data -> relationships and data type 'stuff' (null etc)
+	ERD diagram
+
+2. Review the initial Query List
+
+	JAVA over SQL????
+
+	We took User Story 1(data import) and broke it down as follows:
+		-> Create base JEE ('Full stack REST project') project
+			* Most importantly creating the entities with relationships
+			* Difficulty here was using Composite Foreign Keys
+				-> Using Embedded Keys in JAVA
+		-> Listener on a directory?
+			* Used JAVA WatchService API
+		-> File upload through and convert web interface
+			* Used HTML post method, initially BUT!
+			* We needed to change this to Node.js due to ...APACHE POI...
+		-> File validation, convert if necessary
+			* Check file extension and convert if necessary
+		-> Scan .csv file and validate data
+			* Checked for valid datatype formats. Including converting to correct date format.
+		-> Check relationships -> Persists data to database
+			* Check for valid foreign keys 
+
+3. Provide the user stories to the product owner to populate the Product Backlog 
+       
+    -> Basic Dataset import and Database setup (User story 1 - DONE)
+
+4. Simple Query (data retrieval and display) execution via basic GUI
+ 
+	-> Retrieve all of main data via button clicks
+
+
+5. The prototype should also contain the basic scalable architecture for the application 
+
+	-> Split logic across JEE layers:
+		* REST layer for HTTP requests (POST, GET ...)
+		* Service layer (EJB) for business logic (using FACADE design)
+		* DAO Layer for CRUD transactions with the Database
+
+******** THINK OF A NAME FOR THE PRODUCT *************                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               

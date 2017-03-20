@@ -9,5 +9,5 @@ import java.util.Collection;
 
 @Local
 public interface FailureClassBusinessLocal {
-    Collection<?> getAllFailureClasses();
+    void updateFailureClasses(String fileName);
 }

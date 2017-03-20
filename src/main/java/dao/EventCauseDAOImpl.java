@@ -1,5 +1,7 @@
 package dao;
 
+import com.google.common.collect.ArrayListMultimap;
+import com.google.common.collect.Multimap;
 import entities.EventCause;
 import entities.EventCauseID;
 
@@ -20,23 +22,17 @@ public class EventCauseDAOImpl implements EventCauseDAOLocal {
     @PersistenceContext
     private EntityManager em;
 
-    public Collection<?> getAllEventCauses(){
-        return (List<EventCause>)em.createQuery("FROM EventCause ").getResultList();
+    public Multimap<Integer, Integer> getEventCauseMap(){
+        List<Object[]> temp = (List<Object[]>)
+                em.createQuery("SELECT o.eventCauseID.causeCode, o.eventCauseID.eventID FROM EventCause o").getResultList();
+
+        Multimap<Integer, Integer> map = ArrayListMultimap.create();
+        for(Object[] t : temp) {
+            map.put((Integer) t[0], (Integer) t[1]);
+        }
+
+        return map;
     }
 
-    public EventCause getEventCause(EventCauseID eventCauseID){
-        return (EventCause)em.createQuery("SELECT o FROM EventCause o WHERE o.eventCauseID=:eventCauseID")
-                .setParameter("eventCauseID", eventCauseID)
-                .getSingleResult();
-    }
-
-    public boolean checkEventCause(EventCauseID eventCauseID){
-        //RETURN TRUE IF NOT FOUND
-        return em.createQuery("SELECT o FROM EventCause o WHERE o.eventCauseID=:eventCauseID")
-                .setParameter("eventCauseID", eventCauseID)
-                .setMaxResults(1)
-                .getResultList()
-                .isEmpty();
-    }
 
 }

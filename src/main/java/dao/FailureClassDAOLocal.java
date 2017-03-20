@@ -4,6 +4,7 @@ import entities.FailureClass;
 
 import javax.ejb.Local;
 import java.util.Collection;
+import java.util.HashSet;
 
 /**
  * Created by david on 19/02/2017.
@@ -11,7 +12,6 @@ import java.util.Collection;
 
 @Local
 public interface FailureClassDAOLocal {
-    Collection<?> getAllFailureClasses();
-    FailureClass getFailureClass(Integer failureClass);
-    boolean checkFailureClass(Integer failureClass);
+    HashSet<Integer> getFailureClassSet();
+    void addFailureClass(FailureClass failureClass);
 }

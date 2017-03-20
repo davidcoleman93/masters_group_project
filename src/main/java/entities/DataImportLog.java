@@ -1,6 +1,7 @@
 package entities;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -9,7 +10,7 @@ import java.util.Date;
 
 @Entity
 @Table(name = "data_import_log")
-public class DataImportLog {
+public class DataImportLog implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,14 +19,16 @@ public class DataImportLog {
     @Column(name = "import_date") private Date importDate;
     @Column(name = "successful_import") private Boolean successfulImport;
     @Column(name = "number_imports") private Long numImports;
+    @Column(name = "number_errors") private Long numErrors;
 
     public DataImportLog() {
     }
 
-    public DataImportLog(Date importDate, Boolean successfulImport, Long numImports) {
+    public DataImportLog(Date importDate, Boolean successfulImport, Long numImports, Long numErrors) {
         this.importDate = importDate;
         this.successfulImport = successfulImport;
         this.numImports = numImports;
+        this.numErrors = numErrors;
     }
 
     public Integer getId() {
@@ -58,5 +61,13 @@ public class DataImportLog {
 
     public void setNumImports(Long numImports) {
         this.numImports = numImports;
+    }
+
+    public Long getNumErrors() {
+        return numErrors;
+    }
+
+    public void setNumErrors(Long numErrors) {
+        this.numErrors = numErrors;
     }
 }

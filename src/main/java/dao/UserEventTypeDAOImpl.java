@@ -1,14 +1,10 @@
 package dao;
 
-import entities.FailureClass;
-import entities.MarketOperator;
-import entities.UserEventType;
-
 import javax.ejb.Local;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
 
 /**
@@ -22,23 +18,16 @@ public class UserEventTypeDAOImpl implements UserEventTypeDAOLocal {
     @PersistenceContext
     private EntityManager em;
 
-    public Collection<?> getAllUserEventTypes(){
-        return (List<UserEventType>)em.createQuery("FROM UserEventType ").getResultList();
-    }
+    public HashSet<Integer> getUserEventSet(){
+        List<Integer> temp = (List<Integer>)
+                em.createQuery("SELECT o.tac FROM UserEventType o").getResultList();
 
-    public UserEventType getUserEventType(Integer tac){
-        return (UserEventType)em.createQuery("SELECT o FROM UserEventType o WHERE o.tac=:tac")
-                .setParameter("tac", tac).getSingleResult();
+        HashSet<Integer> set = new HashSet<Integer>();
+        for(Integer t : temp) {
+            set.add(t);
+        }
 
-    }
-
-    public boolean checkUserEventType(Integer userEventType){
-        //RETURN TRUE IF NOT FOUND
-        return em.createQuery("SELECT o FROM UserEventType o WHERE o.tac=:tac")
-                .setParameter("tac", userEventType)
-                .setMaxResults(1)
-                .getResultList()
-                .isEmpty();
+        return set;
     }
 
 }

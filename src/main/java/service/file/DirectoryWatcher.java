@@ -1,41 +1,44 @@
 package service.file;
 
-import service.data.FailureEventBusinessLocal;
+import entities.EventCause;
+import entities.MarketOperator;
+import service.data.*;
 
-import javax.ejb.EJB;
-import javax.ejb.Local;
-import javax.ejb.Stateless;
+import javax.annotation.PostConstruct;
+import javax.ejb.*;
 import java.io.*;
 import java.nio.file.*;
 
 import static java.nio.file.StandardWatchEventKinds.ENTRY_CREATE;
 import static java.nio.file.StandardWatchEventKinds.ENTRY_DELETE;
+import static java.nio.file.StandardWatchEventKinds.ENTRY_MODIFY;
 
 /**
  * Created by C06590861 on 07/02/2017.
  */
 
 @Local
-@Stateless
+@Singleton
 public class DirectoryWatcher implements DirectoryWatcherLocal {
 
     /* Set Directory path to listen to */
     private static WatchService dirWatcher; //JAVA Watcher API.
     private static Path targetDirectory;
     private static WatchKey watcherKey; //The WatchKey determines the types of events to listen for.
-    private static String DIR_PATH = "/home/bobaikato/workspace/Group3Project/masters_group_project/csvfiledir/";
+    private static String DIR_PATH = "C:\\Code\\TestProject\\Files";
 
     @EJB
     private FailureEventBusinessLocal failureEventBean;
+    @EJB
+    private FailureClassBusinessLocal failureClassBean;
 
+    @PostConstruct
     public void listen() {
-
-        System.out.println("LISTENING");
 
         try {
             dirWatcher = FileSystems.getDefault().newWatchService();
             targetDirectory = Paths.get(DIR_PATH);
-            targetDirectory.register(dirWatcher, ENTRY_CREATE, ENTRY_DELETE);
+            targetDirectory.register(dirWatcher, ENTRY_CREATE, ENTRY_MODIFY, ENTRY_DELETE);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -57,12 +60,21 @@ public class DirectoryWatcher implements DirectoryWatcherLocal {
                 WatchEvent<Path> ev = (WatchEvent<Path>) event;
 
                 if (eventKind == ENTRY_CREATE) {
-                    //VALIDATE FILE TYPE .xls/.csv etc....
-
-                    String file = DIR_PATH + "//" + ev.context();
-                    System.out.println(file);
                     //ATM WE SEND THE BASE DATA WORKBOOK
-                    failureEventBean.postCSV(file);
+                    String file = DIR_PATH + "\\" + ev.context();
+                    if(file.contains("Base")){
+                        synchronized (this){
+                            failureEventBean.postCSV(file);
+                        }
+                    }else if(file.contains("Event")){
+
+                    }else if(file.contains("Failure")){
+                        //failureClassBean.updateFailureClasses(file);
+                    }else if(file.contains("UE")){
+
+                    }else if(file.contains("MCC")){
+
+                    }
                 }
             }
             boolean valid = watcherKey.reset();

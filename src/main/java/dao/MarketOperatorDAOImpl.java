@@ -1,5 +1,7 @@
 package dao;
 
+import com.google.common.collect.ArrayListMultimap;
+import com.google.common.collect.Multimap;
 import entities.*;
 
 import javax.ejb.Local;
@@ -20,22 +22,15 @@ public class MarketOperatorDAOImpl implements MarketOperatorDAOLocal {
     @PersistenceContext
     private EntityManager em;
 
-    public Collection<?> getAllMarketOperators(){
-        return (List<MarketOperator>)em.createQuery("FROM MarketOperator ").getResultList();
-    }
+    public Multimap<Integer, Integer> getMarketOpMap(){
+        List<Object[]> temp = (List<Object[]>)
+                em.createQuery("SELECT o.marketOpID.marketCode, o.marketOpID.operatorCode FROM MarketOperator o").getResultList();
 
-    public MarketOperator getMarketOperator(MarketOperatorID marketOpID){
-        return (MarketOperator)em.createQuery("SELECT o FROM MarketOperator o WHERE o.marketOpID=:marketOpID")
-                .setParameter("marketOpID", marketOpID).getSingleResult();
-    }
+        Multimap<Integer, Integer> map = ArrayListMultimap.create();
+        for(Object[] t : temp) {
+            map.put((Integer) t[0], (Integer) t[1]);
+        }
 
-    public boolean checkMarketOperator(MarketOperatorID marketOperatorID){
-        //RETURN TRUE IF NOT FOUND
-        return em.createQuery("SELECT o FROM MarketOperator o WHERE o.marketOpID=:marketOpID")
-                .setParameter("marketOpID", marketOperatorID)
-                .setMaxResults(1)
-                .getResultList()
-                .isEmpty();
+        return map;
     }
-
 }

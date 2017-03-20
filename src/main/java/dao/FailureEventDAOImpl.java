@@ -1,5 +1,6 @@
 package dao;
 
+import entities.EventCause;
 import entities.FailureEvent;
 
 import javax.ejb.Local;
@@ -8,7 +9,10 @@ import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+import javax.persistence.TemporalType;
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -17,28 +21,18 @@ import java.util.List;
 
 @Local
 @Stateless
-
 public class FailureEventDAOImpl implements FailureEventDAOLocal {
 
-	@PersistenceContext
-	private EntityManager em;
+    @PersistenceContext
+    private EntityManager em;
 
-	public Collection<?> getAllFailureEvents() {
-		List<Object[]> objsFail = null;
+    public Collection<?> getEventCausePerIMSI(Long imsi){
+        return (List<Object[]>)em.createQuery("SELECT o.eventCause.eventCauseID.causeCode, o.eventCause.eventCauseID.eventID FROM FailureEvent o WHERE o.imsi=:imsi")
+                .setParameter("imsi", imsi)
+                .getResultList();
+    }
 
-	       try{
-	           objsFail = (List<Object[]>)em
-	                   .createQuery(
-	                           "SELECT o.id, o.dateTime, o.eventCause.eventCauseID.causeCode, o.eventCause.eventCauseID.eventID, o.failureClass.failureClass, o.userEventType.tac, o.marketOperator.marketOpID.marketCode, o.marketOperator.marketOpID.operatorCode, o.cellID, o.duration, o.neVersion, o.imsi FROM FailureEvent o")
-	                   .getResultList();
-	       }catch(Exception e){
-	           System.out.println("THERE IS A PROBLEM WITH THE QUERY");
-	       }
-
-	       return objsFail;
-	}
-
-	public void addFailureEvent(FailureEvent fe) {
-		em.persist(fe);
-	}
+    public void addFailureEvent(FailureEvent fe){
+        em.persist(fe);
+    }
 }

@@ -1,31 +1,38 @@
 /**
  * Created by C06590861 on 01/03/2017.
  */
-var allRecords;
 
-function getAllRecords() {
-   $.each(allRecords, function (index, value) {
-       $("#innerText").append("<li>" + value[11] + ":" + value[2] + ":" + value[3] + ":" + value[10] + "</li>");
-   });
-}
 
 function runFileListener(){
-   $.ajax({
-       type: 'post',
-       url: 'api/file/dir_watcher',
-       success: function () {
-           console.log("LISTENING");
-       }
-   });
-   runIndexQueries();
+    $.ajax({
+        type: 'post',
+        url: 'api/file/dir_watcher',
+        success: function () {
+            console.log("LISTENING");
+        }
+    });
 }
 
-function runIndexQueries(){
-   $.ajax({
-       type: 'GET',
-       url: 'api/data/fail_events',
-       success: function (aList) {
-           allRecords = aList;
-       }
-   });
-}
+
+/*var failEventVar = function(id, dateTime, causeCode, eventID, failureClass, tac,
+ market, operator, cellID, duration, neVersion, imsi){
+ this.id = id;
+ this.dateTime = dateTime;
+ this.causeCode = causeCode;
+ this.eventID = eventID;
+ this.failureClass = failureClass;
+ this.tac = tac;
+ this.market = market;
+ this.operator = operator;
+ this.cellID = cellID;
+ this.duration = duration;
+ this.neVersion = neVersion;
+ this.imsi = imsi;
+ }
+
+ var dataLogVar = function(numImports, numErrors, numQueries, numSuccess){
+ this.numImports = numImports;
+ this.numErrors = numErrors;
+ this.numQueries = numQueries;
+ this.numSuccess = numSuccess;
+ }*/

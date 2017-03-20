@@ -1,16 +1,18 @@
 package dao;
 
+import com.google.common.collect.ArrayListMultimap;
+import com.google.common.collect.Multimap;
 import com.sun.net.httpserver.Authenticator;
 import entities.EventCause;
 import entities.EventCauseID;
 import entities.FailureClass;
+import sun.awt.image.ImageWatched;
 
 import javax.ejb.Local;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by C06590861 on 15/02/2017.
@@ -23,23 +25,21 @@ public class FailureClassDAOImpl implements FailureClassDAOLocal {
     @PersistenceContext
     private EntityManager em;
 
-    public Collection<?> getAllFailureClasses(){
-        return (List<FailureClass>)em.createQuery("FROM FailureClass ").getResultList();
+    public void addFailureClass(FailureClass failureClass){
+        em.persist(failureClass);
     }
 
-    public FailureClass getFailureClass(Integer failureClass){
-        return (FailureClass)em.createQuery("SELECT o FROM FailureClass o WHERE o.failureClass=:failureClass")
-                .setParameter("failureClass", failureClass).getSingleResult();
+    public HashSet<Integer> getFailureClassSet(){
+        List<Integer> temp = (List<Integer>)
+                em.createQuery("SELECT o.failureClass FROM FailureClass o").getResultList();
 
-    }
+        HashSet<Integer> set = new HashSet<Integer>();
+        for(Integer t : temp) {
+            System.out.println(t);
+            set.add(t);
+        }
 
-    public boolean checkFailureClass(Integer failureClass){
-        //RETURN TRUE IF NOT FOUND
-        return em.createQuery("SELECT o FROM FailureClass o WHERE o.failureClass=:failureClass")
-                .setParameter("failureClass", failureClass)
-                .setMaxResults(1)
-                .getResultList()
-                .isEmpty();
+        return set;
     }
 
 }

@@ -1,5 +1,6 @@
 package dao;
 
+import com.google.common.collect.Multimap;
 import entities.MarketOperator;
 import entities.MarketOperatorID;
 
@@ -11,7 +12,5 @@ import java.util.Collection;
  */
 @Local
 public interface MarketOperatorDAOLocal {
-    Collection<?> getAllMarketOperators();
-    MarketOperator getMarketOperator(MarketOperatorID marketOperatorID);
-    boolean checkMarketOperator(MarketOperatorID marketOperatorID);
+    Multimap<Integer, Integer> getMarketOpMap();
 }

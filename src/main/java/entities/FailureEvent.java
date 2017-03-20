@@ -16,6 +16,7 @@ public class FailureEvent implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id") private Integer id;
 
+    @Temporal(TemporalType.DATE)
     @Column(name = "date_time") private Date dateTime;
 
     @JoinColumns({

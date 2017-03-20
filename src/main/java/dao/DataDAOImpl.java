@@ -25,13 +25,4 @@ public class DataDAOImpl implements DataDAOLocal {
         em.persist(log);
     }
 
-    public void addFailureEvent(FailureEvent fe){
-        em.persist(fe);
-    }
-
-    public Collection<?> getCallFailures(){
-        return (List<Object>)em.createQuery("SELECT DISTINCT(o.imsi), COUNT(o), SUM(o.duration) FROM FailureEvent o")
-                .getResultList();
-    }
-
 }

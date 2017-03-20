@@ -1,16 +1,13 @@
 package controller;
 
-import entities.*;
 import service.data.*;
-import service.file.DirectoryWatcher;
 
 import javax.ejb.EJB;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 
 import java.util.Collection;
-import java.util.HashMap;
-import java.util.List;
+import java.util.Date;
 
 /**
  * Created by C06590861 on 15/02/2017.
@@ -19,60 +16,15 @@ import java.util.List;
 @Path("/data")
 public class DATAController {
 
-
-    @EJB
-    private EventCauseBusinessLocal eventCauseEJB;
-    @EJB
-    private FailureClassBusinessLocal failureClassEJB;
     @EJB
     private FailureEventBusinessLocal failEventEJB;
-    @EJB
-    private MarketOperatorBusinessLocal marketOpEJB;
-    @EJB
-    private UserEventTypeBusinessLocal userEventEJB;
 
-
+    //USER STORY #4
+    //Customer Service: Display EVENT_ID/CAUSE_CODE FOR A SPECIFIC IMSI
     @GET
-    @Path("/fail_events")
+    @Path("/event_cause/{imsi}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Collection<Object[]> getAllFailureEvents() {
-    	List<Object[]> objsFail = null;
-
-        try{
-            objsFail = (List<Object[]>)failEventEJB.getAllFailureEvents();
-        }catch (Exception e){
-            System.out.println("ERROR");
-        }
-
-        return objsFail;
+    public Collection<?> getEventCausePerIMSI(@PathParam("imsi") Long imsi){
+        return failEventEJB.getEventCausePerIMSI(imsi);
     }
-
-    @GET
-    @Path("/event_causes")
-    @Produces(MediaType.APPLICATION_JSON)
-    public Collection<EventCause> getAllEventCauses(){
-        return (List<EventCause>)eventCauseEJB.getAllEventCauses();
-    }
-
-    @GET
-    @Path("/failure_classes")
-    @Produces(MediaType.APPLICATION_JSON)
-    public Collection<FailureClass> getAllFailureClasses(){
-        return (List<FailureClass>)failureClassEJB.getAllFailureClasses();
-    }
-
-    @GET
-    @Path("/market_ops")
-    @Produces(MediaType.APPLICATION_JSON)
-    public Collection<MarketOperator> getAllMarketOperators(){
-        return (List<MarketOperator>)marketOpEJB.getAllMarketOperators();
-    }
-
-    @GET
-    @Path("/user_events")
-    @Produces(MediaType.APPLICATION_JSON)
-    public Collection<UserEventType> getAllUserEventTypes(){
-        return (List<UserEventType>)userEventEJB.getAllUserEventTypes();
-    }
-
 }

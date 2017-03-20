@@ -1,5 +1,6 @@
 package dao;
 
+import com.google.common.collect.Multimap;
 import entities.EventCause;
 import entities.EventCauseID;
 
@@ -15,7 +16,5 @@ import java.util.List;
 
 @Local
 public interface EventCauseDAOLocal {
-    Collection<?> getAllEventCauses();
-    EventCause getEventCause(EventCauseID eventCauseID);
-    boolean checkEventCause(EventCauseID eventCauseID);
+    Multimap<Integer, Integer> getEventCauseMap();
 }
