@@ -260,6 +260,8 @@ public class FailureEventBusinessImpl implements FailureEventBusinessLocal {
                                     )
                             );
                             numImports++;
+                        }else{
+                            error = true;
                         }
                     }
                     /*
