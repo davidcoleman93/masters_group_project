@@ -17,6 +17,7 @@ DROP TABLE IF EXISTS `lte_failure_system`.`role_type` ;
 CREATE TABLE `lte_failure_system`.`users` (
   `user_id` INT NOT NULL AUTO_INCREMENT,
   `username` VARCHAR(45) NOT NULL,
+  `email` VARCHAR(45) NOT NULL,
   `password` VARCHAR(45) NOT NULL,
   `role_id` INT NOT NULL,
   PRIMARY KEY (`user_id`),
