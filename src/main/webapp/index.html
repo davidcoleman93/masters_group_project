@@ -39,6 +39,7 @@
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+      <script src="assets/js/modernizr-custom.js"></script>
     <![endif]-->
   </head>
 
@@ -140,21 +141,149 @@
                     
                   <div class="col-lg-9 main-chart">
 
-                      <label class="control-label" for="date">Date</label>
-                      <input class="form-control" id="date" name="date" placeholder="MM/DD/YYY" type="text"/>
+                      <input type="date" id = "fromDate">
+                      <input type="date" id = "toDate">
+                      <input type="text" id="inputData">
+                      <input type="button" value="4" onclick="userStory4()">
+                      <input type="button" value="5" onclick="userStory5()">
+                      <input type="button" value="7" onclick="userStory7()">
+                      <input type="button" value="8" onclick="userStory8()">
+                      <input type="button" value="9" onclick="userStory9()">
+                      <!--<input type="button" value="Event Cause" onclick="eventCausePerIMSI()">-->
+                      <p id = 'fromDateVal'></p>
+                      <p id = 'toDateVal'></p>
 
                       <script>
-                          $(document).ready(function(){
-                              var date_input=$('input[name="date"]'); //our date input has the name "date"
-                              var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
-                              var options={
-                                  format: 'mm/dd/yyyy',
-                                  container: container,
-                                  todayHighlight: true,
-                                  autoclose: true,
-                              };
-                              date_input.datepicker(options);
-                          })
+
+                          var story4, story7, story9;
+
+                          /*//XMLHttpRequest()
+                          var xmlHTTP = new XMLHttpRequest();
+                          var url = "myTutorials.txt";*/
+
+                          //Build objects by reading form data using JSON
+
+                          function userStory4(){
+                              var imsi = document.getElementById('inputData').value;
+                              $("#innerText").empty();
+                              $.ajax({
+                                  type: 'GET',
+                                  url: 'api/data/event_cause_per_imsi/' + imsi,
+                                  contentType: 'application/json',
+                                  dataType: 'json',
+                                  success: function (aList) {
+                                      story4 = aList;
+                                      $("#innerText").append("<li>" + "Cause code" + "\t" + "Event ID" + "</li>");
+                                      $.each(story4, function (index, value) {
+                                          $("#innerText").append("<li>" + value[0] + "\t" + value[1] + "</li>");
+                                      });
+                                  }
+                              });
+
+                          }
+                          function userStory5(){
+                              var startDate = document.getElementById('fromDate').value;
+                              var endDate = document.getElementById('toDate').value;
+                              var imsi = document.getElementById('inputData').value;
+                            $("#innerText").empty();
+                              $.ajax({
+                                  type: 'GET',
+                                  url: 'api/data/specific_failure_per_period/' + startDate + '/' + endDate + '/' + imsi,
+                                  contentType: 'application/json',
+                                  success: function (aList) {
+                                      $("#innerText").append("<li>" + "Number of failures" + "</li>");
+                                      $("#innerText").append("<li>" + aList + "</li>");
+                                  }
+                              });
+                          }
+                          function userStory7(){
+                              var startDate = document.getElementById('fromDate').value;
+                              var endDate = document.getElementById('toDate').value;
+                              $("#innerText").empty();
+                              $.ajax({
+                                  type: 'GET',
+                                  url: 'api/data/imsi_per_period/' + startDate + '/' + endDate,
+                                  contentType: 'application/json',
+                                  success: function (aList) {
+                                      story7 = aList;
+                                      $("#innerText").append("<li>" + "IMSI" + "</li>");
+                                      $.each(story7, function (index, value) {
+                                          $("#innerText").append("<li>" + value + "</li>");
+                                      });
+                                  }
+                              });
+
+                          }
+                          function userStory8(){
+                              var startDate = document.getElementById('fromDate').value;
+                              var endDate = document.getElementById('toDate').value;
+                              var phoneModel = document.getElementById('inputData').value;
+                              $("#innerText").empty();
+                              $.ajax({
+                                  type: 'GET',
+                                  url: 'api/data/count_per_phone_model/' + startDate + '/' + endDate + '/' + phoneModel,
+                                  contentType: 'application/json',
+                                  success: function (aList) {
+                                      $("#innerText").append("<li>" + "Number of failures." + "</li>");
+                                      $("#innerText").append("<li>" + aList + "</li>");
+                                  }
+                              });
+                          }
+                          function userStory9(){
+                              var startDate = document.getElementById('fromDate').value;
+                              var endDate = document.getElementById('toDate').value;
+                              $("#innerText").empty();
+                              $.ajax({
+                                  type: 'GET',
+                                  url: 'api/data/call_data_per_period/' + startDate + '/' + endDate,
+                                  contentType: 'application/json',
+                                  success: function (aList) {
+                                      story9 = aList;
+                                      $("#innerText").append("<li>" + "IMSI" + "Number of failures" + "Total duration" + "</li>");
+                                      $.each(story9, function (index, value) {
+                                          $("#innerText").append("<li>" + value[0] + ":" + value[1] +":"+ value[2] + "</li>");
+                                      });
+                                  }
+                              });
+
+                          }
+
+                          function runIndexQueries(){
+                              $.ajax({
+                                  type: 'GET',
+                                  url: 'api/data/specific_failure_per_period',
+                                  success: function (aList) {
+                                      allRecords = aList;
+                                  }
+                              });
+                          }
+
+                          function sendToREST(){
+                              document.getElementById('dateFromVal').innerHTML = document.getElementById('fromDate').value;
+                              document.getElementById('toDateVal').innerHTML = document.getElementById('toDate').value;
+                              $.ajax({
+                               type: 'post',
+                               url: 'api/data/dates',
+                               success: function () {
+                                    console.log("LISTENING");
+                               }
+                               });
+                          }
+
+                          function eventCausePerIMSI() {
+                              var json = document.getElementById('imsi').value;
+                              console.log(json);
+
+                              /*$.ajax({
+                                  type: 'get',
+                                  url: 'api/data/event_cause_per_imsi',
+                                  data: json,
+                                  datatype: "json",
+                                  success: function () {
+                                      console.log(json);
+                                  }
+                               });*/
+                          }
                       </script>
 
                    <!-- <div class="row mtbox">

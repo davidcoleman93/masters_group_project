@@ -1,7 +1,5 @@
 package service.file;
 
-import entities.EventCause;
-import entities.MarketOperator;
 import service.data.*;
 
 import javax.annotation.PostConstruct;
@@ -25,12 +23,12 @@ public class DirectoryWatcher implements DirectoryWatcherLocal {
     private static WatchService dirWatcher; //JAVA Watcher API.
     private static Path targetDirectory;
     private static WatchKey watcherKey; //The WatchKey determines the types of events to listen for.
-    private static String DIR_PATH = "C:\\Code\\TestProject\\Files";
+    private static String DIR_PATH = "C:\\Code\\JEEProject\\masters_group_project\\Files";
 
+    /*@EJB
+    private CSVMediatorLocal csvEJB;*/
     @EJB
-    private FailureEventBusinessLocal failureEventBean;
-    @EJB
-    private FailureClassBusinessLocal failureClassBean;
+    private FailureEventBusinessLocal failureEventEJB;
 
     @PostConstruct
     public void listen() {
@@ -62,18 +60,10 @@ public class DirectoryWatcher implements DirectoryWatcherLocal {
                 if (eventKind == ENTRY_CREATE) {
                     //ATM WE SEND THE BASE DATA WORKBOOK
                     String file = DIR_PATH + "\\" + ev.context();
+                    //csvEJB.scanFirstLineCSV(file);
+                    //WE WILL FIX THIS FOR SPRINT 2 -> MAYBE USE A MEDIATOR THAT SCANS THE FIRST LINE OF THE CSV???
                     if(file.contains("Base")){
-                        synchronized (this){
-                            failureEventBean.postCSV(file);
-                        }
-                    }else if(file.contains("Event")){
-
-                    }else if(file.contains("Failure")){
-                        //failureClassBean.updateFailureClasses(file);
-                    }else if(file.contains("UE")){
-
-                    }else if(file.contains("MCC")){
-
+                        failureEventEJB.postCSV(file);
                     }
                 }
             }

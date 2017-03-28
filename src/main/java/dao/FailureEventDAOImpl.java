@@ -26,9 +26,8 @@ public class FailureEventDAOImpl implements FailureEventDAOLocal {
     @PersistenceContext
     private EntityManager em;
 
-    public Collection<?> getEventCausePerIMSI(Long imsi){
-        return (List<Object[]>)em.createQuery("SELECT o.eventCause.eventCauseID.causeCode, o.eventCause.eventCauseID.eventID FROM FailureEvent o WHERE o.imsi=:imsi")
-                .setParameter("imsi", imsi)
+    public Collection<?> getAllFailureEvents(){
+        return em.createQuery("FROM FailureEvent ")
                 .getResultList();
     }
 
@@ -36,10 +35,59 @@ public class FailureEventDAOImpl implements FailureEventDAOLocal {
         em.persist(fe);
     }
 
+    //Persist all failure events in one connection to the database
     public void addFailureList(List<FailureEvent> fes){
         for(FailureEvent fe : fes){
             em.persist(fe);
         }
     }
+
+    //User Story #4
+    public Collection<?> eventCausePerIMSI(Long imsi){
+        return (List<Object[]>)em.createQuery("SELECT o.eventCause.eventCauseID.causeCode, o.eventCause.eventCauseID.eventID FROM FailureEvent o WHERE o.imsi=:imsi")
+                .setParameter("imsi", imsi)
+                .getResultList();
+    }
+
+    //User Story #5
+    public Object specificFailurePerPeriod(Date startDate, Date endDate, Long imsi){
+        return em.createQuery("SELECT COUNT(o) FROM FailureEvent o WHERE o.imsi=:imsi AND o.dateTime BETWEEN ?1 AND ?2")
+                .setParameter(1, startDate)
+                .setParameter(2, endDate)
+                .setParameter("imsi", imsi)
+                .getSingleResult();
+    }
+
+    //User Story #7
+    public Collection<?> IMSIPerPeriod(Date startDate, Date endDate){
+        return em.createQuery("SELECT o.imsi FROM FailureEvent o WHERE o.dateTime BETWEEN ?1 AND ?2")
+                .setParameter(1, startDate)
+                .setParameter(2, endDate)
+                .getResultList();
+    }
+
+    //User Story #8
+    public Object failureCountPerModel(Date startDate, Date endDate, String model){
+        return em.createQuery("SELECT COUNT(o) FROM FailureEvent o WHERE o.userEventType.model=:model AND o.dateTime BETWEEN ?1 AND ?2")
+                .setParameter("model", model)
+                .setParameter(1, startDate)
+                .setParameter(2, endDate)
+                .getSingleResult();
+    }
+
+    //User Story #9
+    public Collection<?> callDataPerPeriod(Date startDate, Date endDate){
+        return em.createQuery("SELECT o.imsi ,COUNT(o), SUM(o.duration) FROM FailureEvent o WHERE o.dateTime BETWEEN ?1 AND ?2 GROUP BY o.imsi")
+                .setParameter(1, startDate)
+                .setParameter(2, endDate)
+                .getResultList();
+    }
+
+    /*//User Story #10
+    public Collection<?> uniqueFailuresPerModel(String phoneModel){
+        return (List<Object[]>)em.createQuery("SELECT COUNT(o), DISTINCT(o.eventCause.eventCauseID) FROM FailureEvent o WHERE o.userEventType.model IN (SELECT DISTINCT(a.eventCause.eventCauseID) FROM FailureEvent a WHERE a.userEventType.model=:phoneModel)")
+                .setParameter("phoneModel", phoneModel)
+                .getResultList();
+    }*/
 
 }

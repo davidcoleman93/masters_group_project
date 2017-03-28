@@ -15,7 +15,23 @@ import java.util.List;
 
 @Local
 public interface FailureEventDAOLocal {
-    Collection<?> getEventCausePerIMSI(Long imsi);
+    //ALL DATA
+    Collection<?> getAllFailureEvents();
+
     void addFailureEvent(FailureEvent fe);
     void addFailureList(List<FailureEvent> c);
+
+    //User Story #4
+    Collection<?> eventCausePerIMSI(Long imsi);
+    //User Story #5
+    Object specificFailurePerPeriod(Date startDate, Date endDate, Long imsi);
+    //User Story #7
+    Collection<?> IMSIPerPeriod(Date startDate, Date endDate);
+    //User Story #8
+    Object failureCountPerModel(Date startDate, Date endDate, String phoneModel);
+    //User Story #9
+    Collection<?> callDataPerPeriod(Date startDate, Date endDate);
+    //User Story #10
+    //Collection<?> uniqueFailuresPerModel(String phoneModel);
+
 }

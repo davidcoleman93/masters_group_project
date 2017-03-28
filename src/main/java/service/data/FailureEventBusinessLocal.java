@@ -12,6 +12,5 @@ import java.util.List;
 
 @Local
 public interface FailureEventBusinessLocal {
-    Collection<?> getEventCausePerIMSI(Long imsi);
     void postCSV(String fileName);
 }

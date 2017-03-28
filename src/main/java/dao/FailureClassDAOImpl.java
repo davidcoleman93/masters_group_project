@@ -35,7 +35,6 @@ public class FailureClassDAOImpl implements FailureClassDAOLocal {
 
         HashSet<Integer> set = new HashSet<Integer>();
         for(Integer t : temp) {
-            System.out.println(t);
             set.add(t);
         }
 

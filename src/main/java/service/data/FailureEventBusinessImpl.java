@@ -5,7 +5,6 @@ import com.google.common.collect.Multimap;
 import dao.*;
 import entities.*;
 import org.apache.commons.io.*;
-import org.apache.commons.csv.*;
 
 import javax.ejb.*;
 import javax.inject.Inject;
@@ -44,19 +43,6 @@ public class FailureEventBusinessImpl implements FailureEventBusinessLocal {
     @Inject
     private FailureEventLogDAOLocal feLogBean;
 
-    public Collection<?> getEventCausePerIMSI(Long imsi){
-        List<Object[]> eves = null;
-        try{
-            eves = (List<Object[]>)failureEventBean.getEventCausePerIMSI(imsi);
-            for(Object[] os : eves){
-                System.out.println(os[0] + ":" + os[1]);
-            }
-        }catch (Exception e){
-            System.out.println("ERROR RETRIEVING EVENT CAUSES");
-        }
-        return eves;
-    }
-
     public void postCSV(String fileName) {
         /*
             Objects for scanning CSV file
@@ -73,14 +59,13 @@ public class FailureEventBusinessImpl implements FailureEventBusinessLocal {
 
         String[] fEvents;
 
+        //DATA STRUCTURES TO STORE FailureEvents & Logs
         List<FailureEvent> failureEventList = new ArrayList<FailureEvent>();
         List<FailureEventLog> failureLogList = new ArrayList<FailureEventLog>();
 
         //DATE format objects
-        SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
-        DateFormat srcDf = new SimpleDateFormat("dd/MM/yyy HH:mm");
-        Date retrievedDate;
-        String startDateString;
+        SimpleDateFormat df = new SimpleDateFormat("dd-MM-yy hh:mm:ss");
+        DateFormat srcDf = new SimpleDateFormat("dd/MM/yyyy hh:mm");
 
         /*
             Data Structures to store foreign key tables
@@ -135,13 +120,13 @@ public class FailureEventBusinessImpl implements FailureEventBusinessLocal {
         try{
             System.out.println("STARTED");
             while(lineIterator.hasNext()){
+                /*
+                    Split the next line into the String array using the delimiter ','
+                */
+                fEvents = lineIterator.nextLine().split(",");
                 if(lineNum == 0){
                     lineNum++;
-                }else {
-                    /*
-                        Split the next line into the String array using the delimiter ','
-                     */
-                    fEvents = lineIterator.nextLine().split(",");
+                }else if(lineNum == 1){
                     /*
                         Reset Failure event/error variables
                      */
@@ -163,13 +148,13 @@ public class FailureEventBusinessImpl implements FailureEventBusinessLocal {
                         Try parse the values to each corresponding data type
                      */
                     try{
-                        startDateString = fEvents[0];
+                        String startDateString = fEvents[0];
                         if (startDateString.contains("/")) {
-                            retrievedDate = srcDf.parse(startDateString);
+                            Date retrievedDate = srcDf.parse(startDateString);
                             startDateString = df.format(retrievedDate);
                         }
                         dateTime = df.parse(startDateString);
-                    }catch(Exception pe){
+                    }catch (Exception pe){
                         if(!error) error = true;
                     }
 
@@ -290,8 +275,14 @@ public class FailureEventBusinessImpl implements FailureEventBusinessLocal {
         /*
             Send Failure Event and Failure Logs to be persisted to the database
          */
-        failureEventBean.addFailureList(failureEventList);
-        feLogBean.addFailureLogList(failureLogList);
+        synchronized (this){
+            failureEventBean.addFailureList(failureEventList);
+        }
+        synchronized (this){
+            feLogBean.addFailureLogList(failureLogList);
+        }
+
+        System.out.println("COMPLETED");
         /*
             Insert the meta data for this import to the database.
             (If EVERY record in the file was erroneous then it was not a successful import)
