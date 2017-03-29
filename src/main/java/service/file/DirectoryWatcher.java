@@ -17,6 +17,7 @@ import static java.nio.file.StandardWatchEventKinds.ENTRY_MODIFY;
 
 @Local
 @Singleton
+//@ConcurrencyManagement(ConcurrencyManagementType.BEAN)
 public class DirectoryWatcher implements DirectoryWatcherLocal {
 
     /* Set Directory path to listen to */
@@ -26,7 +27,15 @@ public class DirectoryWatcher implements DirectoryWatcherLocal {
     private static String DIR_PATH = "C:\\Code\\JEEProject\\masters_group_project\\Files";
 
     /*@EJB
-    private CSVMediatorLocal csvEJB;*/
+    private CSVMediatorLocal csvEJB;
+    @EJB
+    private UserEventValidationEJBLocal userEventTypeEJB;
+    @EJB
+    private MarketOperatorValidationEJBLocal marketOperatorEJB;
+    @EJB
+    private FailureClassBusinessLocal failureClassEJB;
+    @EJB
+    private EventCauseValidationEJBLocal eventCauseEJB;*/
     @EJB
     private FailureEventBusinessLocal failureEventEJB;
 
@@ -59,11 +68,33 @@ public class DirectoryWatcher implements DirectoryWatcherLocal {
 
                 if (eventKind == ENTRY_CREATE) {
                     //ATM WE SEND THE BASE DATA WORKBOOK
-                    String file = DIR_PATH + "\\" + ev.context();
+                    String fileName = DIR_PATH + "\\" + ev.context();
                     //csvEJB.scanFirstLineCSV(file);
                     //WE WILL FIX THIS FOR SPRINT 2 -> MAYBE USE A MEDIATOR THAT SCANS THE FIRST LINE OF THE CSV???
-                    if(file.contains("Base")){
-                        failureEventEJB.postCSV(file);
+                    /*if(fileName.contains("Event")){
+                        synchronized (this){
+                            eventCauseEJB.updateEventCause(fileName);
+                        }
+                    }
+                    if(fileName.contains("Failure")){
+                        synchronized (this){
+                            failureClassEJB.updateFailureClasses(fileName);
+                        }
+                    }
+                    if(fileName.contains("UE")){
+                        synchronized (this){
+                            userEventTypeEJB.updateUserEvent(fileName);
+                        }
+                    }
+                    if(fileName.contains("MCC")){
+                        synchronized (this){
+                            marketOperatorEJB.updateMarketOperator(fileName);
+                        }
+                    }*/
+                    if(fileName.contains("Base")){
+                        synchronized (this){
+                            failureEventEJB.postCSV(fileName);
+                        }
                     }
                 }
             }
