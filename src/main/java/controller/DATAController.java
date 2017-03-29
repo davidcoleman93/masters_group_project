@@ -62,6 +62,7 @@ public class DATAController {
     @GET
     @Path("/imsi_per_period/{startDate}/{endDate}")
     @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
     public Collection<?> IMSIPerPeriod(@PathParam("startDate") String startDate, @PathParam("endDate") String endDate) {
         return dataEJB.IMSIPerPeriod(startDate, endDate);
     }
@@ -71,6 +72,7 @@ public class DATAController {
     @GET
     @Path("/count_per_phone_model/{startDate}/{endDate}/{phoneModel}")
     @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
     public Object failureCountPerModel(@PathParam("startDate") String startDate, @PathParam("endDate") String endDate, @PathParam("phoneModel") String phoneModel) {
         return dataEJB.failureCountPerModel(startDate, endDate, phoneModel);
     }
@@ -80,6 +82,7 @@ public class DATAController {
     @GET
     @Path("/call_data_per_period/{startDate}/{endDate}")
     @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
     public Collection<?> callDataPerPeriod(@PathParam("startDate") String startDate, @PathParam("endDate") String endDate) {
         return dataEJB.callDataPerPeriod(startDate, endDate);
     }
