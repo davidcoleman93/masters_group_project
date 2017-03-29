@@ -1,19 +1,14 @@
 package controller;
 
+import entities.RoleType;
+import entities.User;
 import service.data.*;
 
 import javax.ejb.EJB;
-import javax.persistence.Access;
-import javax.persistence.criteria.CriteriaBuilder;
 import javax.ws.rs.*;
-import javax.ws.rs.core.Application;
 import javax.ws.rs.core.MediaType;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.Collection;
-import java.util.Date;
-import java.util.GregorianCalendar;
 
 /**
  * Created by C06590861 on 15/02/2017.
@@ -23,7 +18,61 @@ import java.util.GregorianCalendar;
 public class DATAController {
 
     @EJB
-    private FailureEventBusinessLocal failEventEJB;
+    private UserBusinessLocal userEJB;
+
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public Collection<?> getAllUsers() {
+        return userEJB.getAllUsers();
+    }
+
+    @GET
+    @Path("/{username}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public boolean checkUsername(@PathParam("username") String username) {
+        return userEJB.checkUsername(username);
+    }
+
+    @GET
+    @Path("/roletype/{roleTypeID}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public RoleType getRoleType(@PathParam("roleTypeID") Integer roleTypeID) {
+        return userEJB.getRoleType(roleTypeID);
+    }
+
+    @POST
+    @Path("/adduser")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public void addUser(User user) {
+        userEJB.addUser(user);
+    }
+
+    @GET
+    @Path("/login/{username}/{password}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public boolean login(@PathParam("username") String username, @PathParam("password") String password) {
+        return userEJB.validateUsername(username, password);
+    }
+
+    @GET
+    @Path("/{username}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public User getUser(@PathParam("username") String username) {
+        return userEJB.getUser(username);
+    }
+
+    @DELETE
+    @Path("/{user_id}")
+    public void removeUser(@PathParam("user_id") Integer user_id) {
+        userEJB.removeUser(user_id);
+    }
+
+    @PUT
+    @Consumes(MediaType.APPLICATION_JSON)
+    public void updateUser(User user) {
+        userEJB.updateUser(user);
+    }
+
     @EJB
     private DataServiceEJBLocal dataEJB;
 
@@ -42,7 +91,6 @@ public class DATAController {
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     public Collection<?> eventCausePerIMSI(@PathParam("imsi") Long imsi) {
-        System.out.println(imsi);
         return dataEJB.eventCausePerIMSI(imsi);
     }
 
@@ -53,7 +101,6 @@ public class DATAController {
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     public Object specificFailurePerPeriod(@PathParam("startDate") String startDate, @PathParam("endDate") String endDate, @PathParam("imsi") Long imsi) {
-        System.out.println(startDate + ":" + endDate);
         return dataEJB.specificFailurePerPeriod(startDate, endDate, imsi);
     }
 
@@ -62,7 +109,6 @@ public class DATAController {
     @GET
     @Path("/imsi_per_period/{startDate}/{endDate}")
     @Produces(MediaType.APPLICATION_JSON)
-    @Consumes(MediaType.APPLICATION_JSON)
     public Collection<?> IMSIPerPeriod(@PathParam("startDate") String startDate, @PathParam("endDate") String endDate) {
         return dataEJB.IMSIPerPeriod(startDate, endDate);
     }
@@ -72,7 +118,6 @@ public class DATAController {
     @GET
     @Path("/count_per_phone_model/{startDate}/{endDate}/{phoneModel}")
     @Produces(MediaType.APPLICATION_JSON)
-    @Consumes(MediaType.APPLICATION_JSON)
     public Object failureCountPerModel(@PathParam("startDate") String startDate, @PathParam("endDate") String endDate, @PathParam("phoneModel") String phoneModel) {
         return dataEJB.failureCountPerModel(startDate, endDate, phoneModel);
     }
@@ -82,7 +127,6 @@ public class DATAController {
     @GET
     @Path("/call_data_per_period/{startDate}/{endDate}")
     @Produces(MediaType.APPLICATION_JSON)
-    @Consumes(MediaType.APPLICATION_JSON)
     public Collection<?> callDataPerPeriod(@PathParam("startDate") String startDate, @PathParam("endDate") String endDate) {
         return dataEJB.callDataPerPeriod(startDate, endDate);
     }
