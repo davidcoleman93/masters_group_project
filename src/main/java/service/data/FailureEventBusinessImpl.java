@@ -9,6 +9,8 @@ import org.apache.commons.io.*;
 import javax.ejb.*;
 import javax.inject.Inject;
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -291,6 +293,15 @@ public class FailureEventBusinessImpl implements FailureEventBusinessLocal {
             dataBean.addDataImport(new DataImportLog(new Date(), false, numImports, numErrors));
         }else{
             dataBean.addDataImport(new DataImportLog(new Date(), true, numImports, numErrors));
+        }
+        removeFile(fileName);
+    }
+
+    private void removeFile(String fileName){
+        try{
+            Files.deleteIfExists(Paths.get(fileName));
+        }catch (Exception e){
+            System.out.println("File does not exist");
         }
     }
 }
