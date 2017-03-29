@@ -33,4 +33,8 @@ public class MarketOperatorDAOImpl implements MarketOperatorDAOLocal {
 
         return map;
     }
+
+    public void addMarketOperator(MarketOperator marketOperator){
+        em.persist(marketOperator);
+    }
 }

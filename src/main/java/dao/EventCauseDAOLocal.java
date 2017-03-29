@@ -17,4 +17,5 @@ import java.util.List;
 @Local
 public interface EventCauseDAOLocal {
     Multimap<Integer, Integer> getEventCauseMap();
+    void addEventCause(EventCause eventCause);
 }

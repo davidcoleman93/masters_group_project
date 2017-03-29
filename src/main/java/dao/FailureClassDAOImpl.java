@@ -25,10 +25,6 @@ public class FailureClassDAOImpl implements FailureClassDAOLocal {
     @PersistenceContext
     private EntityManager em;
 
-    public void addFailureClass(FailureClass failureClass){
-        em.persist(failureClass);
-    }
-
     public HashSet<Integer> getFailureClassSet(){
         List<Integer> temp = (List<Integer>)
                 em.createQuery("SELECT o.failureClass FROM FailureClass o").getResultList();
@@ -41,4 +37,7 @@ public class FailureClassDAOImpl implements FailureClassDAOLocal {
         return set;
     }
 
+    public void addFailureClass(FailureClass failureClass){
+        em.persist(failureClass);
+    }
 }

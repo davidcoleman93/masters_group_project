@@ -34,5 +34,7 @@ public class EventCauseDAOImpl implements EventCauseDAOLocal {
         return map;
     }
 
-
+    public void addEventCause(EventCause eventCause){
+        em.persist(eventCause);
+    }
 }

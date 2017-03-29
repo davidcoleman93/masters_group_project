@@ -25,9 +25,7 @@ public class FailureEventLogDAO implements FailureEventLogDAOLocal {
     }
 
     public void addFailureLogList(List<FailureEventLog> fes){
-        //int i = 0;
         for (FailureEventLog fe : fes){
-            //System.out.println(++i);
             em.persist(fe);
         }
     }
