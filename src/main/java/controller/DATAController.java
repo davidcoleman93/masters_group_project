@@ -138,6 +138,26 @@ public class DATAController {
 		return dataEJB.callDataPerPeriod(startDate, endDate);
 	}
 
+
+	//USER STORY #10
+    //Network Mgt Engineer: Display unique EVENT_ID/CAUSE_CODE combinations for a specific ueType
+	// and the number of occurances.
+	@GET
+	@Path("/event_cause/by_ue_type/{ueType}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Collection<?> getFailEventAndCauseCodeByUEType(@PathParam("ueType") Integer ueType){
+		return dataEJB.getFailEventAndCauseCodeByUEType(ueType);
+	}
+
+	//USER STORY #6
+	//Customer Service: Display unique CAUSE_CODEs for a specific imsi
+	//and the number of occurances.
+	@GET
+	@Path("/event_cause/by_imsi/{imsi}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Collection<?> getFailEventsUsingImsiGroupedByCauseCode(@PathParam("imsi") Long imsi){
+			return dataEJB.getFailEventsUsingImsiGroupedByCauseCode(imsi);
+	}
 	// User Story #10
 	// As a Network Management Engineer I want to see, for a given model of
 	// phone, all the unique failure Event Id and Cause Code combinations they

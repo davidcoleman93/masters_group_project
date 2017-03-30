@@ -49,6 +49,11 @@ public class DataServiceEJB implements DataServiceEJBLocal {
         return failureEventBean.specificFailurePerPeriod(parseDate(startDate), parseDate(endDate), imsi);
     }
 
+    //User Story #6
+    public Collection<?> getFailEventsUsingImsiGroupedByCauseCode(Long imsi) {
+        return failureEventBean.getFailEventsUsingImsiGroupedByCauseCode(imsi);
+    }
+
     //User Story #7
     public Collection<?> IMSIPerPeriod(String startDate, String endDate){
         return failureEventBean.IMSIPerPeriod(parseDate(startDate), parseDate(endDate));
@@ -63,6 +68,12 @@ public class DataServiceEJB implements DataServiceEJBLocal {
     public Collection<?> callDataPerPeriod(String startDate, String endDate){
         return failureEventBean.callDataPerPeriod(parseDate(startDate), parseDate(endDate));
     }
+
+    //User Story #10
+    public Collection<?> getFailEventAndCauseCodeByUEType(Integer ueType){
+        return failureEventBean.getFailEventAndCauseCodeByUEType(ueType);
+    }
+
 
     //User Story #10
     /*public Collection<?> uniqueFailuresPerModel(String phoneModel){

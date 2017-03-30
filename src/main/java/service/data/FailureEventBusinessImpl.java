@@ -67,6 +67,7 @@ public class FailureEventBusinessImpl implements FailureEventBusinessLocal {
 
         //DATE format objects
         SimpleDateFormat df = new SimpleDateFormat("dd-MM-yy hh:mm:ss");
+        //SimpleDateFormat df = new SimpleDateFormat("yy-MM-dd HH:mm:ss");
         DateFormat srcDf = new SimpleDateFormat("dd/MM/yyyy hh:mm");
 
         /*

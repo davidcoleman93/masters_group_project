@@ -25,12 +25,17 @@ public interface FailureEventDAOLocal {
     Collection<?> eventCausePerIMSI(Long imsi);
     //User Story #5
     Object specificFailurePerPeriod(Date startDate, Date endDate, Long imsi);
+    //User Story #6
+    Collection<?> getFailEventsUsingImsiGroupedByCauseCode(Long imsi);
     //User Story #7
     Collection<?> IMSIPerPeriod(Date startDate, Date endDate);
     //User Story #8
     Object failureCountPerModel(Date startDate, Date endDate, String phoneModel);
     //User Story #9
     Collection<?> callDataPerPeriod(Date startDate, Date endDate);
+    //User Story #10
+    Collection<?> getFailEventAndCauseCodeByUEType(Integer ueType);
+
     //User Story #10
     //Collection<?> uniqueFailuresPerModel(String phoneModel);
 

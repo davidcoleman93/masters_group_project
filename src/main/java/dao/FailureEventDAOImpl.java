@@ -58,6 +58,17 @@ public class FailureEventDAOImpl implements FailureEventDAOLocal {
                 .getSingleResult();
     }
 
+    //User Story #6
+    public Collection<?> getFailEventsUsingImsiGroupedByCauseCode(Long imsi) {
+        return (List<Object[]>)em.createQuery("SELECT fe.imsi, fe.eventCause.eventCauseID.causeCode, count(fe) FROM FailureEvent fe WHERE fe.imsi=:imsi GROUP BY fe.eventCause.eventCauseID.causeCode")
+                                .setParameter("imsi",imsi)
+                                .getResultList();
+        //select imsi, cause_code, count(*) as count
+        //from failure_events
+        //where imsi = 191911000516761
+        //group by cause_code;
+    }
+
     //User Story #7
     public Collection<?> IMSIPerPeriod(Date startDate, Date endDate){
         return em.createQuery("SELECT o.imsi FROM FailureEvent o WHERE o.dateTime BETWEEN ?1 AND ?2")
@@ -81,6 +92,18 @@ public class FailureEventDAOImpl implements FailureEventDAOLocal {
                 .setParameter(1, startDate)
                 .setParameter(2, endDate)
                 .getResultList();
+    }
+
+    //User Story #10
+    public Collection<?> getFailEventAndCauseCodeByUEType(Integer ueType){
+        return (List<Object[]>)em.createQuery("SELECT fe.userEventType.tac, fe.eventCause.eventCauseID.eventID, fe.eventCause.eventCauseID.causeCode, count(fe) FROM FailureEvent fe WHERE fe.userEventType.tac=:ueType GROUP BY fe.eventCause.eventCauseID.eventID, fe.eventCause.eventCauseID.causeCode")
+                                .setParameter("ueType",ueType)
+                                .getResultList();
+
+        //select ue_type, event_id, cause_code, count(*) as count
+        //from failure_events
+        //where ue_type = 100100
+        //group by event_id, cause_code;
     }
 
     /*//User Story #10
