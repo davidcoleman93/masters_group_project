@@ -55,12 +55,12 @@
             <div class="fa fa-bars tooltips"></div>
         </div>
         <!--logo start-->
-        <a href="../../index.html" class="logo"><b>DAta ViBes</b></a>
+        <a href="../../home.html" class="logo"><b>DAta ViBes</b></a>
         <!--logo end-->
         <div class="nav notify-row" id="top_menu"></div>
         <div class="top-menu">
             <ul class="nav pull-right top-menu">
-                <li><a class="logout" href="login.html">Logout</a></li>
+                <li><a class="logout" href="http://localhost:8080/LteFailureSystem-0.0.1-SNAPSHOT/assets/pages/register.html">Register</a></li>
             </ul>
         </div>
     </header>
@@ -76,7 +76,7 @@
             <ul class="sidebar-menu" id="nav-accordion">
 
                 <li class="mt">
-                    <a href="../../index.html">
+                    <a href="../../home.html">
                         <i class="fa fa-dashboard"></i>
                         <span>Dashboard</span>
                     </a>
@@ -273,7 +273,7 @@
     <!--main content end-->
     <!--footer start-->
     <footer class="site-footer">
-        <div class="text-center"> <a href="../../index.html#" class="go-top"> <i
+        <div class="text-center"> <a href="../../home.html#" class="go-top"> <i
                 class="fa fa-angle-up"></i>
         </a>
         </div>
