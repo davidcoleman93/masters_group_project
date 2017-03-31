@@ -9,6 +9,7 @@ import java.util.Date;
 public interface DataServiceEJBLocal {
     //ALL DATA
     Collection<?> allFailureEvents();
+    Collection<?> dataImportLogs();
 
     //User Story #4
     Collection<?> eventCausePerIMSI(Long imsi);
@@ -24,7 +25,4 @@ public interface DataServiceEJBLocal {
     Collection<?> callDataPerPeriod(String startDate, String endDate);
     //User Story #10
     Collection<?> getFailEventAndCauseCodeByUEType(Integer ueType);
-
-    //User Story #10
-    //Collection<?> uniqueFailuresPerModel(String phoneModel);
 }

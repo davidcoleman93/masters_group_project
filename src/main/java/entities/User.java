@@ -29,10 +29,6 @@ public class User implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer user_id;
 	
-	@JoinColumn(name = "role_id", referencedColumnName = "role_id")
-	@ManyToOne
-	private RoleType roleType;
-	
 	//@NotNull
 	@Column(name = "username", unique = true)
 	//@Size(max = 45)
@@ -45,6 +41,10 @@ public class User implements Serializable {
 	//@NotNull
 	@Column(name = "password")
 	private String password;
+
+	@JoinColumn(name = "role_id", referencedColumnName = "role_id")
+	@ManyToOne
+	private RoleType roleType;
 	
 	public User (){}
 		

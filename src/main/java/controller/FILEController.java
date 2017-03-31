@@ -18,6 +18,7 @@ public class FILEController {
     @POST
     @Path("/dir_watcher")
     public void runDirectoryWatcher(){
+        System.out.println("HERE");
         directoryWatcher.listen();
     }
 

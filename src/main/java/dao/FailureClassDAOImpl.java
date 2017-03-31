@@ -1,12 +1,6 @@
 package dao;
 
-import com.google.common.collect.ArrayListMultimap;
-import com.google.common.collect.Multimap;
-import com.sun.net.httpserver.Authenticator;
-import entities.EventCause;
-import entities.EventCauseID;
 import entities.FailureClass;
-import sun.awt.image.ImageWatched;
 
 import javax.ejb.Local;
 import javax.ejb.Stateless;

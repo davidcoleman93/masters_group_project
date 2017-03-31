@@ -1,16 +1,11 @@
 package dao;
 
-import entities.EventCause;
 import entities.FailureEvent;
 
 import javax.ejb.Local;
 import javax.ejb.Stateless;
-import javax.ejb.TransactionAttribute;
-import javax.ejb.TransactionAttributeType;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
-import javax.persistence.TemporalType;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
@@ -61,8 +56,8 @@ public class FailureEventDAOImpl implements FailureEventDAOLocal {
     //User Story #6
     public Collection<?> getFailEventsUsingImsiGroupedByCauseCode(Long imsi) {
         return (List<Object[]>)em.createQuery("SELECT fe.imsi, fe.eventCause.eventCauseID.causeCode, count(fe) FROM FailureEvent fe WHERE fe.imsi=:imsi GROUP BY fe.eventCause.eventCauseID.causeCode")
-                                .setParameter("imsi",imsi)
-                                .getResultList();
+                .setParameter("imsi",imsi)
+                .getResultList();
         //select imsi, cause_code, count(*) as count
         //from failure_events
         //where imsi = 191911000516761
@@ -97,20 +92,13 @@ public class FailureEventDAOImpl implements FailureEventDAOLocal {
     //User Story #10
     public Collection<?> getFailEventAndCauseCodeByUEType(Integer ueType){
         return (List<Object[]>)em.createQuery("SELECT fe.userEventType.tac, fe.eventCause.eventCauseID.eventID, fe.eventCause.eventCauseID.causeCode, count(fe) FROM FailureEvent fe WHERE fe.userEventType.tac=:ueType GROUP BY fe.eventCause.eventCauseID.eventID, fe.eventCause.eventCauseID.causeCode")
-                                .setParameter("ueType",ueType)
-                                .getResultList();
+                .setParameter("ueType",ueType)
+                .getResultList();
 
         //select ue_type, event_id, cause_code, count(*) as count
         //from failure_events
         //where ue_type = 100100
         //group by event_id, cause_code;
     }
-
-    /*//User Story #10
-    public Collection<?> uniqueFailuresPerModel(String phoneModel){
-        return (List<Object[]>)em.createQuery("SELECT COUNT(o), DISTINCT(o.eventCause.eventCauseID) FROM FailureEvent o WHERE o.userEventType.model IN (SELECT DISTINCT(a.eventCause.eventCauseID) FROM FailureEvent a WHERE a.userEventType.model=:phoneModel)")
-                .setParameter("phoneModel", phoneModel)
-                .getResultList();
-    }*/
 
 }

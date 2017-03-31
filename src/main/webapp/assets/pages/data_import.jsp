@@ -55,12 +55,12 @@
             <div class="fa fa-bars tooltips"></div>
         </div>
         <!--logo start-->
-        <a href="../../home.html" class="logo"><b>DAta ViBes</b></a>
+        <a href="../../home.html" class="logo"><b>LTE Failure System</b></a>
         <!--logo end-->
         <div class="nav notify-row" id="top_menu"></div>
         <div class="top-menu">
             <ul class="nav pull-right top-menu">
-                <li><a class="logout" href="http://localhost:8080/LteFailureSystem-0.0.1-SNAPSHOT/assets/pages/register.html">Register</a></li>
+                <li><a class="logout" href="register.html">Register</a></li>
             </ul>
         </div>
     </header>
@@ -187,7 +187,7 @@
                                 String fileName = request.getParameter("fileName");
                                 //making sure content has been posted.
                                 if (content != null) {
-                                    String filePath = "C:\\Code\\TestProject\\Files\\" + fileName
+                                    String filePath = "C:\\Code\\JEEProject\\masters_group_project\\Files\\" + fileName
                                             + ".csv";
                                     try {
                                         out.println(filePath);
@@ -273,10 +273,14 @@
     <!--main content end-->
     <!--footer start-->
     <footer class="site-footer">
-        <div class="text-center"> <a href="../../home.html#" class="go-top"> <i
-                class="fa fa-angle-up"></i>
-        </a>
-        </div>
+        <footer class="site-footer">
+            <div class="text-center">
+                LTE Failure System
+                <a href="data_import.jsp#" class="go-top">
+                    <i class="fa fa-angle-up"></i>
+                </a>
+            </div>
+        </footer>
     </footer>
     <!--footer end-->
 </section>

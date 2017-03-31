@@ -1,7 +1,6 @@
 package dao;
 
 import entities.DataImportLog;
-import entities.FailureEvent;
 
 import java.util.Collection;
 
@@ -10,4 +9,5 @@ import java.util.Collection;
  */
 public interface DataDAOLocal {
     void addDataImport(DataImportLog log);
+    Collection<?> dataImportLogs();
 }

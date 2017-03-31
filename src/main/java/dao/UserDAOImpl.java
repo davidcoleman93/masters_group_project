@@ -22,7 +22,9 @@ public class UserDAOImpl implements UserDAOLocal {
 
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public Collection<?> getAllUsers() {
-		return (List<User>) em.createQuery("FROM User ").getResultList();
+		return (List<User>) em
+				.createQuery("FROM User ")
+				.getResultList();
 	}
 
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)

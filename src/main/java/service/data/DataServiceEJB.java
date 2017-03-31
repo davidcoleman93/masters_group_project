@@ -1,5 +1,6 @@
 package service.data;
 
+import dao.DataDAOLocal;
 import dao.FailureEventDAOLocal;
 
 import javax.ejb.Local;
@@ -23,11 +24,17 @@ public class DataServiceEJB implements DataServiceEJBLocal {
 
     @Inject
     private FailureEventDAOLocal failureEventBean;
+    @Inject
+    private DataDAOLocal dataImportBean;
 
     private DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
     public Collection<?> allFailureEvents(){
         return failureEventBean.getAllFailureEvents();
+    }
+
+    public Collection<?> dataImportLogs(){
+        return dataImportBean.dataImportLogs();
     }
 
     //User Story #4
@@ -73,12 +80,6 @@ public class DataServiceEJB implements DataServiceEJBLocal {
     public Collection<?> getFailEventAndCauseCodeByUEType(Integer ueType){
         return failureEventBean.getFailEventAndCauseCodeByUEType(ueType);
     }
-
-
-    //User Story #10
-    /*public Collection<?> uniqueFailuresPerModel(String phoneModel){
-        return failureEventBean.uniqueFailuresPerModel(phoneModel);
-    }*/
 
     public Date parseDate(String date){
         try {

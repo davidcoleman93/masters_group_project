@@ -6,7 +6,6 @@ import javax.ejb.Local;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.xml.registry.infomodel.User;
 import java.util.HashSet;
 import java.util.List;
 

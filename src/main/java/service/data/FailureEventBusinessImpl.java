@@ -66,9 +66,8 @@ public class FailureEventBusinessImpl implements FailureEventBusinessLocal {
         List<FailureEventLog> failureLogList = new ArrayList<FailureEventLog>();
 
         //DATE format objects
-        SimpleDateFormat df = new SimpleDateFormat("dd-MM-yy hh:mm:ss");
-        //SimpleDateFormat df = new SimpleDateFormat("yy-MM-dd HH:mm:ss");
-        DateFormat srcDf = new SimpleDateFormat("dd/MM/yyyy hh:mm");
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        DateFormat srcDf = new SimpleDateFormat("MM/dd/yy hh:mm");
 
         /*
             Data Structures to store foreign key tables
@@ -152,11 +151,15 @@ public class FailureEventBusinessImpl implements FailureEventBusinessLocal {
                      */
                     try{
                         String startDateString = fEvents[0];
+                        //System.out.println(startDateString);
                         if (startDateString.contains("/")) {
                             Date retrievedDate = srcDf.parse(startDateString);
+                            //System.out.println(retrievedDate);
                             startDateString = df.format(retrievedDate);
+                            //System.out.println(startDateString);
                         }
                         dateTime = df.parse(startDateString);
+                        //System.out.println(dateTime);
                     }catch (Exception pe){
                         if(!error) error = true;
                     }
@@ -295,7 +298,9 @@ public class FailureEventBusinessImpl implements FailureEventBusinessLocal {
         }else{
             dataBean.addDataImport(new DataImportLog(new Date(), true, numImports, numErrors));
         }
-        removeFile(fileName);
+        synchronized (this){
+            removeFile(fileName);
+        }
     }
 
     private void removeFile(String fileName){

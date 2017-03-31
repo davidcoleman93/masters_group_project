@@ -3,7 +3,6 @@ package dao;
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Multimap;
 import entities.EventCause;
-import entities.EventCauseID;
 
 import javax.ejb.Local;
 import javax.ejb.Stateless;
