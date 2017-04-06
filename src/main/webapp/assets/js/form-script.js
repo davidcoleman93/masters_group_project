@@ -43,7 +43,7 @@ $(document).ready(function () {
         , S = "";
     $("#checkbox1").change(function () {
         1 == $("#checkbox1").is(":checked")
-    }), $("#user-login").on("change paste keyup", function () {
+    }), $("#user-login").on("change paste keyup  blur input", function () {
         $("#user-login").val($("#user-login").val().toLowerCase()), $("#user-login").val($("#user-login").val().replace(/\s+/g, "")), $("#user-login").val().length >= 5 && $.ajax({
             type: "GET"
             , url: "http://localhost:8080/LteFailureSystem-0.0.1-SNAPSHOT/api/data/users/".concat($("#user-login").val())
@@ -54,7 +54,7 @@ $(document).ready(function () {
                 console.log("failed")
             }
         })
-    }), $("#password-login").on("change paste keyup", function () {
+    }), $("#password-login").on("change paste keyup blur input", function () {
         0 == $("#password-login").val().length ? ($("#pwlsign").removeClass("warning"), $("#pwlsign").addClass("danger"), $("#pwlsign").removeClass("success"), $("#pwlsign").html("&#10005;")) : ($("#pwlsign").removeClass("warning"), $("#pwlsign").removeClass("danger"), $("#pwlsign").addClass("success"), u.removeClass("m-progress"), u.html(""), $("#pwlsign").html("&#10003;"))
     }), $("#login-submit").click(function () {
         if (0 == f) u.html("Sorry <i>username</i> is invalid");
@@ -76,15 +76,15 @@ $(document).ready(function () {
     });
     var y = /(?=.{8,}).*/
         , k = /^(?=\S*?[a-z])(?=\S*?[0-9])\S{8,}$/
-        , x = /^(?=\S*?[A-Z])(?=\S*?[a-z])((?=\S*?[0-9])|(?=\S*?[^\w\*]))\S{8,}$/
-        , b = /^(?=\S*?[A-Z])(?=\S*?[a-z])(?=\S*?[0-9])(?=\S*?[^\w\*])\S{8,}$/;
-    o.on("change paste keyup", function () {
+        , b = /^(?=\S*?[A-Z])(?=\S*?[a-z])((?=\S*?[0-9])|(?=\S*?[^\w\*]))\S{8,}$/
+        , x = /^(?=\S*?[A-Z])(?=\S*?[a-z])(?=\S*?[0-9])(?=\S*?[^\w\*])\S{8,}$/;
+    o.on("change paste keyup blur input", function () {
         var s = $(this)
             , e = s.val()
             , a = ($('[for="password"]'), "Weak")
             , r = "danger";
-        0 == s.val().length ? (g.removeClass("warning"), g.addClass("danger"), g.removeClass("success"), g.text("")) : (1 == b.test(e) ? (g.removeClass("warning"), g.removeClass("danger"), g.addClass("success"), a = "Very Strong", r = "success") : 1 == x.test(e) ? (g.removeClass("warning"), g.removeClass("danger"), g.addClass("success"), a = "Strong", r = "warning") : 1 == k.test(e) ? (g.removeClass("warning"), g.removeClass("danger"), g.addClass("success"), a = "Almost Strong", r = "warning") : 1 == y.test(e) ? (g.removeClass("danger"), g.removeClass("warning"), g.addClass("danger"), a = "Weak") : (a = "Very Weak", g.removeClass("danger"), g.removeClass("warning"), g.addClass("danger")), g.text(a)), i.val(""), d.html("&#10068;"), d.removeClass("success"), d.removeClass("danger"), d.addClass("warning"), h = 0
-    }), i.on("change paste keyup", function () {
+        0 == s.val().length ? (g.removeClass("warning"), g.addClass("danger"), g.removeClass("success"), g.text("")) : (1 == x.test(e) ? (g.removeClass("warning"), g.removeClass("danger"), g.addClass("success"), a = "Very Strong", r = "success") : 1 == b.test(e) ? (g.removeClass("warning"), g.removeClass("danger"), g.addClass("success"), a = "Strong", r = "warning") : 1 == k.test(e) ? (g.removeClass("warning"), g.removeClass("danger"), g.addClass("success"), a = "Almost Strong", r = "warning") : 1 == y.test(e) ? (g.removeClass("danger"), g.removeClass("warning"), g.addClass("danger"), a = "Weak") : (a = "Very Weak", g.removeClass("danger"), g.removeClass("warning"), g.addClass("danger")), g.text(a)), i.val(""), d.html("&#10068;"), d.removeClass("success"), d.removeClass("danger"), d.addClass("warning"), h = 0
+    }), i.on("change paste keyup blur input", function () {
         o.val() === i.val() && o.val().length > 0 ? (d.removeClass("warning"), d.removeClass("danger"), d.addClass("success"), v.html(""), d.html("&#10003;"), h = 1) : (d.removeClass("success"), d.removeClass("warning"), d.addClass("danger"), d.html("&#10005;"), h = 0)
     }), $("#admin").click(function () {
         l.attr({
@@ -114,7 +114,7 @@ $(document).ready(function () {
             }
             , disabled: "disabled"
         }), e(3)
-    }), r.on("change paste keyup", function () {
+    }), r.on("change paste keyup blur input", function () {
         r.val(r.val().toLowerCase()), r.val(r.val().replace(/\s+/g, "")), r.val().length >= 5 && $.ajax({
             type: "GET"
             , url: "http://localhost:8080/LteFailureSystem-0.0.1-SNAPSHOT/api/data/users/".concat(r.val())
@@ -125,7 +125,7 @@ $(document).ready(function () {
                 console.log("failed")
             }
         })
-    }), n.on("change paste keyup", function () {
+    }), n.on("change paste keyup blur input", function () {
         n.val(n.val().toLowerCase()), a(n.val()) || n.val().trim() == "".trim() ? n.val().trim() != "".trim() && 1 == a(n.val()) && (m.removeClass("warning"), m.removeClass("danger"), m.addClass("success"), v.html(""), m.html("&#10003;"), p = 1) : (m.removeClass("success"), m.removeClass("warning"), m.addClass("danger"), m.html(""), p = 0)
     }), $("#register-submit").click(function () {
         if (0 == w) v.removeClass(" m-progress"), v.html("Please Assign user a role!");
