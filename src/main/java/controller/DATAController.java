@@ -103,6 +103,14 @@ public class DATAController {
     public Collection<?> dataImportLog(){
         return dataEJB.dataImportLogs();
     }
+    
+    @GET
+    @Path("/all_unique_ue_types")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Collection<?> getAllUniqueUETypes()
+    {
+    	return dataEJB.getAllUniqueUETypes();
+    }
 
     //USER STORY #4
     //Customer Service: Display EVENT_ID/CAUSE_CODE FOR A SPECIFIC IMSI

@@ -29,7 +29,13 @@ public class FailureEventDAOImpl implements FailureEventDAOLocal {
     public void addFailureEvent(FailureEvent fe){
         em.persist(fe);
     }
-
+    
+    public Collection<?> getAllUniqueUETypes()
+    {
+    	return em.createQuery("SELECT DISTINCT userEventType.tac FROM FailureEvent")
+    			.getResultList();
+    }
+    
     //Persist all failure events in one connection to the database
     public void addFailureList(List<FailureEvent> fes){
         for(FailureEvent fe : fes){

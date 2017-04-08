@@ -20,6 +20,8 @@ public interface FailureEventDAOLocal {
 
     void addFailureEvent(FailureEvent fe);
     void addFailureList(List<FailureEvent> c);
+    
+    Collection<?> getAllUniqueUETypes();
 
     //User Story #4
     Collection<?> eventCausePerIMSI(Long imsi);

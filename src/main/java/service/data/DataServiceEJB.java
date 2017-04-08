@@ -36,6 +36,10 @@ public class DataServiceEJB implements DataServiceEJBLocal {
     public Collection<?> dataImportLogs(){
         return dataImportBean.dataImportLogs();
     }
+    
+    public Collection<?> getAllUniqueUETypes(){
+    	return failureEventBean.getAllUniqueUETypes();
+    }
 
     //User Story #4
     public Collection<?> eventCausePerIMSI(Long imsi){

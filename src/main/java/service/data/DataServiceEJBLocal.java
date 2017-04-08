@@ -10,6 +10,8 @@ public interface DataServiceEJBLocal {
     //ALL DATA
     Collection<?> allFailureEvents();
     Collection<?> dataImportLogs();
+    
+    Collection<?> getAllUniqueUETypes();
 
     //User Story #4
     Collection<?> eventCausePerIMSI(Long imsi);

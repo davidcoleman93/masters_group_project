@@ -5,7 +5,7 @@
 <title>LTE - User Story 10</title>
 
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<link rel="stylesheet" href="/resources/demos/style.css">
+<!-- <link rel="stylesheet" href="/resources/demos/style.css"> -->
 
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -13,38 +13,27 @@
 <script>
 	
 	$( function() {
-		/**
-	    var availableTags = [
-	      "ActionScript",
-	      "AppleScript",
-	      "Asp",
-	      "BASIC",
-	      "C",
-	      "C++",
-	      "Clojure",
-	      "COBOL",
-	      "ColdFusion",
-	      "Erlang",
-	      "Fortran",
-	      "Groovy",
-	      "Haskell",
-	      "Java",
-	      "JavaScript",
-	      "Lisp",
-	      "Perl",
-	      "PHP",
-	      "Python",
-	      "Ruby",
-	      "Scala",
-	      "Scheme"
-	    ];
-		**/
-		var availableTags = ["21060800", "33000153", "33000253"];
-		
-		
-	    $( "#uetype_text" ).autocomplete({
-	      source: availableTags
+		//var availableTags = ["21060800", "33000153", "33000253"];
+		var availableTags = [];
+		$.ajax({
+	        type: 'GET',
+	        //url: 'api/data/event_cause/by_ue_type/' + ueType,
+	        url: 'http://localhost:8080/LteFailureSystem-0.0.1-SNAPSHOT/api/data/all_unique_ue_types',
+	        contentType: 'application/json',
+	        dataType: 'json',
+	        success: function (aList) {
+	            //availableTags = aList;
+	            $.each(aList, function (index, value) {
+	            	//console.log(value);
+	                availableTags.push(value.toString());
+	            });
+	            $( "#uetype_text" ).autocomplete({
+	      	      source: availableTags
+	      	    });
+	        }
 	    });
+		
+	    
 	  } );
 	
 	function userStory10(){
