@@ -126,7 +126,7 @@ $(document).ready(function () {
             }
         })
     }), n.on("change paste keyup blur input", function () {
-        n.val(n.val().toLowerCase()), a(n.val()) || n.val().trim() == "".trim() ? n.val().trim() != "".trim() && 1 == a(n.val()) && (m.removeClass("warning"), m.removeClass("danger"), m.addClass("success"), v.html(""), m.html("&#10003;"), p = 1) : (m.removeClass("success"), m.removeClass("warning"), m.addClass("danger"), m.html(""), p = 0)
+        a(n.val()) || n.val().trim() == "".trim() ? n.val().trim() != "".trim() && 1 == a(n.val()) && (m.removeClass("warning"), m.removeClass("danger"), m.addClass("success"), v.html(""), m.html("&#10003;"), p = 1, n.val(n.val().toLowerCase())) : (m.removeClass("success"), m.removeClass("warning"), m.addClass("danger"), m.html(""), p = 0)
     }), $("#register-submit").click(function () {
         if (0 == w) v.removeClass(" m-progress"), v.html("Please Assign user a role!");
         else if (0 == C || r.val().trim() == "".trim()) v.removeClass(" m-progress"), v.html("Sorry  <i>username</i> is invalid!");
