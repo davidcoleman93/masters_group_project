@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>LTE - User Story 10</title>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+
+<script>
+	function userStory10(){
+	    var ueType = document.getElementById('uetype_text').value;
+	    $("#results").html("");
+	    $.ajax({
+	        type: 'GET',
+	        //url: 'api/data/event_cause/by_ue_type/' + ueType,
+	        url: 'http://localhost:8080/LteFailureSystem-0.0.1-SNAPSHOT/api/data/event_cause/by_ue_type/' + ueType,
+	        contentType: 'application/json',
+	        dataType: 'json',
+	        success: function (aList) {
+	            story10 = aList;
+	            //$("#innerText").append("<table>");
+	            $("#results").append("<th>" + "UE Type(TAC)" + "</th>" + "<th>" + "Event Id" + "</th>" + "<th>" + "Cause Code" + "</th>" + "<th>" + "Count" + "</th>" );
+	            $.each(story10, function (index, value) {
+	                $("#results").append("<tr><td>" + value[0] + "</td><td>" + value[1] + "</td><td>" + value[2] + "</td><td>" + value[3]+ "</td></tr>");
+	            });
+	            //$("#innerText").append("</table>");
+	        }
+	    });
+	
+	}
+</script>
+</head>
+<body>
+	<h1>User Story 10</h1>
+
+    <p>Network Mgt Engineer: Display unique EVENT_ID/CAUSE_CODE combinations for a specific ueType
+        and the number of occurances.</p>
+    <br>
+    <tbody>
+	    <tr>
+	        <td class="name">
+	            UE Type:
+	        </td>
+	        <td class="data">
+	            <input type="text" name="uetype_text" id="uetype_text" width="20" maxlength="40" size="20">
+	        </td>
+	        <td class="name">
+	            <input type="button" id="queryBtn" value="Submit" onclick="userStory10()">
+	        </td>
+	    </tr>
+    </tbody>
+
+    <br>
+    <br>
+    <table id="results">
+
+    </table>
+</body>
+</html>
