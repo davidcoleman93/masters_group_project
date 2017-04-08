@@ -4,9 +4,49 @@
 <meta charset="ISO-8859-1">
 <title>LTE - User Story 10</title>
 
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="/resources/demos/style.css">
+
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
 <script>
+	
+	$( function() {
+		/**
+	    var availableTags = [
+	      "ActionScript",
+	      "AppleScript",
+	      "Asp",
+	      "BASIC",
+	      "C",
+	      "C++",
+	      "Clojure",
+	      "COBOL",
+	      "ColdFusion",
+	      "Erlang",
+	      "Fortran",
+	      "Groovy",
+	      "Haskell",
+	      "Java",
+	      "JavaScript",
+	      "Lisp",
+	      "Perl",
+	      "PHP",
+	      "Python",
+	      "Ruby",
+	      "Scala",
+	      "Scheme"
+	    ];
+		**/
+		var availableTags = ["21060800", "33000153", "33000253"];
+		
+		
+	    $( "#uetype_text" ).autocomplete({
+	      source: availableTags
+	    });
+	  } );
+	
 	function userStory10(){
 	    var ueType = document.getElementById('uetype_text').value;
 	    $("#results").html("");
@@ -44,6 +84,7 @@
 	        <td class="data">
 	            <input type="text" name="uetype_text" id="uetype_text" width="20" maxlength="40" size="20">
 	        </td>
+	        
 	        <td class="name">
 	            <input type="button" id="queryBtn" value="Submit" onclick="userStory10()">
 	        </td>
