@@ -111,6 +111,22 @@ public class DATAController {
     {
     	return dataEJB.getAllUniqueUETypes();
     }
+    
+    @GET
+    @Path("/all_unique_imsis")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Collection<?> getAllUniqueIMSIs()
+    {
+    	return dataEJB.getAllUniqueIMSIs();
+    }
+    
+    @GET
+    @Path("/all_unique_imsis/{imsi}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Collection<?> getAllUniqueIMSIsV2(@PathParam("imsi") Long imsi)
+    {
+    	return dataEJB.getAllUniqueIMSIsV2(imsi);
+    }
 
     //USER STORY #4
     //Customer Service: Display EVENT_ID/CAUSE_CODE FOR A SPECIFIC IMSI

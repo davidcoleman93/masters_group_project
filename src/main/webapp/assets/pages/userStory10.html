@@ -4,28 +4,29 @@
 <meta charset="ISO-8859-1">
 <title>LTE - User Story 10</title>
 
+<!-- Needed for autocomplete ui -->
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <!-- <link rel="stylesheet" href="/resources/demos/style.css"> -->
 
+<!-- JQuery library -->
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+<!-- Needed for autocomplete ui -->
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
 <script>
-	
+	//Populates autocomplete for textfield, with all unique UE Types in database.
+	//Options must be strings to appear in suggestion.
 	$( function() {
 		//var availableTags = ["21060800", "33000153", "33000253"];
 		var availableTags = [];
 		$.ajax({
 	        type: 'GET',
-	        //url: 'api/data/event_cause/by_ue_type/' + ueType,
 	        url: 'http://localhost:8080/LteFailureSystem-0.0.1-SNAPSHOT/api/data/all_unique_ue_types',
 	        contentType: 'application/json',
 	        dataType: 'json',
 	        success: function (aList) {
-	            //availableTags = aList;
 	            $.each(aList, function (index, value) {
-	            	//console.log(value);
-	                availableTags.push(value.toString());
+	                availableTags.push(value.toString()); //Converts value to String, and adds to availableTags.
 	            });
 	            $( "#uetype_text" ).autocomplete({
 	      	      source: availableTags
@@ -63,7 +64,7 @@
 	<h1>User Story 10</h1>
 
     <p>Network Mgt Engineer: Display unique EVENT_ID/CAUSE_CODE combinations for a specific ueType
-        and the number of occurances.</p>
+        and the number of occurrence.</p>
     <br>
     <tbody>
 	    <tr>

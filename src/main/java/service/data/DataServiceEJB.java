@@ -40,6 +40,14 @@ public class DataServiceEJB implements DataServiceEJBLocal {
     public Collection<?> getAllUniqueUETypes(){
     	return failureEventBean.getAllUniqueUETypes();
     }
+    
+    public Collection<?> getAllUniqueIMSIs() {
+		return failureEventBean.getAllUniqueIMSIs();
+    }
+    
+    public Collection<?> getAllUniqueIMSIsV2(Long imsi) {
+		return failureEventBean.getAllUniqueIMSIsV2(imsi);
+    }
 
     //User Story #4
     public Collection<?> eventCausePerIMSI(Long imsi){

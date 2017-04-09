@@ -12,6 +12,8 @@ public interface DataServiceEJBLocal {
     Collection<?> dataImportLogs();
     
     Collection<?> getAllUniqueUETypes();
+    Collection<?> getAllUniqueIMSIs();
+    Collection<?> getAllUniqueIMSIsV2(Long imsi);
 
     //User Story #4
     Collection<?> eventCausePerIMSI(Long imsi);

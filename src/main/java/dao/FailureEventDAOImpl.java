@@ -36,6 +36,19 @@ public class FailureEventDAOImpl implements FailureEventDAOLocal {
     			.getResultList();
     }
     
+    public Collection<?> getAllUniqueIMSIs()
+    {
+    	return em.createQuery("SELECT DISTINCT imsi FROM FailureEvent")
+    			.getResultList();
+	}
+    
+    public Collection<?> getAllUniqueIMSIsV2(Long imsi)
+    {
+    	return em.createQuery("SELECT DISTINCT imsi FROM FailureEvent fe WHERE fe.imsi LIKE :imsi")
+    			.setParameter("imsi", "%" + imsi + "%")
+    			.getResultList();
+	}
+    
     //Persist all failure events in one connection to the database
     public void addFailureList(List<FailureEvent> fes){
         for(FailureEvent fe : fes){
