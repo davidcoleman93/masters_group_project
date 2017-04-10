@@ -40,7 +40,7 @@ public interface FailureEventDAOLocal {
     //User Story #10
     Collection<?> getFailEventAndCauseCodeByUEType(Integer ueType);
 
-    //User Story #10
-    //Collection<?> uniqueFailuresPerModel(String phoneModel);
+    //User Story #14
+    Collection<?> getIMSisForFailureClass(Integer failureClass);
 
 }

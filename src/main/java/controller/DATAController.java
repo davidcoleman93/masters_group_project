@@ -195,12 +195,13 @@ public class DATAController {
         return dataEJB.getFailEventAndCauseCodeByUEType(ueType);
     }
 
-    //User Story #10
-    //As a Network Management Engineer I want to see, for a given model of phone, all the unique failure Event Id and Cause Code combinations they have exhibited and the number of occurrences.
-    /*@GET
-    @Path("/unique_failures_per_phone_model")
+    //USER STORY #14
+    //Network Mgt Engineer: Display unique EVENT_ID/CAUSE_CODE combinations for a specific ueType
+    // and the number of occurances.
+    @GET
+    @Path("/failure_class/get_imsis/{failureClass}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Collection<?> uniqueFailuresPerModel(String phoneModel){
-        return dataEJB.uniqueFailuresPerModel(modelTest);
-    }*/
+    public Collection<?> getIMSisForFailureClass(@PathParam("failureClass") Integer failureClass){
+        return dataEJB.getIMSisForFailureClass(failureClass);
+    }
 }

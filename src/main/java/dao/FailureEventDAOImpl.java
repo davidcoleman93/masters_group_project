@@ -120,4 +120,15 @@ public class FailureEventDAOImpl implements FailureEventDAOLocal {
         //group by event_id, cause_code;
     }
 
+    //User Story #14
+    public Collection<?> getIMSisForFailureClass(Integer failureClass){
+        return (List<Object[]>)em.createQuery("SELECT DISTINCT fe.imsi FROM FailureEvent fe WHERE fe.failureClass.failureClass=:failureClass")
+                .setParameter("failureClass",failureClass)
+                .getResultList();
+
+        //select DISTINCT imsi
+        //from lte_failure_system.failure_events
+        //where failure_class = 0;
+    }
+
 }
