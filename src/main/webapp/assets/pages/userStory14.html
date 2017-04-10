@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="ISO-8859-1">
+    <title>LTE - User Story 14</title>
+
+    <!-- Needed for autocomplete ui -->
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <!-- <link rel="stylesheet" href="/resources/demos/style.css"> -->
+
+    <!-- JQuery library -->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <!-- Needed for autocomplete ui -->
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    <script>
+        function userStory14(){
+            var failure_class = document.getElementById('failure_class_text').value;
+            $("#results").html("");
+            $.ajax({
+                type: 'GET',
+                //url: 'api/data/failure_class/get_imsis/' + failure_class,
+                url: 'http://localhost:8080/LteFailureSystem-0.0.1-SNAPSHOT/api/data/failure_class/get_imsis/' + failure_class,
+                contentType: 'application/json',
+                dataType: 'json',
+                success: function (aList) {
+                    story14 = aList;
+                    //$("#innerText").append("<table>");
+                    $("#results").append("<th>" + "IMSI" + "</th>");
+                    $.each(story14, function (index, value) {
+                        $("#results").append("<tr><td>" + value + "</td></tr>");
+                    });
+                    //$("#innerText").append("</table>");
+                }
+            });
+
+        }
+    </script>
+</head>
+<body>
+<h1>User Story 14</h1>
+
+<p>Support Engineer: I want to display, for a given failure Cause Class, the IMSIs that were affected.</p>
+<br>
+<tbody>
+<tr>
+    <td class="name">
+        Failure Class:
+    </td>
+
+    <td class="data">
+        <input type="text" name="failure_class_text" id="failure_class_text" width="20" maxlength="40" size="20">
+    </td>
+
+
+
+    <td class="name">
+        <input type="button" id="queryBtn" value="Submit" onclick="userStory14()">
+    </td>
+</tr>
+</tbody>
+
+<br>
+<br>
+<table id="results">
+
+</table>
+</body>
+</html>
