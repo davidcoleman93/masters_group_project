@@ -1,0 +1,8 @@
+entities/EventCauseTest.class
+rest/DATAControllerTest.class
+entities/FailureClassTest.class
+entities/MarketOperatorIDTest.class
+entities/UserEventTypeTest.class
+entities/EventCauseIDTest.class
+entities/MarketOperatorTest.class
+entities/FailureEventTest.class
