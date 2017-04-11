@@ -8,12 +8,12 @@ $(document).ready(function () {
 
     function e(s) {
         $.ajax({
-            type: "GET"
-            , url: "http://localhost:8080/LteFailureSystem-0.0.1-SNAPSHOT/api/data/roletype/".concat(s)
-            , success: function (s) {
+            type: "GET",
+            url: "http://localhost:8080/LteFailureSystem-0.0.1-SNAPSHOT/api/data/roletype/".concat(s),
+            success: function (s) {
                 console.log(s), S = s, t.removeClass("warning"), t.removeClass("danger"), t.addClass("success"), t.html("&#10003;"), v.html(""), w = 1
-            }
-            , error: function () {
+            },
+            error: function () {
                 console.log("failed"), v.html("Sorry this  <i>role </i> don't exist!")
             }
         })
@@ -23,34 +23,34 @@ $(document).ready(function () {
         var e = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
         return e.test(s)
     }
-    var r = $("#username")
-        , l = $("#user-role")
-        , n = $("#email-id")
-        , o = $("#password")
-        , i = $("#confirm-password")
-        , t = $("#rolesign")
-        , c = $("#usersign")
-        , m = $("#emailsign")
-        , g = $("#pwordsign1")
-        , d = $("#pwordsign2")
-        , u = $(".logininfo")
-        , v = $(".register")
-        , C = 0
-        , p = 0
-        , h = 0
-        , w = 0
-        , f = 0
-        , S = "";
+    var r = $("#username"),
+        l = $("#user-role"),
+        n = $("#email-id"),
+        o = $("#password"),
+        i = $("#confirm-password"),
+        t = $("#rolesign"),
+        c = $("#usersign"),
+        m = $("#emailsign"),
+        g = $("#pwordsign1"),
+        d = $("#pwordsign2"),
+        u = $(".logininfo"),
+        v = $(".register"),
+        C = 0,
+        p = 0,
+        h = 0,
+        w = 0,
+        f = 0,
+        S = "";
     $("#checkbox1").change(function () {
         1 == $("#checkbox1").is(":checked")
     }), $("#user-login").on("change paste keyup  blur input", function () {
         $("#user-login").val($("#user-login").val().toLowerCase()), $("#user-login").val($("#user-login").val().replace(/\s+/g, "")), $("#user-login").val().length >= 5 && $.ajax({
-            type: "GET"
-            , url: "http://localhost:8080/LteFailureSystem-0.0.1-SNAPSHOT/api/data/users/".concat($("#user-login").val())
-            , success: function (s) {
+            type: "GET",
+            url: "http://localhost:8080/LteFailureSystem-0.0.1-SNAPSHOT/api/data/users/".concat($("#user-login").val()),
+            success: function (s) {
                 console.log(s), 1 == s ? ($("#logininfo").html("Sorry this  <i>Username </i> doesn't exist!"), $("#ulsign").removeClass("success"), $("#ulsign").removeClass("warning"), $("#ulsign").html("&#10005;"), $("#ulsign").addClass("danger"), f = 0) : 0 == s && ($("#ulsign").removeClass("danger"), $("#ulsign").removeClass("warning"), $("#ulsign").addClass("success"), $("#ulsign").html("&#10003;"), u.removeClass("m-progress"), u.html(""), f = 1)
-            }
-            , error: function () {
+            },
+            error: function () {
                 console.log("failed")
             }
         })
@@ -63,26 +63,26 @@ $(document).ready(function () {
             1 == $("#checkbox1").is(":checked"), u.addClass("m-progress");
             var s = "http://localhost:8080/LteFailureSystem-0.0.1-SNAPSHOT/api/data/login/";
             s = s.concat($("#user-login").val() + "/"), $.ajax({
-                type: "GET"
-                , url: s.concat($("#password-login").val())
-                , success: function (s) {
+                type: "GET",
+                url: s.concat($("#password-login").val()),
+                success: function (s) {
                     0 == s ? window.location.replace("http://localhost:8080/LteFailureSystem-0.0.1-SNAPSHOT/home.html") : (u.removeClass("m-progress"), $("#pwlsign").addClass("danger"), $("#pwlsign").removeClass("success"), $("#pwlsign").removeClass("warning"), $("#pwlsign").html("&#10005;"), u.html("Sorry  <i> password </i> is incorrect. "))
-                }
-                , error: function () {
+                },
+                error: function () {
                     u.removeClass("m-progress"), u.html("Sorry  <i> password </i> is incorrect. ")
                 }
             })
         }
     });
-    var y = /(?=.{8,}).*/
-        , k = /^(?=\S*?[a-z])(?=\S*?[0-9])\S{8,}$/
-        , b = /^(?=\S*?[A-Z])(?=\S*?[a-z])((?=\S*?[0-9])|(?=\S*?[^\w\*]))\S{8,}$/
-        , x = /^(?=\S*?[A-Z])(?=\S*?[a-z])(?=\S*?[0-9])(?=\S*?[^\w\*])\S{8,}$/;
+    var y = /(?=.{8,}).*/,
+        k = /^(?=\S*?[a-z])(?=\S*?[0-9])\S{8,}$/,
+        b = /^(?=\S*?[A-Z])(?=\S*?[a-z])((?=\S*?[0-9])|(?=\S*?[^\w\*]))\S{8,}$/,
+        x = /^(?=\S*?[A-Z])(?=\S*?[a-z])(?=\S*?[0-9])(?=\S*?[^\w\*])\S{8,}$/;
     o.on("change paste keyup blur input", function () {
-        var s = $(this)
-            , e = s.val()
-            , a = ($('[for="password"]'), "Weak")
-            , r = "danger";
+        var s = $(this),
+            e = s.val(),
+            a = ($('[for="password"]'), "Weak"),
+            r = "danger";
         0 == s.val().length ? (g.removeClass("warning"), g.addClass("danger"), g.removeClass("success"), g.text("")) : (1 == x.test(e) ? (g.removeClass("warning"), g.removeClass("danger"), g.addClass("success"), a = "Very Strong", r = "success") : 1 == b.test(e) ? (g.removeClass("warning"), g.removeClass("danger"), g.addClass("success"), a = "Strong", r = "warning") : 1 == k.test(e) ? (g.removeClass("warning"), g.removeClass("danger"), g.addClass("success"), a = "Almost Strong", r = "warning") : 1 == y.test(e) ? (g.removeClass("danger"), g.removeClass("warning"), g.addClass("danger"), a = "Weak") : (a = "Very Weak", g.removeClass("danger"), g.removeClass("warning"), g.addClass("danger")), g.text(a)), i.val(""), d.html("&#10068;"), d.removeClass("success"), d.removeClass("danger"), d.addClass("warning"), h = 0
     }), i.on("change paste keyup blur input", function () {
         o.val() === i.val() && o.val().length > 0 ? (d.removeClass("warning"), d.removeClass("danger"), d.addClass("success"), v.html(""), d.html("&#10003;"), h = 1) : (d.removeClass("success"), d.removeClass("warning"), d.addClass("danger"), d.html("&#10005;"), h = 0)
@@ -90,38 +90,38 @@ $(document).ready(function () {
         l.attr({
             value: function () {
                 return $("#admin").text()
-            }
-            , disabled: "disabled"
+            },
+            disabled: "disabled"
         }), e(0)
     }), $("#customer-service").click(function () {
         l.attr({
             value: function () {
                 return $("#customer-service").text()
-            }
-            , disabled: "disabled"
+            },
+            disabled: "disabled"
         }), e(1)
     }), $("#support-engineer").click(function () {
         l.attr({
             value: function () {
                 return $("#support-engineer").text()
-            }
-            , disabled: "disabled"
+            },
+            disabled: "disabled"
         }), e(2)
     }), $("#network-engineer").click(function () {
         l.attr({
             value: function () {
                 return $("#network-engineer").text()
-            }
-            , disabled: "disabled"
+            },
+            disabled: "disabled"
         }), e(3)
     }), r.on("change paste keyup blur input", function () {
         r.val(r.val().toLowerCase()), r.val(r.val().replace(/\s+/g, "")), r.val().length >= 5 && $.ajax({
-            type: "GET"
-            , url: "http://localhost:8080/LteFailureSystem-0.0.1-SNAPSHOT/api/data/users/".concat(r.val())
-            , success: function (s) {
+            type: "GET",
+            url: "http://localhost:8080/LteFailureSystem-0.0.1-SNAPSHOT/api/data/users/".concat(r.val()),
+            success: function (s) {
                 console.log(s), 0 == s ? (v.html("Sorry this  <i>Username </i> already exist!"), c.removeClass("success"), c.removeClass("warning"), c.addClass("danger"), C = 0, c.html("X")) : 1 == s && (c.removeClass("warning"), c.removeClass("danger"), c.addClass("success"), c.html("&#10003;"), v.html(""), C = 1)
-            }
-            , error: function () {
+            },
+            error: function () {
                 console.log("failed")
             }
         })
@@ -136,16 +136,16 @@ $(document).ready(function () {
             v.html(""), v.addClass("m-progress");
             var e = new registerUser(S, r.val(), n.val(), o.val());
             $.ajax({
-                type: "POST"
-                , url: "http://localhost:8080/LteFailureSystem-0.0.1-SNAPSHOT/api/data/adduser"
-                , success: function () {
+                type: "POST",
+                url: "http://localhost:8080/LteFailureSystem-0.0.1-SNAPSHOT/api/data/adduser",
+                success: function () {
                     $(".panel-body").slideUp(1e3).delay(1e3).fadeIn(4e3), v.html("User Successfully Registered"), s(), console.log(S)
-                }
-                , error: function () {
+                },
+                error: function () {
                     v.removeClass("m-progress"), $(".panel-body").fadeToggle().fadeIn(600), v.html("Sorry an  <i>error </i> occured!"), console.log(S)
-                }
-                , data: JSON.stringify(e)
-                , contentType: "application/json"
+                },
+                data: JSON.stringify(e),
+                contentType: "application/json"
             })
         }
     })
