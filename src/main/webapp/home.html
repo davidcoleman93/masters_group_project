@@ -11,7 +11,6 @@
             padding: 2px;
             margin: 0 auto;
         }
-
     </style>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -49,10 +48,10 @@
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-      <script src="assets/js/modernizr-custom.js"></script>
-    <![endif]-->
+<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<script src="assets/js/modernizr-custom.js"></script>
+<![endif]-->
 </head>
 
 <body onload="runFileListener1()">
@@ -67,13 +66,12 @@
                 }
             });
         }
-
     </script>
 
     <section id="container">
         <!-- **********************************************************************************************************************************************************
-      TOP BAR CONTENT & NOTIFICATIONS
-      *********************************************************************************************************************************************************** -->
+TOP BAR CONTENT & NOTIFICATIONS
+*********************************************************************************************************************************************************** -->
         <!--header start-->
         <header class="header black-bg">
             <div class="sidebar-toggle-box">
@@ -92,8 +90,8 @@
         <!--header end-->
 
         <!-- **********************************************************************************************************************************************************
-      MAIN SIDEBAR MENU
-      *********************************************************************************************************************************************************** -->
+MAIN SIDEBAR MENU
+*********************************************************************************************************************************************************** -->
         <!--sidebar start-->
         <aside>
             <div id="sidebar" class="nav-collapse ">
@@ -106,49 +104,63 @@
                             <span>Dashboard</span>
                         </a>
                     </li>
-
+                    <!--Partition Tabs Start-->
                     <li class="sub-menu">
                         <a href="javascript:;">
                             <i class="fa fa-tasks"></i>
-                            <span>Data Analysis</span>
+                            <span>Event Causes</span>
                         </a>
                         <ul class="sub">
-                            <li><a href="assets/pages/data_analysis.html">Search for data!</a></li>
+                            <li><a href="#">IMSI (Cus Rep)</a></li>
+                            <li><a href="#">Phone Model (Net Engn)</a></li>
+                            <li><a href="#">Causes Code (Cus Rep)</a></li>
                         </ul>
                     </li>
 
                     <li class="sub-menu">
                         <a href="javascript:;">
                             <i class="fa fa-th"></i>
-                            <span>Data Tables</span>
+                            <span>Call Failures</span>
                         </a>
                         <ul class="sub">
-                            <li><a href="assets/pages/basic_table.html">Basic Table</a></li>
-                            <li><a href="assets/pages/responsive_table.html">Responsive Table</a></li>
+                            <li><a href="#">All List (Sup Engn)</a></li>
+                            <li><a href="#">Top 10 IMSI (Net Engn)</a></li>
+                            <li><a href="#">Affected IMSI (Sup Engn)</a></li>
                         </ul>
                     </li>
                     <li class="sub-menu">
                         <a href="javascript:;">
-                            <i class=" fa fa-bar-chart-o"></i>
-                            <span>Data Charts</span>
+                            <i class="fa fa-bar-chart-o"></i>
+                            <span>Counts</span>
                         </a>
                         <ul class="sub">
-                            <li><a href="assets/pages/morris.html">Morris</a></li>
-                            <li><a href="assets/pages/chartjs.html">Chartjs</a></li>
+                            <li><a href="#">Phone Module (Sup Engn)</a></li>
+                            <li><a href="#">IMSI (Net Engn)</a></li>
+                            <li><a href="#">IMSI (Cus Rep)</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="sub-menu">
+                        <a href="javascript:;">
+                            <i class="fa fa-phone-square"></i>
+                            <span>Call Faiture</span>
+                        </a>
+                        <ul class="sub">
+                            <li><a href="#">MCC / MNC (Net Engn)</a></li>
+
                         </ul>
                     </li>
 
                     <li class="sub-menu">
                         <a href="assets/pages/data_import.jsp">
-                            <i class="fa fa-cogs"></i>
+                            <i class="	fa fa-cloud-upload"></i>
                             <span>Data Import</span>
                         </a>
-                        <!--<ul class="sub">
-                          <li><a  href="assets/pages/data_import.jsp">Data Import</a></li>
-                          <li><a  href="assets/pages/todo_list.html">Todo List</a></li>
-                      </ul>-->
+                        <ul class="sub">
+                            <li><a href="assets/pages/data_import.jsp">Data Import</a></li>
+                        </ul>
                     </li>
-
+                    <!--Partition Tabs End-->
                 </ul>
                 <!-- sidebar menu end-->
             </div>
@@ -156,8 +168,8 @@
         <!--sidebar end-->
 
         <!-- **********************************************************************************************************************************************************
-      MAIN CONTENT
-      *********************************************************************************************************************************************************** -->
+MAIN CONTENT
+*********************************************************************************************************************************************************** -->
         <!--main content start-->
         <section id="main-content">
             <section class="wrapper">
@@ -331,42 +343,41 @@
                                     }
                                 });
                             }
-
                         </script>
 
                         <!-- <div class="row mtbox">
-                      <div class="col-md-3 col-sm-3 col-md-offset-0 box0">
-                        <div class="box1">
+<div class="col-md-3 col-sm-3 col-md-offset-0 box0">
+<div class="box1">
 
-                  <span class="li_cloud"></span>
-                  <h3 id = "numUploads">0</h3>
-                        </div>
-                  <p>This will show the number of records uploaded to the database this month.</p>
-                      </div>
-                      <div class="col-md-3 col-sm-3 box0">
-                        <div class="box1">
+<span class="li_cloud"></span>
+<h3 id = "numUploads">0</h3>
+</div>
+<p>This will show the number of records uploaded to the database this month.</p>
+</div>
+<div class="col-md-3 col-sm-3 box0">
+<div class="box1">
 
-                  <span class="li_fire"></span>
-                  <h3 id = "numErrors">0</h3>
-                        </div>
-                  <p>This will show the number of records, uploaded this month, which contained errors.</p>
-                      </div>
-                      <div class="col-md-3 col-sm-3 box0">
-                        <div class="box1">
+<span class="li_fire"></span>
+<h3 id = "numErrors">0</h3>
+</div>
+<p>This will show the number of records, uploaded this month, which contained errors.</p>
+</div>
+<div class="col-md-3 col-sm-3 box0">
+<div class="box1">
 
-                  <span class="li_search"></span>
-                  <h3 id = "numQueries">0&lt;!&ndash; INSERT NUMBER OF DATABASE UPLOADS HERE &ndash;&gt;</h3>
-                        </div>
-                  <p>This will show the number of queries to the database this month.</p>
-                      </div>
-                      <div class="col-md-3 col-sm-3 box0">
-                        <div class="box1">
+<span class="li_search"></span>
+<h3 id = "numQueries">0&lt;!&ndash; INSERT NUMBER OF DATABASE UPLOADS HERE &ndash;&gt;</h3>
+</div>
+<p>This will show the number of queries to the database this month.</p>
+</div>
+<div class="col-md-3 col-sm-3 box0">
+<div class="box1">
 
-                  <span class="li_data"></span>
-                  <h3 id = "numImports">0&lt;!&ndash; INSERT NUMBER OF DATABASE UPLOADS HERE &ndash;&gt;</h3>
-                        </div>
-                  <p>This will show the number of successful data imports to the database this month.</p>
-                      </div>-->
+<span class="li_data"></span>
+<h3 id = "numImports">0&lt;!&ndash; INSERT NUMBER OF DATABASE UPLOADS HERE &ndash;&gt;</h3>
+</div>
+<p>This will show the number of successful data imports to the database this month.</p>
+</div>-->
 
                         <!-- row mt -->
 
@@ -375,22 +386,22 @@
 
 
                     <!-- **********************************************************************************************************************************************************
-      RIGHT SIDEBAR CONTENT
-      *********************************************************************************************************************************************************** -->
+RIGHT SIDEBAR CONTENT
+*********************************************************************************************************************************************************** -->
                     <div class="row mtbox">
 
                         <div class="col-lg-12">
 
                             <!--<button type="button" id = "queryDrop" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                          Dropdown
-                          <span class="caret"></span>
-                        </button>-->
+Dropdown
+<span class="caret"></span>
+</button>-->
 
                             <button type='button' id="allRecords">ALL RECORDS</button>
                             <!--<ul class="dropdown-menu">
-                          <li><a href="#">Get All Data</a></li>
-                          <li><a href="#">Dropdown link</a></li>
-                        </ul>-->
+<li><a href="#">Get All Data</a></li>
+<li><a href="#">Dropdown link</a></li>
+</ul>-->
                             <div class="textContainer">
                                 <div class="innerTextContainer">
                                     <div id="innerText">
@@ -485,7 +496,6 @@
             var to = $("#" + id).data("to");
             console.log('nav ' + nav + ' to: ' + to.month + '/' + to.year);
         }
-
     </script>
 
 
