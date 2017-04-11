@@ -40,7 +40,8 @@ $(document).ready(function () {
         h = 0,
         w = 0,
         f = 0,
-        S = "";
+        S = "",
+        y = 0;
     $("#checkbox1").change(function () {
         1 == $("#checkbox1").is(":checked")
     }), $("#user-login").on("change paste keyup  blur input", function () {
@@ -74,16 +75,16 @@ $(document).ready(function () {
             })
         }
     });
-    var y = /(?=.{8,}).*/,
-        k = /^(?=\S*?[a-z])(?=\S*?[0-9])\S{8,}$/,
-        b = /^(?=\S*?[A-Z])(?=\S*?[a-z])((?=\S*?[0-9])|(?=\S*?[^\w\*]))\S{8,}$/,
-        x = /^(?=\S*?[A-Z])(?=\S*?[a-z])(?=\S*?[0-9])(?=\S*?[^\w\*])\S{8,}$/;
+    var k = /(?=.{8,}).*/,
+        b = /^(?=\S*?[a-z])(?=\S*?[0-9])\S{8,}$/,
+        x = /^(?=\S*?[A-Z])(?=\S*?[a-z])((?=\S*?[0-9])|(?=\S*?[^\w\*]))\S{8,}$/,
+        T = /^(?=\S*?[A-Z])(?=\S*?[a-z])(?=\S*?[0-9])(?=\S*?[^\w\*])\S{8,}$/;
     o.on("change paste keyup blur input", function () {
         var s = $(this),
             e = s.val(),
             a = ($('[for="password"]'), "Weak"),
             r = "danger";
-        0 == s.val().length ? (g.removeClass("warning"), g.addClass("danger"), g.removeClass("success"), g.text("")) : (1 == x.test(e) ? (g.removeClass("warning"), g.removeClass("danger"), g.addClass("success"), a = "Very Strong", r = "success") : 1 == b.test(e) ? (g.removeClass("warning"), g.removeClass("danger"), g.addClass("success"), a = "Strong", r = "warning") : 1 == k.test(e) ? (g.removeClass("warning"), g.removeClass("danger"), g.addClass("success"), a = "Almost Strong", r = "warning") : 1 == y.test(e) ? (g.removeClass("danger"), g.removeClass("warning"), g.addClass("danger"), a = "Weak") : (a = "Very Weak", g.removeClass("danger"), g.removeClass("warning"), g.addClass("danger")), g.text(a)), i.val(""), d.html("&#10068;"), d.removeClass("success"), d.removeClass("danger"), d.addClass("warning"), h = 0
+        0 == s.val().length ? (g.removeClass("warning"), g.addClass("danger"), g.removeClass("success"), g.text("")) : (1 == T.test(e) ? (g.removeClass("warning"), g.removeClass("danger"), g.addClass("success"), a = "Very Strong", r = "success", y = 1) : 1 == x.test(e) ? (g.removeClass("warning"), g.removeClass("danger"), g.addClass("success"), a = "Strong", y = 1, r = "warning") : 1 == b.test(e) ? (g.removeClass("warning"), g.removeClass("danger"), g.addClass("success"), a = "Almost Strong", r = "warning") : 1 == k.test(e) ? (g.removeClass("danger"), g.removeClass("warning"), g.addClass("danger"), a = "Weak") : (a = "Very Weak", g.removeClass("danger"), g.removeClass("warning"), g.addClass("danger")), g.text(a)), i.val(""), d.html("&#10068;"), d.removeClass("success"), d.removeClass("danger"), d.addClass("warning"), h = 0
     }), i.on("change paste keyup blur input", function () {
         o.val() === i.val() && o.val().length > 0 ? (d.removeClass("warning"), d.removeClass("danger"), d.addClass("success"), v.html(""), d.html("&#10003;"), h = 1) : (d.removeClass("success"), d.removeClass("warning"), d.addClass("danger"), d.html("&#10005;"), h = 0)
     }), $("#admin").click(function () {
@@ -131,7 +132,7 @@ $(document).ready(function () {
         if (0 == w) v.removeClass(" m-progress"), v.html("Please Assign user a role!");
         else if (0 == C || r.val().trim() == "".trim()) v.removeClass(" m-progress"), v.html("Sorry  <i>username</i> is invalid!");
         else if (0 == p || n.val().trim() == "".trim()) v.removeClass(" m-progress"), v.html("Sorry <i>E-mail </i> is invalid!");
-        else if (0 == h || i.val().trim() == "".trim()) v.removeClass(" m-progress"), v.html("Sorry  <i>Passoword </i> is invalid!");
+        else if (0 == h || i.val().trim() == "".trim() || 0 == y) v.removeClass(" m-progress"), v.html("Sorry  <i>Passoword </i> is invalid!");
         else {
             v.html(""), v.addClass("m-progress");
             var e = new registerUser(S, r.val(), n.val(), o.val());
