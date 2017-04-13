@@ -2,22 +2,12 @@
 <html lang="en">
 
 <head>
-    <style>
-        td,
-        th {
-            text-align: left;
-            min-width: 150px;
-            padding: 2px;
-            margin: 0 auto;
-        }
-    </style>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="Dashboard">
     <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
-    <title>LTE Failure System</title>
-    <!-- Partition styles for Tabs -->
+    <title>DASHGUM - Bootstrap Admin Template</title>
     <link href="assets/css/partition.css" rel="stylesheet">
     <!-- Bootstrap core CSS -->
     <link href="assets/css/bootstrap.css" rel="stylesheet">
@@ -47,20 +37,9 @@
 <![endif]-->
 </head>
 
-<body onload="runFileListener1()">
-    <script>
-        function runFileListener1() {
-            $.ajax({
-                type: 'post'
-                , url: 'api/file/dir_watcher'
-                , success: function () {
-                    console.log("LISTENING");
-                }
-            });
-        }
-    </script>
+<body>
     <section id="container">
-        <!-- *****TOP BAR CONTENT & NOTIFICATIONS********** -->
+        <!-- *******TOP BAR CONTENT & NOTIFICATIONS******** -->
         <!--header start-->
         <header class="header black-bg">
             <div class="sidebar-toggle-box">
@@ -75,7 +54,7 @@
             </div>
         </header>
         <!--header end-->
-        <!-- ********MAIN SIDEBAR MENU****** -->
+        <!-- ******MAIN SIDEBAR MENU****** -->
         <!--sidebar start-->
         <aside>
             <div id="sidebar" class="nav-collapse ">
@@ -88,9 +67,9 @@
                     <li class="sub-menu">
                         <a href="javascript:;"> <i class="fa fa-tasks"></i> <span>Event Causes</span> </a>
                         <ul class="sub">
-                            <li><a id="">IMSI (Cus Rep)</a></li>
-                            <li><a id="">Phone Model (Net Engn)</a></li>
-                            <li><a id="">Causes Code (Cus Rep)</a></li>
+                            <li><a id="ecimsi">IMSI (Cus Rep)</a></li>
+                            <li><a id="ecpmodel">Phone Model (Net Engn)</a></li>
+                            <li><a id="ecccode">Causes Code (Cus Rep)</a></li>
                         </ul>
                     </li>
                     <li class="sub-menu">
@@ -136,26 +115,80 @@
             </div>
         </aside>
         <!--sidebar end-->
-        <!--CONTAINERS START HERE -->
-        <div class="container 1"> </div>
-        <div class="container 1"> </div>
-        <div class="container 1"> </div>
-        <div class="container 1"> </div>
-        <div class="container 1"> </div>
-        <div class="container 1"> </div>
-        <div class="container 1"> </div>
-        <div class="container 1"> </div>
-        <div class="container 1"> </div>
-        <div class="container 1"> </div>
-        <div class="container 1"> </div>
-        <!--CONTAINERS ENDS HERE -->
-        <!--footer start-->
+        <!-- ******MAIN CONTENT***** -->
+        <!--main content start-->
+        <div id="testid">
+            <section id="main-content">
+                <section class="wrapper">
+                    <h3><i class="fa fa-angle-right"></i> Title Here</h3>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="content-panel">
+                                <h4><i class="fa fa-angle-right"></i> Basic Table</h4>
+                                <hr>
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>First Name</th>
+                                            <th>Last Name</th>
+                                            <th>Username</th>
+                                            <th>#</th>
+                                            <th>First Name</th>
+                                            <th>Last Name</th>
+                                            <th>Username</th>
+                                            <th>#</th>
+                                            <th>First Name</th>
+                                            <th>Last Name</th>
+                                            <th>Username</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>Mark</td>
+                                            <td>Otto</td>
+                                            <td>@mdo</td>
+                                            <td>1</td>
+                                            <td>Mark</td>
+                                            <td>Otto</td>
+                                            <td>@mdo</td>
+                                            <td>1</td>
+                                            <td>Mark</td>
+                                            <td>Otto</td>
+                                            <td>@mdo</td>
+                                        </tr>
+                                        <tr>
+                                            <td>2</td>
+                                            <td>Jacob</td>
+                                            <td>Thornton</td>
+                                            <td>@fat</td>
+                                        </tr>
+                                        <tr>
+                                            <td>3</td>
+                                            <td>Larry</td>
+                                            <td>the Bird</td>
+                                            <td>@twitter</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /row -->
+                </section>
+                <! --/wrapper -->
+            </section>
+        </div>
+        <!-- /MAIN CONTENT -->
+        <!--main content end-->
+        <!--footer start
         <footer class="site-footer">
-            <div class="text-center"> LTE Failure System
-                <a href="home.html#" class="go-top"> <i class="fa fa-angle-up"></i> </a>
+            <div class="text-center">LTE FAILURE SYSTEM
+                <a href="home.html" class="go-top"> <i class="fa fa-angle-up"></i> </a>
             </div>
         </footer>
-        <!--footer end-->
+        footer end-->
     </section>
     <!-- js placed at the end of the document so the pages load faster -->
     <script src="assets/js/jquery.js"></script>
@@ -200,11 +233,11 @@
                         , label: "Special event"
                         , badge: "00"
                     }
-                    , {
+                               , {
                         type: "block"
                         , label: "Regular event"
                     , }
-                ]
+                              ]
             });
         });
 
@@ -214,6 +247,12 @@
             var to = $("#" + id).data("to");
             console.log('nav ' + nav + ' to: ' + to.month + '/' + to.year);
         }
+    </script>
+    <script type="application/javascript">
+        //custom select box
+        $(function () {
+            $('select.styled').customSelect();
+        });
     </script>
 </body>
 
