@@ -47,8 +47,7 @@
             <!--sidebar start-->
             <%@include file="assets/pages/sidebar.html" %>
                 <!--sidebar end-->
-                <!-- ******MAIN CONTENT***** -->
-                <!--main content start-->
+                <!-- ******MAIN CONTENT START***** -->
                 <div id="testid">
                     <section id="main-content">
                         <section class="wrapper">
@@ -128,8 +127,7 @@
                         <! --/wrapper -->
                     </section>
                 </div>
-                <!-- /MAIN CONTENT -->
-                <!--main content end-->
+                <!--*** MAIN CONTENT ENDS ***-->
                 <!--footer start
 <footer class="site-footer">
 <div class="text-center">LTE FAILURE SYSTEM
