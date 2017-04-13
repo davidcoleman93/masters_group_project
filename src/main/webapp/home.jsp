@@ -31,27 +31,28 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css" />
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
-<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-<script src="assets/js/modernizr-custom.js"></script>
-<![endif]-->
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <script src="assets/js/modernizr-custom.js"></script>
+    <![endif]-->
 </head>
 
 <body>
     <section id="container">
         <!-- *******TOP BAR CONTENT & NOTIFICATIONS******** -->
         <!--header start-->
-        <%@include file="assets/pages/header.html" %>
+        <%@include file="assets/pages/header.jsp" %>
             <!--header end-->
             <!-- ******MAIN SIDEBAR MENU****** -->
             <!--sidebar start-->
-            <%@include file="assets/pages/sidebar.html" %>
+            <%@include file="assets/pages/sidebar.jsp" %>
                 <!--sidebar end-->
                 <!-- ******MAIN CONTENT START***** -->
-                <div id="testid">
+                <!--I'm using ec (Event Cause) in the ID to indicate whic category it belongs to -->
+                <div class="content-holder ec-imsi">
                     <section id="main-content">
                         <section class="wrapper">
-                            <h3><i class="fa fa-angle-right"></i> Title Here</h3>
+                            <h3><i class="fa fa-angle-right"></i> IMSI  -    I call it Sample table for now </h3>
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="content-panel">
@@ -90,32 +91,18 @@
                                                     <td>@mdo</td>
                                                 </tr>
                                                 <tr>
-                                                    <td>2</td>
-                                                    <td>Jacob</td>
-                                                    <td>Thornton</td>
-                                                    <td>@fat</td>
-                                                    <td>2</td>
-                                                    <td>Jacob</td>
-                                                    <td>Thornton</td>
-                                                    <td>@fat</td>
-                                                    <td>2</td>
-                                                    <td>Jacob</td>
-                                                    <td>Thornton</td>
-                                                    <td>@fat</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>3</td>
-                                                    <td>Larry</td>
-                                                    <td>the Bird</td>
-                                                    <td>@twitter</td>
-                                                    <td>2</td>
-                                                    <td>Jacob</td>
-                                                    <td>Thornton</td>
-                                                    <td>@fat</td>
-                                                    <td>2</td>
-                                                    <td>Jacob</td>
-                                                    <td>Thornton</td>
-                                                    <td>@fat</td>
+                                                    <td>1</td>
+                                                    <td>Mark</td>
+                                                    <td>Otto</td>
+                                                    <td>@mdo</td>
+                                                    <td>1</td>
+                                                    <td>Mark</td>
+                                                    <td>Otto</td>
+                                                    <td>@mdo</td>
+                                                    <td>1</td>
+                                                    <td>Mark</td>
+                                                    <td>Otto</td>
+                                                    <td>@mdo</td>
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -127,6 +114,73 @@
                         <! --/wrapper -->
                     </section>
                 </div>
+                <!-- SECOND CONTENT START-->
+                <div class="content-holder ec-pmodel">
+                    <section id="main-content">
+                        <section class="wrapper">
+                            <h3><i class="fa fa-angle-right"></i> PHONE Model  -    I call it Sample table for now </h3>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="content-panel">
+                                        <h4><i class="fa fa-angle-right"></i> Basic Table</h4>
+                                        <hr>
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th>#</th>
+                                                    <th>First Name</th>
+                                                    <th>Last Name</th>
+                                                    <th>Username</th>
+                                                    <th>#</th>
+                                                    <th>First Name</th>
+                                                    <th>Last Name</th>
+                                                    <th>Username</th>
+                                                    <th>#</th>
+                                                    <th>First Name</th>
+                                                    <th>Last Name</th>
+                                                    <th>Username</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>1</td>
+                                                    <td>Mark</td>
+                                                    <td>Otto</td>
+                                                    <td>@mdo</td>
+                                                    <td>1</td>
+                                                    <td>Mark</td>
+                                                    <td>Otto</td>
+                                                    <td>@mdo</td>
+                                                    <td>1</td>
+                                                    <td>Mark</td>
+                                                    <td>Otto</td>
+                                                    <td>@mdo</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>1</td>
+                                                    <td>Mark</td>
+                                                    <td>Otto</td>
+                                                    <td>@mdo</td>
+                                                    <td>1</td>
+                                                    <td>Mark</td>
+                                                    <td>Otto</td>
+                                                    <td>@mdo</td>
+                                                    <td>1</td>
+                                                    <td>Mark</td>
+                                                    <td>Otto</td>
+                                                    <td>@mdo</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /row -->
+                        </section>
+                        <! --/wrapper -->
+                    </section>
+                </div>
+                <!-- SECOND CONTENT ENDS-->
                 <!--*** MAIN CONTENT ENDS ***-->
                 <!--footer start
 <footer class="site-footer">
@@ -147,12 +201,24 @@ footer end-->
     <!--common script for all pages-->
     <script src="assets/js/common-scripts.js"></script>
     <!--Partition script for all Tabs-->
-    <script src="assets/js/partition.js"></script>
     <script type="text/javascript" src="assets/js/gritter/js/jquery.gritter.js"></script>
     <script type="text/javascript" src="assets/js/gritter-conf.js"></script>
     <!--script for this page-->
     <script src="assets/js/sparkline-chart.js"></script>
     <script src="assets/js/zabuto_calendar.js"></script>
+    <!-- Side bar Script-->
+    <script>
+        $(document).ready(function () {
+            $("#ec-imsi").click(function () {
+                $(".content-holder").slideUp("fast");
+                $(".ec-imsi").show("fast");
+            });
+            $("#ec-pmodel").click(function () {
+                $(".content-holder").slideUp("fast");
+                $(".ec-pmodel").show("fast");
+            });
+        });
+    </script>
 </body>
 
 </html>

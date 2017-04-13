@@ -7,9 +7,9 @@
             <li class="sub-menu">
                 <a href="javascript:;"> <i class="fa fa-tasks"></i> <span>Event Causes</span> </a>
                 <ul class="sub">
-                    <li><a id="ecimsi">IMSI (Cus Rep)</a></li>
-                    <li><a id="ecpmodel">Phone Model (Net Engn)</a></li>
-                    <li><a id="ecccode">Causes Code (Cus Rep)</a></li>
+                    <li><a id="ec-imsi">IMSI (Cus Rep)</a></li>
+                    <li><a id="ec-pmodel">Phone Model (Net Engn)</a></li>
+                    <li><a id="ec-ccode">Causes Code (Cus Rep)</a></li>
                 </ul>
             </li>
             <li class="sub-menu">

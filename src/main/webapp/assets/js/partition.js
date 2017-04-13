@@ -1,5 +1,6 @@
 $(document).ready(function () {
-    $("#ecimsi").click(function () {
-        $("#testid").hide();
+    $("#ec-imsi").click(function () {
+        $(".ec-imsi").show("slow");
+        //alert("here")
     });
 });
