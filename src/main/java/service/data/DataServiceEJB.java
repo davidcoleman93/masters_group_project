@@ -93,6 +93,11 @@ public class DataServiceEJB implements DataServiceEJBLocal {
         return failureEventBean.getFailEventAndCauseCodeByUEType(ueType);
     }
 
+    //User Story 12
+    public Collection<?> getTopTenIMSIsForFailureClassPerPeriod(String startDate, String endDate){
+        return failureEventBean.getTopTenIMSIsForFailureClassPerPeriod(parseDate(startDate), parseDate(endDate));
+    }
+
     //User Story #14
     public Collection<?> getIMSisForFailureClass(Integer failureClass) {
         return failureEventBean.getIMSisForFailureClass(failureClass);

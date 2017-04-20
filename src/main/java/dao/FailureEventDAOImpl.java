@@ -120,6 +120,15 @@ public class FailureEventDAOImpl implements FailureEventDAOLocal {
         //group by event_id, cause_code;
     }
 
+    //User Story #12
+    public Collection<?> getTopTenIMSIsForFailureClassPerPeriod(Date startDate, Date endDate){
+        return em.createQuery("SELECT o.imsi, COUNT(o) AS countIMSI FROM FailureEvent o WHERE o.dateTime BETWEEN ?1 AND ?2 GROUP BY o.imsi ORDER BY countIMSI DESC")
+                .setParameter(1, startDate)
+                .setParameter(2, endDate)
+                .setMaxResults(5)
+                .getResultList();
+    }
+
     //User Story #14
     public Collection<?> getIMSisForFailureClass(Integer failureClass){
         return (List<Object[]>)em.createQuery("SELECT DISTINCT fe.imsi FROM FailureEvent fe WHERE fe.failureClass.failureClass=:failureClass")
