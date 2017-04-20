@@ -6,9 +6,11 @@ import javax.ejb.Local;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
+import javax.persistence.criteria.Expression;
 
 /**
  * Created by C06590861 on 16/02/2017.
@@ -125,6 +127,18 @@ public class FailureEventDAOImpl implements FailureEventDAOLocal {
         return em.createQuery("SELECT o.imsi, COUNT(o) AS countIMSI FROM FailureEvent o WHERE o.dateTime BETWEEN ?1 AND ?2 GROUP BY o.imsi ORDER BY countIMSI DESC")
                 .setParameter(1, startDate)
                 .setParameter(2, endDate)
+                .setMaxResults(5)
+                .getResultList();
+    }
+
+    //User Story #13
+    public Collection<?> getTopTenNodeFailuresPercentage(){
+        Long totalNum = (Long)em.createQuery("select count(o) from FailureEvent o").getSingleResult();
+
+        //Expression<Integer> path = total.get(total);
+        System.out.println("TotalNum: " + totalNum);
+        return em.createQuery("SELECT o.marketOperator, o.cellID, count(o) as numFailures, (count(o)/:totalNum)*100 from FailureEvent o group by o.marketOperator, o.cellID order by numFailures DESC")
+                .setParameter("totalNum", totalNum)
                 .setMaxResults(5)
                 .getResultList();
     }

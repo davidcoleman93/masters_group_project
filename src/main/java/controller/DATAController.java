@@ -195,13 +195,21 @@ public class DATAController {
         return dataEJB.getFailEventAndCauseCodeByUEType(ueType);
     }
 
-    //User Story 12
+    //User Story #12
     //Network Mgt Engineer: Display Top 10 IMSIs that had call failures during a time period
     @GET
     @Path("/call_data_per_period/top_ten/{startDate}/{endDate}")
     @Produces(MediaType.APPLICATION_JSON)
     public Collection<?> getTopTenIMSIsForFailureClassPerPeriod(@PathParam("startDate") String startDate, @PathParam("endDate") String endDate) {
         return dataEJB.getTopTenIMSIsForFailureClassPerPeriod(startDate, endDate);
+    }
+
+    //User Story #13
+    @GET
+    @Path("/top_ten_node")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Collection<?> getTopTenNodeFailuresPercentage(){
+        return dataEJB.getTopTenNodeFailuresPercentage();
     }
 
     //USER STORY #14
