@@ -24,7 +24,7 @@ public class DirectoryWatcher implements DirectoryWatcherLocal {
     private static WatchService dirWatcher; //JAVA Watcher API.
     private static Path targetDirectory;
     private static WatchKey watcherKey; //The WatchKey determines the types of events to listen for.
-    private static String DIR_PATH = "C:\\Code\\JEEProject\\masters_group_project\\Files";
+    private static String DIR_PATH = "C:\\LTEFileUpload";
 
     /*@EJB
     private CSVMediatorLocal csvEJB;

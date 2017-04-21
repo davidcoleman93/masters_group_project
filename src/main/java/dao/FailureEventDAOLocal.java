@@ -40,12 +40,6 @@ public interface FailureEventDAOLocal {
     //User Story #10
     Collection<?> getFailEventAndCauseCodeByUEType(Integer ueType);
 
-    //User Story 12
-    Collection<?> getTopTenIMSIsForFailureClassPerPeriod(Date startDate, Date endDate);
-
-    //User Story #13
-    Collection<?> getTopTenNodeFailuresPercentage();
-
     //User Story #14
     Collection<?> getIMSisForFailureClass(Integer failureClass);
 

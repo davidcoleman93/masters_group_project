@@ -6,8 +6,7 @@
     <title>LOGIN LTE Users</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="assets/css/bootstrap.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="assets/css/form-style.css">
-</head>
+    <link rel="stylesheet" type="text/css" href="assets/css/form-style.css"> </head>
 
 <body>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
@@ -21,15 +20,11 @@
                                 <h2>LOGIN</h2>
                                 <div class="form-group">
                                     <div class="input-group">
-                                        <input type="text" name="username" id="user-login" tabindex="1" class="form-control" placeholder="Username" value="">
-                                        <span id="ulsign" class="input-group-addon warning" title="Enter username"></span>
-                                    </div>
+                                        <input type="text" name="username" id="user-login" tabindex="1" class="form-control" placeholder="Username" value=""> <span id="ulsign" class="input-group-addon warning" title="Enter username"></span> </div>
                                 </div>
                                 <div class="form-group">
                                     <div class="input-group">
-                                        <input type="password" name="password" id="password-login" tabindex="2" class="form-control" placeholder="Password" title="Enter password">
-                                        <span id="pwlsign" class="input-group-addon warning "></span>
-                                    </div>
+                                        <input type="password" name="password" id="password-login" tabindex="2" class="form-control" placeholder="Password" title="Enter password"> <span id="pwlsign" class="input-group-addon warning "></span> </div>
                                 </div>
                                 <div class="col-xs-6 form-group pull-left checkbox">
                                     <input id="checkbox1" type="checkbox" name="remember">
@@ -43,7 +38,7 @@
                     <div class="panel-heading">
                         <div class="row">
                             <div>
-                                <a href="#" id="register-form-link">
+                                <a id="register-form-link">
                                     <div class="register logininfo"></div>
                                 </a>
                             </div>
@@ -53,7 +48,6 @@
             </div>
         </div>
     </div>
-
     <footer>
         <div class="container">
             <div class="col-md-10 col-md-offset-1 text-center"> LTE Systems </div>

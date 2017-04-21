@@ -29,10 +29,6 @@ public interface DataServiceEJBLocal {
     Collection<?> callDataPerPeriod(String startDate, String endDate);
     //User Story #10
     Collection<?> getFailEventAndCauseCodeByUEType(Integer ueType);
-    //User Story #12
-    Collection<?> getTopTenIMSIsForFailureClassPerPeriod(String startDate, String endDate);
-    //User Story #13
-    Collection<?> getTopTenNodeFailuresPercentage();
     //User Story #14
     Collection<?> getIMSisForFailureClass(Integer failureClass);
 }

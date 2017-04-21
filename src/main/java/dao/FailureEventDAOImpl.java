@@ -6,11 +6,9 @@ import javax.ejb.Local;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
-import javax.persistence.criteria.Expression;
 
 /**
  * Created by C06590861 on 16/02/2017.
@@ -76,7 +74,7 @@ public class FailureEventDAOImpl implements FailureEventDAOLocal {
 
     //User Story #6
     public Collection<?> getFailEventsUsingImsiGroupedByCauseCode(Long imsi) {
-        return (List<Object[]>)em.createQuery("SELECT fe.imsi, fe.eventCause.eventCauseID.causeCode, count(fe) FROM FailureEvent fe WHERE fe.imsi=:imsi GROUP BY fe.eventCause.eventCauseID.causeCode")
+        return (List<Object[]>)em.createQuery("SELECT fe.eventCause.eventCauseID.causeCode, count(fe) FROM FailureEvent fe WHERE fe.imsi=:imsi GROUP BY fe.eventCause.eventCauseID.causeCode")
                 .setParameter("imsi",imsi)
                 .getResultList();
         //select imsi, cause_code, count(*) as count
@@ -112,7 +110,7 @@ public class FailureEventDAOImpl implements FailureEventDAOLocal {
 
     //User Story #10
     public Collection<?> getFailEventAndCauseCodeByUEType(Integer ueType){
-        return (List<Object[]>)em.createQuery("SELECT fe.userEventType.tac, fe.eventCause.eventCauseID.eventID, fe.eventCause.eventCauseID.causeCode, count(fe) FROM FailureEvent fe WHERE fe.userEventType.tac=:ueType GROUP BY fe.eventCause.eventCauseID.eventID, fe.eventCause.eventCauseID.causeCode")
+        return (List<Object[]>)em.createQuery("SELECT fe.eventCause.eventCauseID.eventID, fe.eventCause.eventCauseID.causeCode, fe.eventCause.description, count(fe) FROM FailureEvent fe WHERE fe.userEventType.tac=:ueType GROUP BY fe.eventCause.eventCauseID.eventID, fe.eventCause.eventCauseID.causeCode")
                 .setParameter("ueType",ueType)
                 .getResultList();
 
@@ -120,27 +118,6 @@ public class FailureEventDAOImpl implements FailureEventDAOLocal {
         //from failure_events
         //where ue_type = 100100
         //group by event_id, cause_code;
-    }
-
-    //User Story #12
-    public Collection<?> getTopTenIMSIsForFailureClassPerPeriod(Date startDate, Date endDate){
-        return em.createQuery("SELECT o.imsi, COUNT(o) AS countIMSI FROM FailureEvent o WHERE o.dateTime BETWEEN ?1 AND ?2 GROUP BY o.imsi ORDER BY countIMSI DESC")
-                .setParameter(1, startDate)
-                .setParameter(2, endDate)
-                .setMaxResults(5)
-                .getResultList();
-    }
-
-    //User Story #13
-    public Collection<?> getTopTenNodeFailuresPercentage(){
-        Long totalNum = (Long)em.createQuery("select count(o) from FailureEvent o").getSingleResult();
-
-        //Expression<Integer> path = total.get(total);
-        System.out.println("TotalNum: " + totalNum);
-        return em.createQuery("SELECT o.marketOperator, o.cellID, count(o) as numFailures, (count(o)/:totalNum)*100 from FailureEvent o group by o.marketOperator, o.cellID order by numFailures DESC")
-                .setParameter("totalNum", totalNum)
-                .setMaxResults(5)
-                .getResultList();
     }
 
     //User Story #14
