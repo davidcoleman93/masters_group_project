@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <html lang="en">
 <%
 	if ((session.getAttribute("token") == null) || ((session.getAttribute("user") == null))
@@ -63,9 +64,9 @@
 		<!-- ******MAIN SIDEBAR MENU****** -->
 		<!--sidebar start-->
 		<%
-			String user = (String) request.getSession().getAttribute("role");
-			pageContext.include("assets/pages/sidebar-" + user + ".jsp");
-			String tok = (String) request.getSession().getAttribute("token");
+			String userRole = (String) request.getSession().getAttribute("role");
+			pageContext.include("assets/pages/sidebar-" + userRole + ".jsp");
+
 		%>
 		<script>
 //DONT DELETE THIS
@@ -257,7 +258,6 @@ footer end-->
                 });
             });
         </script>
-
 </body>
 
 </html>

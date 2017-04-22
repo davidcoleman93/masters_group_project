@@ -42,7 +42,7 @@
                 </ul>
             </li>
             <li class="sub-menz">
-                <a href="assets/pages/register.html" target="_blank"> <i class="fa fa-user"></i> <span>Register User</span> </a>
+                <a href="assets/pages/register.jsp" target="_blank"> <i class="fa fa-user"></i> <span>Register User</span> </a>
             </li>
         </ul>
     </div>
