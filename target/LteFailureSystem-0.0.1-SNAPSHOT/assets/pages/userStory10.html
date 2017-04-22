@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>LTE - User Story 10</title>
+
+<!-- Needed for autocomplete ui -->
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<!-- <link rel="stylesheet" href="/resources/demos/style.css"> -->
+
+<!-- JQuery library -->
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+<!-- Needed for autocomplete ui -->
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+<script>
+	//Populates autocomplete for textfield, with all unique UE Types in database.
+	//Options must be strings to appear in suggestion.
+	$( function() {
+		//var availableTags = ["21060800", "33000153", "33000253"];
+		var availableTags = [];
+		$.ajax({
+	        type: 'GET',
+	        url: 'http://localhost:8080/LteFailureSystem-0.0.1-SNAPSHOT/api/data/all_unique_ue_types',
+	        contentType: 'application/json',
+	        dataType: 'json',
+	        success: function (aList) {
+	            $.each(aList, function (index, value) {
+	                availableTags.push(value.toString()); //Converts value to String, and adds to availableTags.
+	            });
+	            $( "#uetype_text" ).autocomplete({
+	      	      source: availableTags
+	      	    });
+	        }
+	    });
+
+
+	  } );
+
+	function userStory10(){
+	    var ueType = document.getElementById('uetype_text').value;
+	    $("#results").html("");
+	    $.ajax({
+	        type: 'GET',
+	        //url: 'api/data/event_cause/by_ue_type/' + ueType,
+	        url: 'http://localhost:8080/LteFailureSystem-0.0.1-SNAPSHOT/api/data/event_cause/by_ue_type/' + ueType,
+	        contentType: 'application/json',
+	        dataType: 'json',
+	        success: function (aList) {
+	            story10 = aList;
+	            //$("#innerText").append("<table>");
+	            $("#results").append("<th>" + "UE Type(TAC)" + "</th>" + "<th>" + "Event Id" + "</th>" + "<th>" + "Cause Code" + "</th>" + "<th>" + "Count" + "</th>" );
+	            $.each(story10, function (index, value) {
+	                $("#results").append("<tr><td>" + value[0] + "</td><td>" + value[1] + "</td><td>" + value[2] + "</td><td>" + value[3]+ "</td></tr>");
+	            });
+	            //$("#innerText").append("</table>");
+	        }
+	    });
+
+	}
+</script>
+</head>
+<body>
+	<h1>User Story 10</h1>
+
+    <p>Network Mgt Engineer: Display unique EVENT_ID/CAUSE_CODE combinations for a specific ueType
+        and the number of occurrence.</p>
+    <br>
+    <tbody>
+	    <tr>
+	        <td class="name">
+	            UE Type:
+	        </td>
+	        <td class="data">
+	            <input type="text" name="uetype_text" id="uetype_text" width="20" maxlength="40" size="20">
+	        </td>
+
+	        <td class="name">
+	            <input type="button" id="queryBtn" value="Submit" onclick="userStory10()">
+	        </td>
+	    </tr>
+    </tbody>
+
+    <br>
+    <br>
+    <table id="results">
+
+    </table>
+</body>
+</html>

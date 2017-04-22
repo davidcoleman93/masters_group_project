@@ -1,0 +1,21 @@
+<html>
+
+	<head>
+	</head>
+	<body>
+
+		<input type = 'date' id = 'date'>
+		<input type = 'button' onclick = 'readDate();' value = 'Get Date'>
+		<p id = 'dateVal'></p>
+
+		<script>
+
+			function readDate(){
+				document.getElementById('dateVal').innerHTML = document.getElementById('date').value;
+			}
+
+		</script>
+
+	</body>
+
+</html>
