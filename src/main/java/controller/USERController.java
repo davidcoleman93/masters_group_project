@@ -24,11 +24,6 @@ import service.data.UserBusinessLocal;
 @Path("/data")
 public class USERController {
 
-	/*
-	 * CODE REFACTOR NEEDED!! 'USERController' to be created to reduce
-	 * coupling/reusability of code
-	 */
-
 	@EJB
 	private UserBusinessLocal userEJB;
 
