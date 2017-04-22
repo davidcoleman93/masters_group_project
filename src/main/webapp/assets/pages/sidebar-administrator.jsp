@@ -15,32 +15,24 @@
             <li class="sub-menu">
                 <a href="javascript:;"> <i class="fa fa-phone-square"></i> <span>Call Failure</span> </a>
                 <ul class="sub">
-                    <li><a id="">Failure List (Sup Engn)</a></li>
-                    <li><a id="">Top 10 IMSI (Net Engn)</a></li>
-                    <li><a id="">Affected IMSI (Sup Engn)</a></li>
-                    <li><a id="">MCC / MNC (Net Engn)</a></li>
+                    <li><a id="fail-list-sup">Failure List (Sup Engn)</a></li>
+                    <li><a id="top-imsi-neteng">Top 10 IMSI (Net Engn)</a></li>
+                    <li><a id="aff-imsi-sup">Affected IMSI (Sup Engn)</a></li>
                 </ul>
             </li>
             <li class="sub-menu">
                 <a href="javascript:;"> <i class="fa fa-sort-numeric-asc"></i> <span>Counts</span> </a>
                 <ul class="sub">
-                    <li><a id="">Phone Module (Sup Engn)</a></li>
-                    <li><a id="">IMSI (Net Engn)</a></li>
-                    <li><a id="">IMSI (Cus Rep)</a></li>
+                    <li><a id="count-phone-sup">Phone Module (Sup Engn)</a></li>
+                    <li><a id="count-imsi-netengn">IMSI (Net Engn)</a></li>
+                    <li><a id="count-imsi-cust">IMSI (Cus Rep)</a></li>
                 </ul>
             </li>
             <li class="sub-menu">
                 <a href="javascript:;"> <i class="fa fa-phone-square"></i> <span>Call Failure</span> </a>
                 <ul class="sub">
-                    <li><a id="">MCC / MNC (Net Engn)</a></li>
-                </ul>
-            </li>
-            <li class="sub-menu">
-                <a href="javascript:;"> <i class="fa fa-bar-chart-o"></i> <span>Data Charts</span> </a>
-                <ul class="sub">
-                    <li><a id="">List 1</a></li>
-                    <li><a id="">List 2</a></li>
-                    <li><a id="">List 3</a></li>
+                    <li><a id="mcc-mnc-time-netengn">MCC / MNC TIME (Net Engn)</a></li>
+                    <li><a id="mcc-mnc-graph-netengn">MCC / MNC GRAPH (Net Engn)</a></li>
                 </ul>
             </li>
             <li class="sub-menu">
@@ -48,6 +40,9 @@
                 <ul class="sub">
                     <li><a href="assets/pages/data_import.jsp">Data</a></li>
                 </ul>
+            </li>
+            <li class="sub-menz">
+                <a href="assets/pages/register.html" target="_blank"> <i class="fa fa-user"></i> <span>Register User</span> </a>
             </li>
         </ul>
     </div>

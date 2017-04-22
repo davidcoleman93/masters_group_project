@@ -7,7 +7,7 @@
     <!--logo end-->
     <div class="top-menu">
         <ul class="nav pull-right top-menu">
-            <li><a class="logout" href="assets/pages/register.html">Register</a></li>
+            <li><a class="logout" href="assets/pages/logout.jsp">Logout</a></li>
         </ul>
     </div>
 </header>

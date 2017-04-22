@@ -1,5 +1,8 @@
 package dao;
 
+import java.util.Collection;
+import java.util.List;
+
 import javax.ejb.Local;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
@@ -10,9 +13,6 @@ import javax.persistence.PersistenceContext;
 import entities.RoleType;
 import entities.User;
 
-import java.util.Collection;
-import java.util.List;
-
 @Local
 @Stateless
 public class UserDAOImpl implements UserDAOLocal {
@@ -22,9 +22,7 @@ public class UserDAOImpl implements UserDAOLocal {
 
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public Collection<?> getAllUsers() {
-		return (List<User>) em
-				.createQuery("FROM User ")
-				.getResultList();
+		return (List<User>) em.createQuery("FROM User ").getResultList();
 	}
 
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
@@ -63,11 +61,17 @@ public class UserDAOImpl implements UserDAOLocal {
 	}
 
 	public boolean validateUsername(String username, String password) {
-		return em.createQuery("SELECT o FROM User o WHERE o.username=:username AND o.password=:password").
-				setParameter("username", username)
-				.setParameter("password", password)
-				.setMaxResults(1).getResultList().isEmpty();
-		}
+		return em.createQuery("SELECT o  FROM User o WHERE o.username=:username AND o.password=:password")
+				.setParameter("username", username).setParameter("password", password).setMaxResults(1).getResultList()
+				.isEmpty();
+	}
+
+	@TransactionAttribute(TransactionAttributeType.REQUIRED)
+	public Collection<?> getUserRole(String username) {
+		List<User> resultList = (List<User>) em.createQuery("SELECT o.roleType FROM User o WHERE o.username=:username")
+				.setParameter("username", username).getResultList();
+		return resultList;
+	}
 
 	/*
 	 * public boolean checkUser(String username){ //RETURN TRUE IF NOT FOUND
