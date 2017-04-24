@@ -1,0 +1,29 @@
+.textContainer {
+
+	width: 100%;
+	float: left;
+	clear: both;
+
+}
+
+.innerTextContainer {
+
+	padding: 2%;
+	background: #ffffff;
+	min-height: 350px;
+
+}
+
+.innerTextContainer p {
+
+	font-size: 11px;
+
+}
+
+#queryDrop {
+
+	padding: 1%;
+	float: left;
+	clear: both;
+
+}

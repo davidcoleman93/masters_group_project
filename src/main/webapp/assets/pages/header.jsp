@@ -7,7 +7,11 @@
     <!--logo end-->
     <div class="top-menu">
         <ul class="nav pull-right top-menu">
+<<<<<<< HEAD
             <li><a class="logout" href="assets/pages/register.html">Register</a></li>
+=======
+            <li><a class="logout" href="assets/pages/logout.jsp">Logout</a></li>
+>>>>>>> bk_partition_ui
         </ul>
     </div>
 </header>

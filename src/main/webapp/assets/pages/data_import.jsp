@@ -153,9 +153,14 @@ MAIN CONTENT
                                                                     String fileName = request.getParameter("fileName");
                                                                     //making sure content has been posted.
                                                                     if (content != null) {
+<<<<<<< HEAD
                                                                         String filePath = "C:\\LTEFileUpload\\" + fileName
         + ".csv";
 
+=======
+                                                                        String filePath = "C:\\Code\\JEEProject\\masters_group_project\\Files\\" + fileName
+                                                                            + ".csv";
+>>>>>>> bk_partition_ui
                                                                         try {
                                                                             out.println(filePath);
                                                                             PrintWriter pw = new PrintWriter(new FileOutputStream(filePath));

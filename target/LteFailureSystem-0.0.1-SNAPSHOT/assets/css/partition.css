@@ -1,0 +1,5 @@
+/*Content holder is hidden by default entile it's triggered*/
+
+.content-holder {
+    display: none;
+}

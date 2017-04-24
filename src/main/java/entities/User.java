@@ -4,16 +4,12 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 /**
  * Created by D15123999 on 19/03/2017.
@@ -21,39 +17,40 @@ import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "users")
-public class User implements Serializable {	
-	//private static final long serialVersionUID = 5409018160475255408L;
+public class User implements Serializable {
+	// private static final long serialVersionUID = 5409018160475255408L;
 
-	//Define the users table rows
+	// Define the users table rows
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer user_id;
-	
-	//@NotNull
+
+	// @NotNull
 	@Column(name = "username", unique = true)
-	//@Size(max = 45)
+	// @Size(max = 45)
 	private String username;
 
 	@Column(name = "email")
-	//@Size(max = 45)
+	// @Size(max = 45)
 	private String email;
-	
-	//@NotNull
+
+	// @NotNull
 	@Column(name = "password")
 	private String password;
 
 	@JoinColumn(name = "role_id", referencedColumnName = "role_id")
 	@ManyToOne
 	private RoleType roleType;
-	
-	public User (){}
-		
-	public User(String username, String email, String password, RoleType roleType){
 
-	this.username = username;
-	this.email = email;
-	this.password = password;
-	this.roleType = roleType;
+	public User() {
+	}
+
+	public User(String username, String email, String password, RoleType roleType) {
+
+		this.username = username;
+		this.email = email;
+		this.password = password;
+		this.roleType = roleType;
 	}
 
 	public Integer getUser_id() {
@@ -96,19 +93,4 @@ public class User implements Serializable {
 		this.roleType = roleType;
 	}
 
-
-	
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
