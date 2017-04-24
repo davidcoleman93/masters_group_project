@@ -24,19 +24,11 @@ div.zabuto_calendar .table td {
 
 div.zabuto_calendar .table tr th,
 div.zabuto_calendar .table tr td {
-<<<<<<< HEAD
- 
-}
-
-div.zabuto_calendar .table tr.calendar-month-header th {
- 
-=======
 
 }
 
 div.zabuto_calendar .table tr.calendar-month-header th {
 
->>>>>>> bk_partition_ui
 }
 
 div.zabuto_calendar .table tr.calendar-month-header th span {
@@ -47,11 +39,7 @@ div.zabuto_calendar .table tr.calendar-month-header th span {
 }
 
 div.zabuto_calendar .table tr.calendar-dow-header th {
-<<<<<<< HEAD
- 
-=======
 
->>>>>>> bk_partition_ui
 }
 
 div.zabuto_calendar .table tr:last-child {
@@ -104,22 +92,14 @@ div.zabuto_calendar .table tr td.event-clickable {
 /* badge */
 div.zabuto_calendar .badge-today,
 div.zabuto_calendar div.legend span.badge-today {
-<<<<<<< HEAD
-   
-=======
 
->>>>>>> bk_partition_ui
     color: #ffffff;
     text-shadow: none;
 }
 
 div.zabuto_calendar .badge-event,
 div.zabuto_calendar div.legend span.badge-event {
-<<<<<<< HEAD
-   
-=======
 
->>>>>>> bk_partition_ui
     color: #ffffff;
     text-shadow: none;
 }

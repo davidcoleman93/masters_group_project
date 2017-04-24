@@ -157,8 +157,4 @@
 }(jQuery);
 $(function () {
     $('.switch')['bootstrapSwitch']();
-<<<<<<< HEAD
 });
-=======
-});
->>>>>>> bk_partition_ui

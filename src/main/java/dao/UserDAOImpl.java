@@ -21,11 +21,6 @@ public class UserDAOImpl implements UserDAOLocal {
 	private EntityManager em;
 
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
-	public Collection<?> getAllUsers() {
-		return (List<User>) em.createQuery("FROM User ").getResultList();
-	}
-
-	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public User getUser(String username) {
 		return (User) em.createQuery("SELECT o FROM User o WHERE o.username=:username")
 				.setParameter("username", username).getSingleResult();

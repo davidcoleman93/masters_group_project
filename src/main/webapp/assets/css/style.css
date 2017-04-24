@@ -19,10 +19,6 @@ body {
     font-size:13px;
 }
 
-.qform, qform2{
-    display: none;
-}
-
 ul li {
     list-style: none;
 }
