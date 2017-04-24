@@ -10,6 +10,8 @@ import entities.User;
 @Local
 public interface UserDAOLocal {
 
+	Collection<?> getAllUsers();
+
 	User getUser(String username);
 
 	void addUser(User user);

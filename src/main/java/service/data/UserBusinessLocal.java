@@ -10,6 +10,8 @@ import entities.User;
 @Local
 public interface UserBusinessLocal {
 
+	Collection<?> getAllUsers();
+
 	User getUser(String username);
 
 	public void addUser(User user);

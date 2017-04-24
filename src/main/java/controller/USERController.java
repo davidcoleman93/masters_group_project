@@ -28,6 +28,13 @@ public class USERController {
 	private UserBusinessLocal userEJB;
 
 	@GET
+	@Path("/users")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Collection<?> getAllUsers() {
+		return userEJB.getAllUsers();
+	}
+
+	@GET
 	@Path("/users/{username}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public boolean checkUsername(@PathParam("username") String username) {

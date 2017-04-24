@@ -22,6 +22,10 @@ public class UserBusinessImpl implements UserBusinessLocal {
 	@Resource
 	private SessionContext session;
 
+	public Collection<?> getAllUsers() {
+		return daoBean.getAllUsers();
+	}
+
 	public void addUser(User user) {
 		daoBean.addUser(user);
 	}

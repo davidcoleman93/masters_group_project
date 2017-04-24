@@ -38,7 +38,7 @@
             <li class="sub-menu">
                 <a href="assets/pages/data_import.jsp"> <i class="	fa fa-cloud-upload"></i> <span> Imports</span> </a>
                 <ul class="sub">
-                    <li><a href="assets/pages/data_import.jsp">Data</a></li>
+                    <li><a href="import.jsp">Data</a></li>
                 </ul>
             </li>
             <li class="sub-menz">
