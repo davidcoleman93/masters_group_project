@@ -36,7 +36,7 @@
 						class="glyphicon glyphicon-chevron-down"></span>
 				</a>
 					<ul class="dropdown-menu">
-						<li><a> <span class="glyphicon  glyphicon-tag pull-right"></span> <%=userRoleNAMEx%></a></li>
+						<li><a> <%=userRoleNAMEx%></a></li>
 						<li><a href="assets/pages/logout.jsp"> <span
 								class="glyphicon glyphicon-log-out  pull-right"></span> Sign Out</a></li>
 
