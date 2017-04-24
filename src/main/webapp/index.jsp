@@ -97,8 +97,7 @@ if ((session.getAttribute("token") != null) && (session.getAttribute("user") != 
 				response.sendRedirect("http://localhost:8080/LteFailureSystem-0.0.1-SNAPSHOT/home.jsp");
 			}%>
 		}
-
-
+		 
 	</script>
 </body>
 
