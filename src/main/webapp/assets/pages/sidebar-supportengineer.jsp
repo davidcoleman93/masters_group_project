@@ -7,7 +7,7 @@
     <div id="sidebar" class="nav-collapse ">
         <ul class="sidebar-menu" id="nav-accordion">
             <li class="mt">
-                <a class="active" href="home.html"> <i class="fa fa-dashboard"></i> <span>Dashboard</span> </a>
+                <a class="active" href="home.jsp"> <i class="fa fa-dashboard"></i> <span>Dashboard</span> </a>
             </li>
             <li class="sub-menu">
                 <a href="javascript:;"> <i class="fa fa-phone-square"></i> <span>Call Failure</span> </a>
