@@ -74,200 +74,411 @@
 			
 		%>
 
-
-		<!--sidebar end-->
 		<!-- ******MAIN CONTENT START***** -->
-		<!--I'm using ec (Event Cause) in the ID to indicate whic category it belongs to -->
-		<div class="content-holder ec-imsi">
-			<section id="main-content">
-				<section class="wrapper">
-					<h3>
-						<i class="fa fa-angle-right"></i> IMSI - I call it Sample table
-						for now
-					</h3>
-					<div class="row">
-						<div class="col-md-12">
-							<div class="content-panel">
-								<h4>
-									<i class="fa fa-angle-right"></i> Basic Table
-								</h4>
-								<hr>
-								<table class="table">
-									<thead>
-										<tr>
-											<th>#</th>
-											<th>First Name</th>
-											<th>Last Name</th>
-											<th>Username</th>
-											<th>#</th>
-											<th>First Name</th>
-											<th>Last Name</th>
-											<th>Username</th>
-											<th>#</th>
-											<th>First Name</th>
-											<th>Last Name</th>
-											<th>Username</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr>
-											<td>1</td>
-											<td>Mark</td>
-											<td>Otto</td>
-											<td>@mdo</td>
-											<td>1</td>
-											<td>Mark</td>
-											<td>Otto</td>
-											<td>@mdo</td>
-											<td>1</td>
-											<td>Mark</td>
-											<td>Otto</td>
-											<td>@mdo</td>
-										</tr>
-										<tr>
-											<td>1</td>
-											<td>Mark</td>
-											<td>Otto</td>
-											<td>@mdo</td>
-											<td>1</td>
-											<td>Mark</td>
-											<td>Otto</td>
-											<td>@mdo</td>
-											<td>1</td>
-											<td>Mark</td>
-											<td>Otto</td>
-											<td>@mdo</td>
-										</tr>
-									</tbody>
-								</table>
-							</div>
-						</div>
-					</div>
-					<!-- /row -->
-				</section>
-				<! --/wrapper -->
-			</section>
-		</div>
-	
-		<!-- SECOND CONTENT START-->
+		<!--I'm using ec (Event Cause) in the ID to indicate which category it belongs to -->
 		<div class="content-holder ec-pmodel">
 			<section id="main-content">
 				<section class="wrapper">
-					<h3>
-						<i class="fa fa-angle-right"></i> PHONE Model - I call it Sample
-						table for now
-					</h3>
-					<div class="row">
-						<div class="col-md-12">
-							<div class="content-panel">
-								<h4>
-									<i class="fa fa-angle-right"></i> Basic Table
-								</h4>
-								<hr>
-								<table class="table">
-									<thead>
-										<tr>
-											<th>#</th>
-											<th>First Name</th>
-											<th>Last Name</th>
-											<th>Username</th>
-											<th>#</th>
-											<th>First Name</th>
-											<th>Last Name</th>
-											<th>Username</th>
-											<th>#</th>
-											<th>First Name</th>
-											<th>Last Name</th>
-											<th>Username</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr>
-											<td>1</td>
-											<td>Mark</td>
-											<td>Otto</td>
-											<td>@mdo</td>
-											<td>1</td>
-											<td>Mark</td>
-											<td>Otto</td>
-											<td>@mdo</td>
-											<td>1</td>
-											<td>Mark</td>
-											<td>Otto</td>
-											<td>@mdo</td>
-										</tr>
-										<tr>
-											<td>1</td>
-											<td>Mark</td>
-											<td>Otto</td>
-											<td>@mdo</td>
-											<td>1</td>
-											<td>Mark</td>
-											<td>Otto</td>
-											<td>@mdo</td>
-											<td>1</td>
-											<td>Mark</td>
-											<td>Otto</td>
-											<td>@mdo</td>
-										</tr>
-									</tbody>
-								</table>
-							</div>
-						</div>
-					</div>
-					<!-- /row -->
-				</section>
-				<! --/wrapper -->
-			</section>
+				</section><! --/wrapper -->
+			</section><!-- /MAIN CONTENT -->
+		</div>
+		<!-- SECOND CONTENT START-->
+		<div class="content-holder ">
 		</div>
 		<!-- SECOND CONTENT ENDS-->
 		<!--*** MAIN CONTENT ENDS ***-->
-		<!--footer start
-<footer class="site-footer">
-<div class="text-center">LTE FAILURE SYSTEM
-<a href="home.html" class="go-top"> <i class="fa fa-angle-up"></i> </a>
-</div>
-</footer>
-footer end-->
-
-
-
 	</section>
 
-
 	<!-- js placed at the end of the document so the pages load faster -->
+	<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+	<script src="assets/js/plotly-latest.min.js"></script>
 	<script src="assets/js/jquery.js"></script>
 	<script src="assets/js/jquery-1.8.3.min.js"></script>
 	<script src="assets/js/bootstrap.min.js"></script>
-	<script class="include" type="text/javascript"
-		src="assets/js/jquery.dcjqaccordion.2.7.js"></script>
+	<script class="include" type="text/javascript" src="assets/js/jquery.dcjqaccordion.2.7.js"></script>
 	<script src="assets/js/jquery.scrollTo.min.js"></script>
 	<script src="assets/js/jquery.nicescroll.js" type="text/javascript"></script>
 	<script src="assets/js/jquery.sparkline.js"></script>
 	<!--common script for all pages-->
 	<script src="assets/js/common-scripts.js"></script>
 	<!--Partition script for all Tabs-->
-	<script type="text/javascript"
-		src="assets/js/gritter/js/jquery.gritter.js"></script>
+	<script type="text/javascript" src="assets/js/gritter/js/jquery.gritter.js"></script>
 	<script type="text/javascript" src="assets/js/gritter-conf.js"></script>
 	<!--script for this page-->
 	<script src="assets/js/sparkline-chart.js"></script>
 	<script src="assets/js/zabuto_calendar.js"></script>
-	<!-- Side bar Script-->
-	
+
+	<!-- Needed for autocomplete ui -->
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+	<!-- <link rel="stylesheet" href="/resources/demos/style.css"> -->
+
+	<!-- JQuery library -->
+
+	<!-- Needed for autocomplete ui -->
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+	<!-- New script for queries. Added by David C -->
+	<script src="assets/js/sorting-tables.js"></script>
+	<script src="assets/js/autocomplete.js"></script>
+	<script src="assets/js/dropdown.js"></script>
+	<script src="assets/js/user-stories.js"></script>
+
+	<!-- For query front-end structure -->
+	<script src="assets/js/default_query_template.js"></script>
+	<script src="assets/js/user_story_specific_front-end.js"></script>
+
+	<!-- Script to generate the queries (Page partitioning) -->
 	<script>
-	        $(document).ready(function () {
-                    $("#ec-imsi").click(function () {
-                        $(".content-holder").slideUp("fast");
-                        $(".ec-imsi").show("fast");
-                    });
-                    $("#ec-pmodel").click(function () {
-                        $(".content-holder").slideUp("fast");
-                        $(".ec-pmodel").show("fast");
-                    });
+        $(document).ready(function () {
+
+			/* USER STORY #4 */
+            $('#ec-imsi').click(function () {
+				/* We must empty the outer container first */
+                $(".wrapper").empty();
+
+				/* This defines the structure for all query pages */
+                queryStructure();
+
+				/* Displays one text field */
+                queryOneTextFieldStructure();
+
+				/* Include if there's a dropdown */
+                //queryEmptyDropdownStructure();
+
+				/* Unique display per query */
+                querySpecificStructure(
+                    "User Story 4",
+                    "Display, for a given affected IMSI, the Event ID and Cause Code for any / all failures affecting that IMSI",
+                    "IMSI",
+                    "imsi_text",
+                    "Eg. 344930000000011",
+                    "userStory4()"
+                );
+
+				/* define which auto-complete to include */
+                autoComplete("imsi");
+                $(".ec-pmodel").show("fast");
+            });
+
+			/* User Story 5 */
+            $('#count-imsi-cust').click(function () {
+				/* We must empty the outer container first */
+                $(".wrapper").empty();
+
+				/* This defines the structure for all query pages */
+                queryStructure();
+
+				/* Displays input field corresponding to query */
+                queryInputAndFromAndToDateStructure();
+
+				/* Unique display per query */
+                querySpecificStructure(
+                    "User Story 5", // heading: User Story 1
+                    "Count, for a given IMSI, the number of failures they have had during a given time period.", // description: For a given affected IMSI...
+                    "IMSI", // label_text: Eg. IMSI or Phone Model
+                    "imsi_text", // input_id: imsi_text
+                    "Eg. 344930000000011", // placeholder: E.g 344930000000011(imsi)
+                    "userStory5()" // button_method: userStory1()
+                );
+
+				/* define if to include auto-complete */
+                autoComplete("imsi");
+
+                $(".ec-pmodel").show("fast");
+            });
+
+			/* User Story 6 */
+            $('#ec-ccode').click(function () {
+				/* We must empty the outer container first */
+                $(".wrapper").empty();
+
+				/* This defines the structure for all query pages */
+                queryStructure();
+
+				/* Displays input field corresponding to query */
+                queryOneTextFieldStructure();
+
+				/* Unique display per query */
+                querySpecificStructure(
+                    "User Story 6", // heading: User Story 1
+                    "For a given IMSI, all the unique Cause Codes associated with its call failures", // description: For a given affected IMSI...
+                    "IMSI", // label_text: Eg. IMSI or Phone Model
+                    "imsi_text", // input_id: imsi_text
+                    "Eg. 344930000000011", // placeholder: E.g 344930000000011
+                    "userStory6()" // button_method: userStory1()
+                );
+
+				/* define if to include auto-complete */
+                autoComplete("imsi");
+                x
+                $(".ec-pmodel").show("fast");
+            });
+
+			/* User Story 7 */
+            $('#fail-list-sup').click(function () {
+				/* We must empty the outer container first */
+                $(".wrapper").empty();
+
+				/* This defines the structure for all query pages */
+                queryStructure();
+
+				/* Displays input field corresponding to query */
+                queryFromAndToDateStructure();
+
+                $("#info_heading").append("User Story 7");
+                $("#info_description").append("List of all IMSIs with call failures during a given time period");
+
+                $('#queryBtn').click(function () {
+                    userStory7();
                 });
 
-        </script>
+				/* define if to include auto-complete */
+                //autoComplete("ue_type");
+
+                $(".ec-pmodel").show("fast");
+            });
+
+			/* User Story 8 */
+            $('#count-phone-sup').click(function () {
+				/* We must empty the outer container first */
+                $(".wrapper").empty();
+
+				/* This defines the structure for all query pages */
+                queryStructure();
+
+				/* Displays input field corresponding to query */
+                queryInputAndFromAndToDateStructure();
+
+				/* Unique display per query */
+                querySpecificStructure(
+                    "User Story 8", // heading: User Story 1
+                    "Count, for a given model of phone, the number of call failures it has had during a given time period.", // description: For a given affected IMSI...
+                    "Phone Model", // label_text: Eg. IMSI or Phone Model
+                    "phone_model_text", // input_id: imsi_text
+                    "Eg. VEA3", // placeholder: E.g 344930000000011
+                    "userStory8()" // button_method: userStory1()
+                );
+
+				/* define if to include auto-complete */
+                autoComplete("phone_model");
+
+                $(".ec-pmodel").show("fast");
+            });
+
+			/*User Story 9 - IMSI COUNT (NET ENGN) START*/
+            $("#count-imsi-netengn").click(function () {
+				/* We must empty the outer container first */
+                $(".wrapper").empty();
+
+				/* This defines the structure for all query pages */
+                queryStructure();
+
+				/* Displays input field corresponding to query */
+                queryFromAndToDateStructure();
+
+                $("#info_heading").append("User Story 9");
+                $("#info_description").append("Count, for each IMSI, the number of call failures and their total duration during a given time period");
+
+                $('#queryBtn').click(function () {
+                    userStory9();
+                });
+
+				/*querySpecificStructure(
+				 "User Story 9",
+				 "Count, for each IMSI, the number of call failures and their total duration during a given time period",
+				 "IMSI", // label_text: Eg. IMSI or Phone Model
+				 "imsi_text", // input_id: imsi_text
+				 "Eg. 101", // placeholder: E.g 344930000000011
+				 "userStory9()" // button_method: userStory1()
+				 );*/
+				/* define if to include auto-complete */
+                //autoComplete("phone_model");
+
+                $(".ec-pmodel").show("fast");
+            });
+
+			/* User Story 10 - Phone Model */
+            $("#ec-pmodel").click(function () {
+				/* We must empty the outer container first */
+                $(".wrapper").empty();
+
+				/* This defines the structure for all query pages */
+                queryStructure();
+
+				/* Displays one text field */
+                queryOneTextFieldStructure();
+
+				/* Unique display per query */
+                querySpecificStructure(
+                    "Phone Model (Net Eng)",
+                    "Display unique EVENT_ID/CAUSE_CODE combinations for a specific ueType and the number of occurrence.",
+                    "Phone model:",
+                    "phone_model_text",
+                    "E.g. VEA3",
+                    "userStory10( 'test' )"
+                );
+
+				/* define if to include auto-complete */
+                autoComplete("phone_model");
+
+                $(".ec-pmodel").show("fast");
+            });
+
+			/* User Story 11 */
+            $('#mcc-mnc-time-netengn').click(function () {
+				/* We must empty the outer container first */
+                $(".wrapper").empty();
+
+				/* This defines the structure for all query pages */
+                queryStructure();
+
+				/* Displays input field corresponding to query */
+                queryFromAndToDateStructure();
+
+                $("#info_heading").append("User Story 11");
+                $("#info_description").append("Top 10 Market/Operator/Cell ID combinations that had call failures during a time period");
+
+                $('#queryBtn').click(function () {
+                    userStory11();
+                });
+
+				/* define if to include auto-complete */
+                //autoComplete("ue_type");
+
+                $(".ec-pmodel").show("fast");
+            });
+
+			/* User Story 12 */
+            $('#top-imsi-netengn').click(function () {
+				/* We must empty the outer container first */
+                $(".wrapper").empty();
+
+				/* This defines the structure for all query pages */
+                queryStructure();
+
+				/* Displays input field corresponding to query */
+                queryFromAndToDateStructure();
+
+                $("#info_heading").append("User Story 12");
+                $("#info_description").append("Top 10 IMSIs that had call failures during a time period");
+
+                $('#queryBtn').click(function () {
+                    userStory12();
+                });
+
+				/* define if to include auto-complete */
+                //autoComplete("ue_type");
+
+                $(".ec-pmodel").show("fast");
+            });
+
+			/* User Story 13 query */
+            $('#mcc-mnc-graph-netengn').click(function () {
+				/* We must empty the outer container first */
+                $(".wrapper").empty();
+
+				/* This defines the structure for all query pages */
+                queryStructure();
+
+				/* Displays input field corresponding to query */
+                queryOneButtonFieldStructure();
+
+                $("#info_heading").append("User Story 13");
+                $("#info_description").append("Graphical Representation of the Top 10 Market/Operator/Cell ID combinations with call failures showing Node, Number of failures & % of all failures");
+
+                $('#queryBtn').click(function () {
+                    userStory13();
+                });
+
+				/* define if to include auto-complete */
+                //autoComplete("ue_type");
+
+                $(".ec-pmodel").show("fast");
+            });
+
+			/* User Story 14 */
+            $('#aff-imsi-sup').click(function () {
+				/* We must empty the outer container first */
+                $(".wrapper").empty();
+
+				/* This defines the structure for all query pages */
+                //noInputQueryStructure();
+
+				/* Displays input field corresponding to query */
+                queryEmptyDropdownStructure();
+
+                $('#query_dropdown').attr({
+                    id:"failure_class_text"
+                });
+
+				/* /!* Unique display per query *!/
+				 noInputQuerySpecifcStructure(
+				 "User Story 14", // heading: User Story 1
+				 "Display, for a given failure Cause Class, the IMSIs that were affected.", // description: For a given affected IMSI...
+				 "userStory14()" // button_method: userStory1()
+				 );*/
+
+				/* define if to include auto-complete */
+                //dropdown("failure_class");
+
+                $(".ec-pmodel").show("fast");
+            });
+
+			/*
+			 Chart User story #9
+			 */
+            $("#chart9").click(function () {
+				/* We must empty the outer container first */
+                $(".wrapper").empty();
+
+				/* This defines the structure for all query pages */
+                queryStructure();
+
+				/* Displays input field corresponding to query */
+                queryFromAndToDateStructure();
+
+                $("#info_heading").append("User Story 9");
+                $("#info_description").append("Count, for each IMSI, the number of call failures and their total duration during a given time period");
+
+                $('#queryBtn').click(function () {
+                    userStory9( "charts" );
+                });
+
+                $('#query_output').empty();
+
+                $(".ec-pmodel").show("fast");
+            });
+
+			/*
+			 Chart User story #10
+			 */
+            $('#chart10').click(function () {
+                $(".wrapper").empty();
+                queryStructure();
+
+				/* Displays one text field */
+                queryOneTextFieldStructure();
+
+				/* Unique display per query */
+                querySpecificStructure(
+                    "Phone Model (Net Eng)",
+                    "Display unique EVENT_ID/CAUSE_CODE combinations for a specific ueType and the number of occurrence.",
+                    "Phone model:",
+                    "phone_model_text",
+                    "E.g. VEA3",
+                    "userStory10( 'charts' )"
+                );
+
+				/* define if to include auto-complete */
+                autoComplete("phone_model");
+
+                $('#query_output').empty();
+
+                $(".ec-pmodel").show("fast");
+            });
+        });
+
+	</script>
 
 </body>
   
