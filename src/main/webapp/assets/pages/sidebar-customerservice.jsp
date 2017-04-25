@@ -6,20 +6,17 @@
 <aside>
     <div id="sidebar" class="nav-collapse ">
         <ul class="sidebar-menu" id="nav-accordion">
-            <li class="mt">
-                <a class="active" href="home.jsp"> <i class="fa fa-dashboard"></i> <span>Dashboard</span> </a>
-            </li>
             <li class="sub-menu">
                 <a href="javascript:;"> <i class="fa fa-tasks"></i> <span>Event Causes</span> </a>
                 <ul class="sub">
-                    <li><a id="ec-imsi">IMSI (Cus Rep)</a></li>
-                    <li><a id="ec-ccode">Causes Code (Cus Rep)</a></li>
+                    <li><a id="ec-imsi" class = "us-4">IMSI (Cus Rep)</a></li>
+                    <li><a id="ec-ccode" class = "us-6">Causes Code (Cus Rep)</a></li>
                 </ul>
             </li>
             <li class="sub-menu">
                 <a href="javascript:;"> <i class="fa fa-sort-numeric-asc"></i> <span>Counts</span> </a>
                 <ul class="sub">
-                    <li><a id="count-imsi-cust">IMSI (Cus Rep)</a></li>
+                    <li><a id="count-imsi-cust" class = "us-5">IMSI (Cus Rep)</a></li>
                 </ul>
             </li>
         </ul>

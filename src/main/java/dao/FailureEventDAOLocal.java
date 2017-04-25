@@ -23,6 +23,8 @@ public interface FailureEventDAOLocal {
     
     Collection<?> getAllUniqueUETypes();
     Collection<?> getAllUniqueIMSIs();
+    Collection<?> getAllUniquePhoneModels();
+    Collection<?> getAllUniqueFailureClasses();
     Collection<?> getAllUniqueIMSIsV2(Long imsi);
 
     //User Story #4
@@ -38,9 +40,14 @@ public interface FailureEventDAOLocal {
     //User Story #9
     Collection<?> callDataPerPeriod(Date startDate, Date endDate);
     //User Story #10
-    Collection<?> getFailEventAndCauseCodeByUEType(Integer ueType);
+    Collection<?> getFailEventAndCauseCodeByUEType(String model);
+    //User Story #11
+    Collection<?> topTenCallFailurePerPeriod(Date startDate, Date endDate);
+    //User Story 12
+    Collection<?> getTopTenIMSIsForFailureClassPerPeriod(Date startDate, Date endDate);
 
+    //User Story #13
+    Collection<?> getTopTenNodeFailuresPercentage();
     //User Story #14
     Collection<?> getIMSisForFailureClass(Integer failureClass);
-
 }

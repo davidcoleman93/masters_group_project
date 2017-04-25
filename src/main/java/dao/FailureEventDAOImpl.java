@@ -1,5 +1,7 @@
 package dao;
 
+import entities.EventCause;
+import entities.FailureClass;
 import entities.FailureEvent;
 
 import javax.ejb.Local;
@@ -41,6 +43,17 @@ public class FailureEventDAOImpl implements FailureEventDAOLocal {
     	return em.createQuery("SELECT DISTINCT imsi FROM FailureEvent")
     			.getResultList();
 	}
+
+    public Collection<?> getAllUniquePhoneModels()
+    {
+        return em.createQuery("SELECT DISTINCT model FROM UserEventType ")
+                .getResultList();
+    }
+
+    public Collection<?> getAllUniqueFailureClasses() {
+        return (List<FailureClass>) em.createQuery("SELECT DISTINCT fc FROM FailureClass fc ")
+                .getResultList();
+    }
     
     public Collection<?> getAllUniqueIMSIsV2(Long imsi)
     {
@@ -58,7 +71,7 @@ public class FailureEventDAOImpl implements FailureEventDAOLocal {
 
     //User Story #4
     public Collection<?> eventCausePerIMSI(Long imsi){
-        return (List<Object[]>)em.createQuery("SELECT o.eventCause.eventCauseID.causeCode, o.eventCause.eventCauseID.eventID FROM FailureEvent o WHERE o.imsi=:imsi")
+        return (List<EventCause>)em.createQuery("SELECT o.eventCause FROM FailureEvent o WHERE o.imsi=:imsi")
                 .setParameter("imsi", imsi)
                 .getResultList();
     }
@@ -74,18 +87,14 @@ public class FailureEventDAOImpl implements FailureEventDAOLocal {
 
     //User Story #6
     public Collection<?> getFailEventsUsingImsiGroupedByCauseCode(Long imsi) {
-        return (List<Object[]>)em.createQuery("SELECT fe.eventCause.eventCauseID.causeCode, count(fe) FROM FailureEvent fe WHERE fe.imsi=:imsi GROUP BY fe.eventCause.eventCauseID.causeCode")
+        return (List<Object[]>)em.createQuery("SELECT fe.eventCause, count(fe) FROM FailureEvent fe WHERE fe.imsi=:imsi GROUP BY fe.eventCause.eventCauseID.causeCode")
                 .setParameter("imsi",imsi)
                 .getResultList();
-        //select imsi, cause_code, count(*) as count
-        //from failure_events
-        //where imsi = 191911000516761
-        //group by cause_code;
     }
 
     //User Story #7
     public Collection<?> IMSIPerPeriod(Date startDate, Date endDate){
-        return em.createQuery("SELECT o.imsi FROM FailureEvent o WHERE o.dateTime BETWEEN ?1 AND ?2")
+        return (List<FailureEvent>) em.createQuery("SELECT o FROM FailureEvent o WHERE o.dateTime BETWEEN ?1 AND ?2")
                 .setParameter(1, startDate)
                 .setParameter(2, endDate)
                 .getResultList();
@@ -102,33 +111,52 @@ public class FailureEventDAOImpl implements FailureEventDAOLocal {
 
     //User Story #9
     public Collection<?> callDataPerPeriod(Date startDate, Date endDate){
-        return em.createQuery("SELECT o.imsi ,COUNT(o), SUM(o.duration) FROM FailureEvent o WHERE o.dateTime BETWEEN ?1 AND ?2 GROUP BY o.imsi")
+        return (List<Object[]>)em.createQuery("SELECT DISTINCT o.imsi ,COUNT(o), SUM(o.duration) FROM FailureEvent o WHERE o.dateTime BETWEEN ?1 AND ?2 GROUP BY o.imsi")
                 .setParameter(1, startDate)
                 .setParameter(2, endDate)
                 .getResultList();
     }
 
     //User Story #10
-    public Collection<?> getFailEventAndCauseCodeByUEType(Integer ueType){
-        return (List<Object[]>)em.createQuery("SELECT fe.eventCause.eventCauseID.eventID, fe.eventCause.eventCauseID.causeCode, fe.eventCause.description, count(fe) FROM FailureEvent fe WHERE fe.userEventType.tac=:ueType GROUP BY fe.eventCause.eventCauseID.eventID, fe.eventCause.eventCauseID.causeCode")
-                .setParameter("ueType",ueType)
+    public Collection<?> getFailEventAndCauseCodeByUEType(String model){
+        return (List<Object[]>)em.createQuery("SELECT fe.eventCause, count(fe) FROM FailureEvent fe WHERE fe.userEventType.model=:model GROUP BY fe.eventCause")
+                .setParameter("model",model)
                 .getResultList();
+    }
 
-        //select ue_type, event_id, cause_code, count(*) as count
-        //from failure_events
-        //where ue_type = 100100
-        //group by event_id, cause_code;
+    //User Story #11
+    public Collection<?> topTenCallFailurePerPeriod(Date startDate, Date endDate) {
+        return (List<Object[]>) em.createQuery("SELECT o.marketOperator, o.cellID, count(o) as total FROM FailureEvent o WHERE o.dateTime BETWEEN ?1 AND ?2 GROUP BY o.marketOperator, o.cellID ORDER BY total DESC ")
+                .setParameter(1, startDate)
+                .setParameter(2, endDate)
+                .setMaxResults(10)
+                .getResultList();
+    }
+
+    //User Story #12
+    public Collection<?> getTopTenIMSIsForFailureClassPerPeriod(Date startDate, Date endDate){
+        return (List<Object[]>)em.createQuery("SELECT o.imsi, COUNT(o) AS countIMSI FROM FailureEvent o WHERE o.dateTime BETWEEN ?1 AND ?2 GROUP BY o.imsi ORDER BY countIMSI DESC")
+                .setParameter(1, startDate)
+                .setParameter(2, endDate)
+                .setMaxResults(10)
+                .getResultList();
+    }
+
+    //User Story #13
+    public Collection<?> getTopTenNodeFailuresPercentage(){
+        Long totalNum = (Long)em.createQuery("select count(o) from FailureEvent o").getSingleResult();
+
+        return (List<Object[]>) em.createQuery("SELECT o.marketOperator, o.cellID, count(o) as numFailures, (count(o)/:totalNum)*100 from FailureEvent o group by o.marketOperator, o.cellID order by numFailures DESC")
+                .setParameter("totalNum", totalNum)
+                .setMaxResults(10)
+                .getResultList();
     }
 
     //User Story #14
     public Collection<?> getIMSisForFailureClass(Integer failureClass){
-        return (List<Object[]>)em.createQuery("SELECT DISTINCT fe.imsi FROM FailureEvent fe WHERE fe.failureClass.failureClass=:failureClass")
+        return (List<FailureEvent>)em.createQuery("SELECT DISTINCT fe FROM FailureEvent fe WHERE fe.failureClass.failureClass=:failureClass")
                 .setParameter("failureClass",failureClass)
                 .getResultList();
-
-        //select DISTINCT imsi
-        //from lte_failure_system.failure_events
-        //where failure_class = 0;
     }
 
 }

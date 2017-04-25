@@ -2,6 +2,7 @@ package service.data;
 
 import dao.DataDAOLocal;
 import dao.FailureEventDAOLocal;
+import entities.EventCause;
 
 import javax.ejb.Local;
 import javax.ejb.Stateless;
@@ -11,7 +12,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Collection;
 import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.List;
 
 /**
@@ -40,6 +40,14 @@ public class DataServiceEJB implements DataServiceEJBLocal {
     public Collection<?> getAllUniqueUETypes(){
     	return failureEventBean.getAllUniqueUETypes();
     }
+
+    public Collection<?> getAllUniquePhoneModels(){
+        return failureEventBean.getAllUniquePhoneModels();
+    }
+
+    public Collection<?> getAllUniqueFailureClasses(){
+        return failureEventBean.getAllUniqueFailureClasses();
+    }
     
     public Collection<?> getAllUniqueIMSIs() {
 		return failureEventBean.getAllUniqueIMSIs();
@@ -51,12 +59,9 @@ public class DataServiceEJB implements DataServiceEJBLocal {
 
     //User Story #4
     public Collection<?> eventCausePerIMSI(Long imsi){
-        List<Object[]> eves = null;
+        List<EventCause> eves = null;
         try{
-            eves = (List<Object[]>)failureEventBean.eventCausePerIMSI(imsi);
-            for(Object[] os : eves){
-                System.out.println(os[0] + ":" + os[1]);
-            }
+            eves = (List<EventCause>) failureEventBean.eventCausePerIMSI(imsi);
         }catch (Exception e){
             System.out.println("ERROR RETRIEVING EVENT CAUSES");
         }
@@ -89,8 +94,23 @@ public class DataServiceEJB implements DataServiceEJBLocal {
     }
 
     //User Story #10
-    public Collection<?> getFailEventAndCauseCodeByUEType(Integer ueType){
-        return failureEventBean.getFailEventAndCauseCodeByUEType(ueType);
+    public Collection<?> getFailEventAndCauseCodeByUEType(String model){
+        return failureEventBean.getFailEventAndCauseCodeByUEType(model);
+    }
+
+    //User Story #11
+    public Collection<?> topTenCallFailurePerPeriod(String startDate, String endDate){
+        return failureEventBean.topTenCallFailurePerPeriod(parseDate(startDate), parseDate(endDate));
+    }
+
+    //User Story #12
+    public Collection<?> getTopTenIMSIsForFailureClassPerPeriod(String startDate, String endDate){
+        return failureEventBean.getTopTenIMSIsForFailureClassPerPeriod(parseDate(startDate), parseDate(endDate));
+    }
+
+    //User Story #13
+    public Collection<?> getTopTenNodeFailuresPercentage(){
+        return failureEventBean.getTopTenNodeFailuresPercentage();
     }
 
     //User Story #14
