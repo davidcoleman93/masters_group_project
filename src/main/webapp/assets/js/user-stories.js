@@ -186,6 +186,34 @@ function userStory9( chart ){
                         value[1] + "</td><td>" +
                         value[2] + "</td></tr>");
                 });
+
+                // Consider adding an ID to your table
+                // incase a second table ever enters the picture.
+                var items = $("table tr");
+
+                var numItems = items.length;
+
+                // Only show the first 2 (or first `per_page`) items initially.
+                items.slice(resultsPerPage).hide();
+
+                // Now setup the pagination using the `.pagination-page` div.
+                $("#results_div").pagination({
+                    items: numItems,
+                    itemsOnPage: resultsPerPage,
+                    cssStyle: "light-theme",
+
+                    // This is the actual page changing functionality.
+                    onPageClick: function(pageNumber) {
+                        // We need to show and hide `tr`s appropriately.
+                        var showFrom = resultsPerPage * (pageNumber - 1);
+                        var showTo = showFrom + resultsPerPage;
+
+                        // We'll first hide everything...
+                        items.hide()
+                        // ... and then only show the appropriate rows.
+                            .slice(showFrom, showTo).show();
+                    }
+                });
             }
         },error: function () {
             console.log("Error");
