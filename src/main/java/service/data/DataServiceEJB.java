@@ -46,7 +46,7 @@ public class DataServiceEJB implements DataServiceEJBLocal {
     }
 
     public Collection<?> getAllUniqueFailureClasses(){
-        return failureEventBean.getAllUniqueFailureClasses();
+        return failureEventBean.getAllUniqueFailureClassesV2();
     }
     
     public Collection<?> getAllUniqueIMSIs() {

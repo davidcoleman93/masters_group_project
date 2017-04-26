@@ -61,29 +61,6 @@ function userStory14Structure() //parameters instead?!!!
     //Populate Dropdown
     //dropdown_values = [0,1,2,3,4];
 
-    dropdown_values = [];
-    $.ajax({
-        type: 'GET',
-        url: 'api/data/all_unique_failure_class',
-        contentType: 'application/json',
-        dataType: 'json',
-        success: function (aList) {
-            $.each(aList, function (index, value) {
-                //dropdown_values.push(value);
-                dropdown_values.push(value.toString()); //Converts value to String, and adds to availableTags.
-            });
-
-            $.each(dropdown_values, function (index, value) {
-                var option = document.createElement("option");
-                // option.setAttribute("value", value[0].toString());
-                // option.innerHTML = value[0].toString() + " / " + value[1].toString();
-                option.setAttribute("value", value);
-                option.innerHTML = value;
-                $("#failure_class_text").append(option);
-                //$("#failure_class_text").append("<option value =" + value + ">");
-            });
-        }
-    });
 
 
 
@@ -104,5 +81,32 @@ function populateUserStory14Dropdown()
         option.innerHTML = value;
         $("#failure_class_text").append(option);
         //$("#failure_class_text").append("<option value =" + value + ">");
+    });
+}
+
+function populateUserStory14DropdownV2() {
+    dropdown_values = [];
+    $.ajax({
+        type: 'GET',
+        url: 'api/data/all_unique_failure_class',
+        contentType: 'application/json',
+        dataType: 'json',
+        success: function (aList) {
+            $.each(aList, function (index, value) {
+                dropdown_values.push(value);
+                //dropdown_values.push(value.toString()); //Converts value to String, and adds to availableTags.
+            });
+
+            $.each(dropdown_values, function (index, value) {
+                var option = document.createElement("option");
+                option.setAttribute("value", value[0].toString());
+                //option.innerHTML = value[0].toString() + " / " + value[1].toString();
+                option.innerHTML = value[0].toString() + "/" + value[1].toString();
+                //option.setAttribute("value", value);
+                //option.innerHTML = value;
+                $("#failure_class_text").append(option);
+                //$("#failure_class_text").append("<option value =" + value + ">");
+            });
+        }
     });
 }

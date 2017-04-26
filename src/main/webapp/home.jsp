@@ -421,7 +421,7 @@
                     id:"failure_class_text"
                 });
 
-                populateUserStory14Dropdown();
+                populateUserStory14DropdownV2();
 
                 $("#info_heading").append("User Story 14");
                 $("#info_description").append("User Story 14 Text");
