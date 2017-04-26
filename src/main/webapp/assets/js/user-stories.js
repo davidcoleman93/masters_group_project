@@ -181,10 +181,11 @@ function userStory9( chart ){
                 document.getElementById("searched").innerHTML = "Searched range: " + startDate + " to " + endDate + "<br>";
                 document.getElementById("searched").innerHTML += story9.length + " results found!";
 
-                //Pagination
+                //Pagination variables
                 var resultCount = story9.length;
                 var resultsPerPage = 20;
 
+                //Populate table
                 $.each(story9, function (index, value) {
                     $("#results").append("<tr><td>" +
                         value[0] + "</td><td>" +
@@ -192,38 +193,44 @@ function userStory9( chart ){
                         value[2] + "</td></tr>");
                 });
 
-
-
-                // Consider adding an ID to your table
-                // incase a second table ever enters the picture.
-                var items = $("table tr");
-
-                var numItems = items.length;
-
-                // Only show the first 2 (or first `per_page`) items initially.
-                items.slice(resultsPerPage).hide();
-
-                // Now setup the pagination using the `.pagination-page` div.
-                $("#results_div").pagination({
-                    items: numItems,
-                    itemsOnPage: resultsPerPage,
-                    cssStyle: "light-theme",
-
-                    // This is the actual page changing functionality.
-                    onPageClick: function(pageNumber) {
-                        // We need to show and hide `tr`s appropriately.
-                        var showFrom = resultsPerPage * (pageNumber - 1);
-                        var showTo = showFrom + resultsPerPage;
-
-                        // We'll first hide everything...
-                        items.hide()
-                        // ... and then only show the appropriate rows.
-                            .slice(showFrom, showTo).show();
-                    }
-                });
+                //Pagination execution
+                if(resultCount > resultsPerPage) {
+                    pagination(resultsPerPage, resultCount);
+                }
             }
         },error: function () {
             console.log("Error");
+        }
+    });
+}
+
+function pagination(resultsPerPage, resultCount)
+{
+    // Consider adding an ID to your table
+    // incase a second table ever enters the picture.
+    var items = $("table tr");
+
+    var numItems = items.length;
+
+    // Only show the first 2 (or first `per_page`) items initially.
+    items.slice(resultsPerPage).hide();
+
+    // Now setup the pagination using the `.pagination-page` div.
+    $("#results_div").pagination({
+        items: numItems,
+        itemsOnPage: resultsPerPage,
+        cssStyle: "light-theme",
+
+        // This is the actual page changing functionality.
+        onPageClick: function (pageNumber) {
+            // We need to show and hide `tr`s appropriately.
+            var showFrom = resultsPerPage * (pageNumber - 1);
+            var showTo = showFrom + resultsPerPage;
+
+            // We'll first hide everything...
+            items.hide()
+            // ... and then only show the appropriate rows.
+                .slice(showFrom, showTo).show();
         }
     });
 }
