@@ -127,6 +127,9 @@
 	<script src="assets/js/default_query_template.js"></script>
 	<script src="assets/js/user_story_specific_front-end.js"></script>
 
+	<script type="text/javascript" src="assets/js/pagination/jquery.simplePagination.js"></script>
+	<link type="text/css" rel="stylesheet" href="assets/js/pagination/simplePagination.css"/>
+
 	<!-- Script to generate the queries (Page partitioning) -->
 	<script>
         $(document).ready(function () {

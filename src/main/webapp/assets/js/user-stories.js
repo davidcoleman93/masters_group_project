@@ -180,12 +180,19 @@ function userStory9( chart ){
                 //var shade = false;
                 document.getElementById("searched").innerHTML = "Searched range: " + startDate + " to " + endDate + "<br>";
                 document.getElementById("searched").innerHTML += story9.length + " results found!";
+
+                //Pagination
+                var resultCount = story9.length;
+                var resultsPerPage = 20;
+
                 $.each(story9, function (index, value) {
                     $("#results").append("<tr><td>" +
                         value[0] + "</td><td>" +
                         value[1] + "</td><td>" +
                         value[2] + "</td></tr>");
                 });
+
+
 
                 // Consider adding an ID to your table
                 // incase a second table ever enters the picture.
