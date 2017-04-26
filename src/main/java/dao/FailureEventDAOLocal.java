@@ -25,6 +25,7 @@ public interface FailureEventDAOLocal {
     Collection<?> getAllUniqueIMSIs();
     Collection<?> getAllUniquePhoneModels();
     Collection<?> getAllUniqueFailureClasses();
+    Collection<?> getAllUniqueFailureClassesV2();
     Collection<?> getAllUniqueIMSIsV2(Long imsi);
 
     //User Story #4

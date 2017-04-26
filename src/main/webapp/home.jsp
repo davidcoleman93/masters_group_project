@@ -132,6 +132,10 @@
 
 	<!-- Script to generate the queries (Page partitioning) -->
 	<script>
+
+
+	</script>
+	<script>
         $(document).ready(function () {
 
 			/* USER STORY #4 */
@@ -406,13 +410,27 @@
 
 				/* This defines the structure for all query pages */
                 //noInputQueryStructure();
+                queryStructure();
+
 
 				/* Displays input field corresponding to query */
                 queryEmptyDropdownStructure();
 
+
                 $('#query_dropdown').attr({
                     id:"failure_class_text"
                 });
+
+                populateUserStory14Dropdown();
+
+                $("#info_heading").append("User Story 14");
+                $("#info_description").append("User Story 14 Text");
+
+                $('#queryBtn').click(function () {
+                    userStory14();
+                });
+
+
 
 				/* /!* Unique display per query *!/
 				 noInputQuerySpecifcStructure(

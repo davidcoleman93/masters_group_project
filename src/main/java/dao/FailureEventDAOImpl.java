@@ -54,6 +54,11 @@ public class FailureEventDAOImpl implements FailureEventDAOLocal {
         return (List<FailureClass>) em.createQuery("SELECT DISTINCT fc FROM FailureClass fc ")
                 .getResultList();
     }
+
+    public Collection<?> getAllUniqueFailureClassesV2() {
+        return (List<FailureClass>) em.createQuery("SELECT fc.failureClass, fc.description FROM FailureClass fc ")
+                .getResultList();
+    }
     
     public Collection<?> getAllUniqueIMSIsV2(Long imsi)
     {
@@ -154,7 +159,7 @@ public class FailureEventDAOImpl implements FailureEventDAOLocal {
 
     //User Story #14
     public Collection<?> getIMSisForFailureClass(Integer failureClass){
-        return (List<FailureEvent>)em.createQuery("SELECT DISTINCT fe FROM FailureEvent fe WHERE fe.failureClass.failureClass=:failureClass")
+        return (List<FailureEvent>)em.createQuery("SELECT DISTINCT fe.imsi FROM FailureEvent fe WHERE fe.failureClass.failureClass=:failureClass")
                 .setParameter("failureClass",failureClass)
                 .getResultList();
     }
