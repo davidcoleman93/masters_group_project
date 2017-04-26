@@ -99,9 +99,9 @@ function queryOutputStructure()
         '<div class="content-panel"> ' +
         '<p id = "searched" class="bg-info"></p> ' +
         '<div id = "results_div">' +
+        '</div>' +
         '<table id="results" class="table table-hover"> ' +
         '</table> ' +
-        '</div>' +
         '</div> ' +
         '</div>'
     );
