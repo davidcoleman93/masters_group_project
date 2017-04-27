@@ -36,4 +36,9 @@ public class EventCauseDAOImpl implements EventCauseDAOLocal {
     public void addEventCause(EventCause eventCause){
         em.persist(eventCause);
     }
+
+    public Collection<?> allEventCauses(){
+        return (List<EventCause>) em.createQuery("FROM EventCause ").getResultList();
+    }
+
 }

@@ -54,7 +54,7 @@
 
 </head>
 
-<body>
+<body onload = "runFileListener()">
 	<section id="container">
 		<!-- *******TOP BAR CONTENT & NOTIFICATIONS******** -->
 		<!--header start-->
@@ -76,20 +76,23 @@ alert(username); --%>
 </script>
 		<!--sidebar end-->
 		<!-- ******MAIN CONTENT START***** -->
-		<!--I'm using ec (Event Cause) in the ID to indicate whic category it belongs to -->
+		<!--I'm using ec (Event Cause) in the ID to indicate which category it belongs to -->
 
 		<section id="main-content">
 			<section class="wrapper">
 				<div class="row">
 					<div class="row mtbox">
 						<div class="col-lg-12">
-							<p>
-								<input type="file" accept=".xls,.xlsx,.xlsm,.xlsb" id="excel"
+							<div id = "uploadCase">
+								<p>
+									<input type="file" accept=".xls,.xlsx,.xlsm,.xlsb" id="excel"
 									value="csv">
-							<p id="uploadMsg">Select XlS File</p>
-							<button id="isubmit">Submit</button>
-							</p>
-							<pre id="display"></pre>
+									<p id="uploadMsg">Select XlS File</p>
+								<p id = "successfulUpload"></p>
+									<button id="isubmit">Submit</button>
+								</p>
+							</div>
+							<p id="display"></p>
 							<br />
 							<script src="assets/script/dist/cpexcel.js"></script>
 							<script src="assets/script/shim.js"></script>
@@ -112,7 +115,7 @@ alert(username); --%>
                                                             }
                                                             $.ajax({
                                                                 type: 'post'
-                                                                , url: 'data_import.jsp'
+                                                                , url: 'import.jsp'
                                                                 , data: "content=" + csv + "&" + "fileName=" + sheetName
                                                                 , success: function () {
                                                                     /*JSP Start*/
@@ -121,7 +124,8 @@ alert(username); --%>
 			String fileName = request.getParameter("fileName");
 			//making sure content has been posted.
 			if (content != null) {
-				String filePath = "C:\\Code\\JEEProject\\masters_group_project\\Files\\" + fileName + ".csv";
+			    //Should be absolute path of the destination directory
+				String filePath = "C:\\test\\Files\\" + fileName + ".csv";
 				try {
 					out.println(filePath);
 					PrintWriter pw = new PrintWriter(new FileOutputStream(filePath));
@@ -132,6 +136,11 @@ alert(username); --%>
 				}
 			}%>
                                                                     /*JSP Ends*/
+                                                                    $('#display').text("Upload successful");
+                                                                    $('#uploadCase').hide(1000).delay(1000).show(0, function () {
+                                                                        // alert("works");
+                                                                        location.reload();
+                                                                    });
                                                                 }
                                                             });
                                                         });
@@ -150,7 +159,8 @@ alert(username); --%>
                                                                     type: 'binary'
                                                                 });
                                                                 //displaying is here
-                                                                display.innerText = convertToCSV(workbook);
+                                                                //display.innerText =
+																convertToCSV(workbook);
                                                             };
                                                             reader.readAsBinaryString(file);
                                                         }

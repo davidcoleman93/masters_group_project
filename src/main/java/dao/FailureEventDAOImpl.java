@@ -135,7 +135,8 @@ public class FailureEventDAOImpl implements FailureEventDAOLocal {
 
     //User Story #12
     public Collection<?> getTopTenIMSIsForFailureClassPerPeriod(Date startDate, Date endDate){
-        return (List<Object[]>)em.createQuery("SELECT o.imsi, COUNT(o) AS countIMSI FROM FailureEvent o WHERE o.dateTime BETWEEN ?1 AND ?2 GROUP BY o.imsi ORDER BY countIMSI DESC")
+        System.out.println("HERE");
+        return (List<Object[]>) em.createQuery("SELECT o.imsi, COUNT(o) AS countIMSI FROM FailureEvent o WHERE o.dateTime BETWEEN ?1 AND ?2 GROUP BY o.imsi ORDER BY countIMSI DESC")
                 .setParameter(1, startDate)
                 .setParameter(2, endDate)
                 .setMaxResults(10)

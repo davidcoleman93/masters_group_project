@@ -1,6 +1,7 @@
 //Populates autocomplete for textfield, with all unique UE Types in database.
 //Options must be strings to appear in suggestion.
 //$( function() {
+/*
 function dropdown(uniqueCol){
     var autoUrl;
     if(uniqueCol === "failure_class") {
@@ -32,4 +33,4 @@ function dropdown(uniqueCol){
             }
         }
     });
-}
+}*/

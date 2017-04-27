@@ -10,9 +10,6 @@
 	}
 %>
 
-
-
-
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="">
@@ -37,8 +34,6 @@
 <script src="assets/js/chart-master/Chart.js"></script>
 <script src="assets/js/functions.js"></script>
 <!--  jQuery -->
-<script type="text/javascript"
-	src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
 <!-- Isolated Version of Bootstrap, not needed if your site already uses Bootstrap -->
 <link rel="stylesheet"
 	href="https://formden.com/static/cdn/bootstrap-iso.css" />
@@ -71,7 +66,6 @@
 		<%
 			String userRole = (String) request.getSession().getAttribute("role");
 			pageContext.include("assets/pages/sidebar-" + userRole + ".jsp");
-			
 		%>
 
 		<!-- ******MAIN CONTENT START***** -->
@@ -90,10 +84,9 @@
 	</section>
 
 	<!-- js placed at the end of the document so the pages load faster -->
-	<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
-	<script src="assets/js/plotly-latest.min.js"></script>
 	<script src="assets/js/jquery.js"></script>
 	<script src="assets/js/jquery-1.8.3.min.js"></script>
+	<script src="assets/js/plotly-latest.min.js"></script>
 	<script src="assets/js/bootstrap.min.js"></script>
 	<script class="include" type="text/javascript" src="assets/js/jquery.dcjqaccordion.2.7.js"></script>
 	<script src="assets/js/jquery.scrollTo.min.js"></script>
@@ -154,6 +147,8 @@
                     "Eg. 344930000000011",
                     "userStory4()"
                 );
+
+                //$('#imsi_text').attr("placeholder", "Test");
 
 				/* define which auto-complete to include */
                 autoComplete("imsi");
@@ -283,17 +278,6 @@
                     userStory9();
                 });
 
-				/*querySpecificStructure(
-				 "User Story 9",
-				 "Count, for each IMSI, the number of call failures and their total duration during a given time period",
-				 "IMSI", // label_text: Eg. IMSI or Phone Model
-				 "imsi_text", // input_id: imsi_text
-				 "Eg. 101", // placeholder: E.g 344930000000011
-				 "userStory9()" // button_method: userStory1()
-				 );*/
-				/* define if to include auto-complete */
-                //autoComplete("phone_model");
-
                 $(".ec-pmodel").show("fast");
             });
 
@@ -366,9 +350,6 @@
                     userStory12();
                 });
 
-				/* define if to include auto-complete */
-                //autoComplete("ue_type");
-
                 $(".ec-pmodel").show("fast");
             });
 
@@ -390,9 +371,6 @@
                     userStory13();
                 });
 
-				/* define if to include auto-complete */
-                //autoComplete("ue_type");
-
                 $(".ec-pmodel").show("fast");
             });
 
@@ -402,7 +380,7 @@
                 $(".wrapper").empty();
 
 				/* This defines the structure for all query pages */
-                //noInputQueryStructure();
+                queryStructure();
 
 				/* Displays input field corresponding to query */
                 queryEmptyDropdownStructure();
@@ -411,12 +389,12 @@
                     id:"failure_class_text"
                 });
 
-				/* /!* Unique display per query *!/
-				 noInputQuerySpecifcStructure(
-				 "User Story 14", // heading: User Story 1
-				 "Display, for a given failure Cause Class, the IMSIs that were affected.", // description: For a given affected IMSI...
-				 "userStory14()" // button_method: userStory1()
-				 );*/
+                $("#info_heading").append("User Story 14");
+                $("#info_description").append("Display, for a given failure Cause Class, the IMSIs that were affected.");
+
+                $('#queryBtn').click(function () {
+                    userStory14();
+                });
 
 				/* define if to include auto-complete */
                 //dropdown("failure_class");
@@ -476,6 +454,96 @@
 
                 $(".ec-pmodel").show("fast");
             });
+
+			/*
+				Chart User story #11
+			*/
+            $('#chart11').click(function () {
+				/* We must empty the outer container first */
+                $(".wrapper").empty();
+
+				/* This defines the structure for all query pages */
+                queryStructure();
+
+				/* Displays input field corresponding to query */
+                queryFromAndToDateStructure();
+
+                $("#info_heading").append("User Story 11");
+                $("#info_description").append("Top 10 Market/Operator/Cell ID combinations that had call failures during a time period");
+
+                $('#queryBtn').click(function () {
+                    userStory11( 'charts' );
+                });
+
+                $('#query_output').empty();
+
+                $(".ec-pmodel").show("fast");
+            });
+
+			/*
+				Chart User story #12
+			*/
+            $('#chart12').click(function () {
+				/* We must empty the outer container first */
+                $(".wrapper").empty();
+
+				/* This defines the structure for all query pages */
+                queryStructure();
+
+				/* Displays input field corresponding to query */
+                queryFromAndToDateStructure();
+
+                $("#info_heading").append("User Story 12");
+                $("#info_description").append("Top 10 IMSIs that had call failures during a time period");
+
+                $('#queryBtn').click(function () {
+                    userStory12( 'charts' );
+                });
+
+				$('#query_output').empty();
+
+                $(".ec-pmodel").show("fast");
+            });
+
+			/*
+				Chart User story #13
+			*/
+            $('#chart13').click(function () {
+				/* We must empty the outer container first */
+                $(".wrapper").empty();
+
+				/* This defines the structure for all query pages */
+                queryStructure();
+
+				/* Displays input field corresponding to query */
+                queryOneButtonFieldStructure();
+
+                $("#info_heading").append("User Story 13");
+                $("#info_description").append("Graphical Representation of the Top 10 Market/Operator/Cell ID combinations with call failures showing Node, Number of failures & % of all failures");
+
+                $('#queryBtn').click(function () {
+                    userStory13( 'charts' );
+                });
+
+                $('#query_output').empty();
+
+                $(".ec-pmodel").show("fast");
+            });
+
+            //LOOKUP TABLE - EVENT CAUSES
+            $('#eventCauses').click(function () {
+				/* We must empty the outer container first */
+                $(".wrapper").empty();
+
+				/* This defines the structure for all query pages */
+                queryStructure();
+                $('#query_input').empty();
+                $('#query_info').empty();
+                showEventCauseTable();
+
+                $(".ec-pmodel").show("fast");
+            });
+
         });
 
 	</script>

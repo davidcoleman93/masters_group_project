@@ -15,6 +15,7 @@ import javax.inject.Inject;
 import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.Collection;
 
 /**
  * Created by david on 28/03/2017.
@@ -101,5 +102,9 @@ public class EventCauseValidationEJB implements EventCauseValidationEJBLocal {
             LineIterator.closeQuietly(lineIterator);
         }
         System.out.println("COMPLETED");
+    }
+
+    public Collection<?> allEventCauses(){
+        return eventCauseBean.allEventCauses();
     }
 }

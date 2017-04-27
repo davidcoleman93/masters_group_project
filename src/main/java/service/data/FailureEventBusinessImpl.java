@@ -72,7 +72,7 @@ public class FailureEventBusinessImpl implements FailureEventBusinessLocal {
         /*
             Data Structures to store foreign key tables
          */
-        Multimap<Integer, Integer> eventMap = ArrayListMultimap.create();
+        Multimap<Integer, Integer   > eventMap = ArrayListMultimap.create();
         Multimap<Integer, Integer> marketMap = ArrayListMultimap.create();
         HashSet<Integer> failureMap = null;
         HashSet<Integer> ueMap = null;
