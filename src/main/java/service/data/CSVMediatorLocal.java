@@ -8,5 +8,5 @@ import javax.ejb.Local;
 
 @Local
 public interface CSVMediatorLocal {
-    void scanFirstLineCSV(String fileName);
+    void scanFirstLineCSV(String fileName, String DIR_PATH);
 }
