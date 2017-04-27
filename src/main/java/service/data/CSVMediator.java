@@ -27,7 +27,7 @@ public class CSVMediator implements CSVMediatorLocal {
     /*@EJB
     private MarketOperatorValidationLocal marketOperatorEJB;*/
 
-    public void scanFirstLineCSV(String fileName){
+    public void scanFirstLineCSV(String fileName, String DIR_PATH){
         /*
             Objects for scanning CSV file
          */
@@ -73,7 +73,7 @@ public class CSVMediator implements CSVMediatorLocal {
 
                     if(fEvents[0].equals("Date / Time")){
                         synchronized (this){
-                            failureEJB.postCSV(fileName);
+                            failureEJB.postCSV(fileName, DIR_PATH);
                         }
                         continue;
                     }
