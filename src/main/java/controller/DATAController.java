@@ -23,6 +23,8 @@ public class DATAController {
      */
     @EJB
     private DataServiceEJBLocal dataEJB;
+    @EJB
+    private EventCauseValidationEJBLocal eventCauseEJB;
 
     //ALL FAILURE EVENT DATA
     @GET
@@ -78,6 +80,13 @@ public class DATAController {
     public Collection<?> getAllUniqueIMSIsV2(@PathParam("imsi") Long imsi)
     {
     	return dataEJB.getAllUniqueIMSIsV2(imsi);
+    }
+
+    @GET
+    @Path("/event_causes")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Collection<?> allEventCauses(){
+        return eventCauseEJB.allEventCauses();
     }
 
     //USER STORY #4

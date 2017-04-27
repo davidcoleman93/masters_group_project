@@ -94,9 +94,10 @@ function userStory7(){
                 "<th onclick = 'sortTable(1)'>" + "IMSI" + "</th>" +
                 "<th onclick = 'sortTable(2)'>" + "Event Cause" + "</th>" +
                 "<th onclick = 'sortTable(3)'>" + "Country" + "</th>" +
-                "<th onclick = 'sortTable(3)'>" + "Operator" + "</th>" +
-                "<th onclick = 'sortTable(4)'>" + "Failure Class" + "</th>" +
-                "<th onclick = 'sortTable(5)'>" + "Manufacturer" + "</th>");
+                "<th onclick = 'sortTable(4)'>" + "Operator" + "</th>" +
+                "<th onclick = 'sortTable(5)'>" + "Failure Class" + "</th>" +
+                "<th onclick = 'sortTable(6)'>" + "Manufacturer" + "</th>"
+            );
             //document.getElementById("searched").innerHTML = "Searched: " + imsi + "<br>";
             document.getElementById("searched").innerHTML += story7.length + " results found!";
 
@@ -155,7 +156,7 @@ function userStory9( chart ){
             if( chart === "charts" ){
                 var totalDuration = [];
                 var numFailures = [];
-                var failures = []
+                var failures = [];
 
                 $.each(story9, function (index, value) {
                     totalDuration.push(parseInt(value[1]));
@@ -249,7 +250,7 @@ function userStory10( chart ){
     });
 }
 
-function userStory11(){
+function userStory11( charts ){
     var startDate = $('#fromDate').val();
     var endDate = $('#toDate').val();
     if( startDate === "" || startDate === null || endDate === "" || endDate === null){
@@ -263,30 +264,53 @@ function userStory11(){
         dataType: 'json',
         success: function (aList) {
             var story11 = aList;
+            if( charts === "charts" ){
+                var mccCombos = [];
+                var totals = [];
 
-            $("#results").append(
-                "<th onclick = 'sortTable(0)'>" + "Number" + '<span id = "sort_arrow" class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>' + "</th>" +
-                "<th onclick = 'sortTable(1)'>" + "MCC"  + "</th>" +
-                "<th onclick = 'sortTable(2)'>" + "MNC"  + "</th>" +
-                "<th onclick = 'sortTable(3)'>" + "Cell ID"  + "</th>" +
-                "<th onclick = 'sortTable(4)'>" + "Total"  + "</th>" );
+                $.each(story11, function (index, value) {
+                    mccCombos.push( value[0].country
+                        + "/" + value[0].market + "/" + parseInt(value[1]) );
+                    totals.push(parseInt(value[2]));
+                });
 
-            document.getElementById("searched").innerHTML += story11.length + " results found!";
-            $.each(story11, function (index, value) {
-                $("#results").append("<tr><td>" +
-                    (index + 1) + "</td><td>" +
-                    value[0].operatorCode.marketCode + "</td><td>" +
-                    value[0].operatorCode.operatorCode + "</td><td>" +
-                    value[1] + "</td><td>" +
-                    value[2] + "</td></tr>"
-                );
-            });
+                var data = [{
+                    values: totals,
+                    labels: mccCombos,
+                    type: 'pie'
+                }];
+                var layout = {
+                    height: 400,
+                    width: 500
+                };
+                Plotly.newPlot('query_output', data, layout);
+
+            }else {
+
+                $("#results").append(
+                    "<th onclick = 'sortTable(0)'>" + "Number" + '<span id = "sort_arrow" class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>' + "</th>" +
+                    "<th onclick = 'sortTable(1)'>" + "MCC" + "</th>" +
+                    "<th onclick = 'sortTable(2)'>" + "MNC" + "</th>" +
+                    "<th onclick = 'sortTable(3)'>" + "Cell ID" + "</th>" +
+                    "<th onclick = 'sortTable(4)'>" + "Total" + "</th>");
+
+                document.getElementById("searched").innerHTML += story11.length + " results found!";
+                $.each(story11, function (index, value) {
+                    $("#results").append("<tr><td>" +
+                        (index + 1) + "</td><td>" +
+                        value[0].operatorCode.marketCode + "</td><td>" +
+                        value[0].operatorCode.operatorCode + "</td><td>" +
+                        value[1] + "</td><td>" +
+                        value[2] + "</td></tr>"
+                    );
+                });
+            }
         }
     });
 
 }
 
-function userStory12(){
+function userStory12( charts ){
     var startDate = $('#fromDate').val();
     var endDate = $('#toDate').val();
     if( startDate === "" || startDate === null || endDate === "" || endDate === null){
@@ -295,28 +319,52 @@ function userStory12(){
     $("#results").html("");
     $.ajax({
         type: 'GET',
-        url: 'api/data/call_data_per_period/top_ten/' + startDate + endDate,
+        url: 'api/data/call_data_per_period/top_ten/' + startDate + "/" + endDate,
         contentType: 'application/json',
         dataType: 'json',
         success: function (aList) {
             var story12 = aList;
-            $("#results").append(
-                "<th onclick = 'sortTable(0)'>" + "IMSI" + '<span id = "sort_arrow" class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>' + "</th>" +
-                "<th onclick = 'sortTable(1)'>" + "TOTAL"  + "</th>");
+            if( charts === "charts" ){
+                var imsis = [];
+                var totals = [];
 
-            document.getElementById("searched").innerHTML += story12.length + " results found!";
-            $.each(story12, function (index, value) {
-                console.log(value);
-                $("#results").append("<tr><td>" +
-                    value[0] + "</td><td>" +
-                    value[1] + "</td></tr>");
-            });
+                $.each(story12, function (index, value) {
+                    imsis.push(parseInt(value[0]));
+                    totals.push(parseInt(value[1]));
+                });
+
+                var data = [{
+                    values: totals,
+                    labels: imsis,
+                    type: 'pie'
+                }];
+                var layout = {
+                    height: 400,
+                    width: 500
+                };
+                Plotly.newPlot('query_output', data, layout);
+
+            }else {
+
+                $("#results").append(
+                    "<th onclick = 'sortTable(0)'>" +
+                    "IMSI" + '<span id = "sort_arrow" class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>' + "</th>" +
+                    "<th onclick = 'sortTable(1)'>" +
+                    "TOTAL" + "</th>");
+
+                document.getElementById("searched").innerHTML = story12.length + " results found!";
+                $.each(story12, function (index, value) {
+                    console.log(value);
+                    $("#results").append("<tr><td>" +
+                        value[0] + "</td><td>" +
+                        value[1] + "</td></tr>");
+                });
+            }
         }
     });
-
 }
 
-function userStory13(){
+function userStory13( charts ){
     $("#results").html("");
     $.ajax({
         type: 'GET',
@@ -325,51 +373,113 @@ function userStory13(){
         dataType: 'json',
         success: function (aList) {
             var story13 = aList;
+            if( charts === "charts" ){
 
-            $("#results").append(
-                "<th onclick = 'sortTable(0)'>" + "Number" + '<span id = "sort_arrow" class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>' + "</th>" +
-                "<th onclick = 'sortTable(1)'>" + "MCC"  + "</th>" +
-                "<th onclick = 'sortTable(2)'>" + "MNC"  + "</th>" +
-                "<th onclick = 'sortTable(3)'>" + "Cell ID"  + "</th>" +
-                "<th onclick = 'sortTable(4)'>" + "Total"  + "</th>" +
-                "<th onclick = 'sortTable(3)'>" + "%"  + "</th>");
+                var market = [];
+                var operator = [];
+                var cellID = [];
+                var totals = [];
+                var percentages = [];
 
-            document.getElementById("searched").innerHTML += story13.length + " results found!";
-            $.each(story13, function (index, value) {
-                $("#results").append("<tr><td>" +
-                    (index + 1) + "</td><td>" +
-                    value[0].operatorCode.marketCode + "</td><td>" +
-                    value[0].operatorCode.operatorCode + "</td><td>" +
-                    value[1] + "</td><td>" +
-                    value[2] + "</td><td>" +
-                    value[3] + "</td></tr>"
-                );
-            });
+                $.each(story13, function (index, value) {
+                    market.push(parseInt(value[0].operatorCode.marketCode));
+                    operator.push(parseInt(value[0].operatorCode.operatorCode));
+                    cellID.push(parseInt(value[1]));
+                    totals.push(parseInt(value[2]));
+                    percentages.push(parseInt(value[3]));
+                });
+
+                var data = [{
+                    values: [totals, percentages],
+                    labels: [market, operator, cellID],
+                    domain: {
+                        x: [0, .48]
+                    },
+                    name: 'MCC/MNC/CELL ID',
+                    hoverinfo: 'label+percent+name',
+                    hole: .4,
+                    type: 'pie'
+                }];
+
+                var layout = {
+                    title: 'MCC/MNC/CELL ID',
+                    annotations: [
+                        {
+                            font: {
+                                size: 20
+                            },
+                            showarrow: false,
+                            text: 'MCC/MNC/CELL ID',
+                            x: 0.17,
+                            y: 0.5
+                        }
+                    ],
+                    height: 600,
+                    width: 600
+                };
+                Plotly.newPlot('query_output', data, layout);
+            }else {
+                $("#results").append(
+                    "<th onclick = 'sortTable(0)'>" + "Number" + '<span id = "sort_arrow" class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>' + "</th>" +
+                    "<th onclick = 'sortTable(1)'>" + "MCC"  + "</th>" +
+                    "<th onclick = 'sortTable(2)'>" + "MNC"  + "</th>" +
+                    "<th onclick = 'sortTable(3)'>" + "Cell ID"  + "</th>" +
+                    "<th onclick = 'sortTable(4)'>" + "Total"  + "</th>" +
+                    "<th onclick = 'sortTable(3)'>" + "%"  + "</th>");
+
+                document.getElementById("searched").innerHTML += story13.length + " results found!";
+                $.each(story13, function (index, value) {
+                    $("#results").append("<tr><td>" +
+                        (index + 1) + "</td><td>" +
+                        value[0].operatorCode.marketCode + "</td><td>" +
+                        value[0].operatorCode.operatorCode + "</td><td>" +
+                        value[1] + "</td><td>" +
+                        value[2] + "</td><td>" +
+                        value[3] + "</td></tr>"
+                    );
+                });
+            }
         }
     });
 
 }
 
 function userStory14(){
-    var failure_class = document.getElementById('failure_class_text').value;
+    var failure_class = $('#query_dropdown').val();
     $("#results").html("");
     $.ajax({
         type: 'GET',
-        url: 'api/data/failure_class/get_imsis/' + failure_class,
+        url: 'api/data/failure_class/get_imsis/' + 3,
         contentType: 'application/json',
         dataType: 'json',
         success: function (aList) {
-            story14 = aList;
-            //$("#innerText").append("<table>");
-            $("#results").append("<th onclick = 'sortTable(0)'>" + "IMSI" + '<span id = "sort_arrow" class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>' + "</th>");
+            var story14 = aList;
+            $("#results").append(
+                "<th onclick = 'sortTable(0)'>" + "Date" + '<span id = "sort_arrow" class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>' +  "</th>" +
+                "<th onclick = 'sortTable(1)'>" + "IMSI" + "</th>" +
+                "<th onclick = 'sortTable(2)'>" + "Event Cause" + "</th>" +
+                "<th onclick = 'sortTable(3)'>" + "Country" + "</th>" +
+                "<th onclick = 'sortTable(4)'>" + "Operator" + "</th>" +
+                "<th onclick = 'sortTable(5)'>" + "Failure Class" + "</th>" +
+                "<th onclick = 'sortTable(6)'>" + "Manufacturer" + "</th>");
 
             document.getElementById("searched").innerHTML = "Searched: " + failure_class + "<br>";
             document.getElementById("searched").innerHTML += story14.length + " results found!";
-            $.each(story14, function (index, value) {
+            //$.each(story14, function (index, value) {
+            console.log(story14.length);
+            for(var i = 0; i < 20; i++) {
+                var value = story14[i];
                 $("#results").append("<tr><td>" +
-                    value + "</td></tr>");
-            });
-            //$("#innerText").append("</table>");
+                    getDate(value.dateTime) + "</td><td>" +
+                    value.imsi + "</td><td>" +
+                    value.eventCause.description + "</td><td>" +
+                    value.marketOperator.country + "</td><td>" +
+                    value.marketOperator.operator + "</td><td>" +
+                    value.failureClass.description + "</td><td>" +
+                    value.userEventType.manufacturer + "</td></tr>");
+            }
+                //});
+
         }
     });
 
@@ -416,3 +526,28 @@ function querySpecifcStructure(heading, description, label_text, input_id,
     queryBtn.setAttribute("onclick", button_method);
 
 }*/
+
+function showEventCauseTable() {
+    $('#results').innerHTML = "";
+    $.ajax({
+        type: 'GET',
+        url: 'api/data/event_causes',
+        contentType: 'application/json',
+        dataType: 'json',
+        success: function (aList) {
+            $("#results").append(
+                "<th>" + "Cause Code" + "</th>" +
+                "<th>" + "Event ID"  + "</th>" +
+                "<th>" + "Description"  + "</th>"
+            );
+            $.each(aList, function (index, value) {
+                $("#results").append("<tr><td>" +
+                    value.eventCauseID.causeCode + "</td><td>" +
+                    value.eventCauseID.eventID + "</td><td>" +
+                    value.description + "</td></tr>"
+                );
+            });
+        }
+    });
+
+}

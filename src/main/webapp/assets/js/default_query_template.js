@@ -86,7 +86,7 @@ function queryEmptyDropdownStructure()
     $("#query_input").append(' <tbody> <tr> <td class="name"> ' +
         '<form class="form-inline"> <div class="form-group"> ' +
         '<label id = "query_label" for="query_dropdown"></label> ' +
-        '<select id="query_dropdown"></select> </div> </form> </td> ' +
+        '<select id="query_dropdown"></select><option value="0"></option> </div> </form> </td> ' +
         '<td class="name">' +
         '<input type="button" id="queryBtn" class="btn btn-primary" value="Submit">' +
         '</td> </tr> </tbody>');
