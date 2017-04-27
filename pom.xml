@@ -21,10 +21,11 @@
         </dependency>
 
         <!-- Library to allow the storing of composite keys in a **MultiMap (See design document for further details)** -->
+        <!-- Version updated from 19.0 to 21.0 for Selenium -->
         <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
-            <version>19.0</version>
+            <version>21.0</version>
         </dependency>
 
         <!-- Library to help speed up iterating over a csv file **LineIterator(See design document for further details)** -->
@@ -46,6 +47,13 @@
             <artifactId>rest-assured</artifactId>
             <version>2.4.1</version>
             <scope>test</scope>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-java</artifactId>
+            <version>3.3.1</version>
         </dependency>
 
 
