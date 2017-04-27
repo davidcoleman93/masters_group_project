@@ -48,7 +48,7 @@
                                     <h2 align="center">REGISTER NEW USER</h2>
                                     <!-- Example split danger button -->
                                     <div class="dropdown form-group">
-                                        <button class="btn btn-default dropdown-toggle" type="button"
+                                        <button id="role-type-toggle" type="button"
                                                 data-toggle="dropdown">
                                             Assign Role <span class="caret"></span>
                                         </button>

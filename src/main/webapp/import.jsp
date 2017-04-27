@@ -125,7 +125,8 @@ alert(username); --%>
 			//making sure content has been posted.
 			if (content != null) {
 			    //Should be absolute path of the destination directory
-				String filePath = "C:\\test\\Files\\" + fileName + ".csv";
+				String filePath = "C:\\LTEFileUpload\\" + fileName
+        + ".csv";
 				try {
 					out.println(filePath);
 					PrintWriter pw = new PrintWriter(new FileOutputStream(filePath));

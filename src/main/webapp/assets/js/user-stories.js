@@ -98,7 +98,7 @@ function userStory7(){
                 "<th onclick = 'sortTable(5)'>" + "Failure Class" + "</th>" +
                 "<th onclick = 'sortTable(6)'>" + "Manufacturer" + "</th>"
             );
-            //document.getElementById("searched").innerHTML = "Searched: " + imsi + "<br>";
+            document.getElementById("searched").innerHTML = "Searched range: " + startDate + " to " + endDate + "<br>";
             document.getElementById("searched").innerHTML += story7.length + " results found!";
 
             //var cellID, date, duration, eventCause, failureClass, id, imsi, marketOperator, neVersion, userEventType;
