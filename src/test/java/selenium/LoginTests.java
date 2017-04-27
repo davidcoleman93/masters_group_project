@@ -88,6 +88,63 @@ public class LoginTests {
         Thread.sleep(1000);
     }
 
+    @Test
+    public void testSuccessfulCustomerServiceLogin() throws Exception {
+        driver.get(baseUrl);
+        Thread.sleep(1000);
+        driver.findElement(By.id("user-login")).clear();
+        Thread.sleep(1000);
+        driver.findElement(By.id("user-login")).sendKeys("customer");
+        Thread.sleep(1000);
+        driver.findElement(By.id("password-login")).clear();
+        Thread.sleep(1000);
+        driver.findElement(By.id("password-login")).sendKeys("Customer123");
+        Thread.sleep(1000);
+        driver.findElement(By.id("login-submit")).click();
+        Thread.sleep(3000);
+        String currentUrl = driver.getCurrentUrl();
+        assertEquals("http://localhost:8080/LteFailureSystem-0.0.1-SNAPSHOT/home.jsp", currentUrl);
+        Thread.sleep(1000);
+    }
+
+    @Test
+    public void testSuccessfulSupportLogin() throws Exception {
+        driver.get(baseUrl);
+        Thread.sleep(1000);
+        driver.findElement(By.id("user-login")).clear();
+        Thread.sleep(1000);
+        driver.findElement(By.id("user-login")).sendKeys("support");
+        Thread.sleep(1000);
+        driver.findElement(By.id("password-login")).clear();
+        Thread.sleep(1000);
+        driver.findElement(By.id("password-login")).sendKeys("Support123");
+        Thread.sleep(1000);
+        driver.findElement(By.id("login-submit")).click();
+        Thread.sleep(3000);
+        String currentUrl = driver.getCurrentUrl();
+        assertEquals("http://localhost:8080/LteFailureSystem-0.0.1-SNAPSHOT/home.jsp", currentUrl);
+        Thread.sleep(1000);
+    }
+
+    @Test
+    public void testSuccessfulNetworkLogin() throws Exception {
+        driver.get(baseUrl);
+        Thread.sleep(1000);
+        driver.findElement(By.id("user-login")).clear();
+        Thread.sleep(1000);
+        driver.findElement(By.id("user-login")).sendKeys("network");
+        Thread.sleep(1000);
+        driver.findElement(By.id("password-login")).clear();
+        Thread.sleep(1000);
+        driver.findElement(By.id("password-login")).sendKeys("Network123");
+        Thread.sleep(1000);
+        driver.findElement(By.id("login-submit")).click();
+        Thread.sleep(3000);
+        String currentUrl = driver.getCurrentUrl();
+        assertEquals("http://localhost:8080/LteFailureSystem-0.0.1-SNAPSHOT/home.jsp", currentUrl);
+        Thread.sleep(1000);
+    }
+
     @After
     public void tearDown() throws Exception {
         driver.quit();
