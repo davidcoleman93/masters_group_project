@@ -389,6 +389,8 @@
                     id:"failure_class_text"
                 });
 
+                populateUserStory14DropdownV2();
+
                 $("#info_heading").append("User Story 14");
                 $("#info_description").append("Display, for a given failure Cause Class, the IMSIs that were affected.");
 

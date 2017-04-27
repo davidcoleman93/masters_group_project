@@ -445,11 +445,11 @@ function userStory13( charts ){
 }
 
 function userStory14(){
-    var failure_class = $('#query_dropdown').val();
+    var failure_class = $('#failure_class_text').val();
     $("#results").html("");
     $.ajax({
         type: 'GET',
-        url: 'api/data/failure_class/get_imsis/' + 3,
+        url: 'api/data/failure_class/get_imsis/' + failure_class,
         contentType: 'application/json',
         dataType: 'json',
         success: function (aList) {

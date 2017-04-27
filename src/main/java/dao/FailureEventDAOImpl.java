@@ -51,7 +51,7 @@ public class FailureEventDAOImpl implements FailureEventDAOLocal {
     }
 
     public Collection<?> getAllUniqueFailureClasses() {
-        return (List<FailureClass>) em.createQuery("SELECT DISTINCT fc FROM FailureClass fc ")
+        return (List<FailureClass>) em.createQuery("SELECT fc.failureClass, fc.description FROM FailureClass fc ")
                 .getResultList();
     }
     

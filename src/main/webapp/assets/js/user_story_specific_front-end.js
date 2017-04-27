@@ -48,3 +48,33 @@ function querySpecificStructure(heading, description, label_text, input_id, plac
    /* var queryBtn = document.getElementById("queryBtn");
     queryBtn.setAttribute("onclick", button_method);*/
 }
+
+function populateUserStory14DropdownV2() {
+    dropdown_values = [];
+    $.ajax({
+        type: 'GET',
+        url: 'api/data/all_unique_failure_class',
+        contentType: 'application/json',
+        dataType: 'json',
+        success: function (aList) {
+            $.each(aList, function (index, value) {
+                dropdown_values.push(value);
+                //dropdown_values.push(value.toString()); //Converts value to String, and adds to availableTags.
+            });
+
+            $.each(dropdown_values, function (index, value) {
+                // alert("Value: " + value);
+                // alert("Value[0]: " + value[0]);
+                // alert("Value[1]: " + value[1]);
+                var option = document.createElement("option");
+                option.setAttribute("value", value[0].toString());
+                //option.innerHTML = value[0].toString() + " / " + value[1].toString();
+                option.innerHTML = value[0].toString() + "/" + value[1].toString();
+                //option.setAttribute("value", value);
+                //option.innerHTML = value;
+                $("#failure_class_text").append(option);
+                //$("#failure_class_text").append("<option value =" + value + ">");
+            });
+        }
+    });
+}
