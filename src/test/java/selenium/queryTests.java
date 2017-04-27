@@ -31,6 +31,7 @@ public class queryTests {
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
     }
 
+    @Ignore
     @Test   //IMSI (Cust Rep)
     public void testUserStory4() throws Exception {
         driver.get(baseUrl);
@@ -62,6 +63,7 @@ public class queryTests {
         Thread.sleep(3000);
     }
 
+    @Ignore
     @Test   //Cause Code (Cust Rep)
     public void testUserStory6() throws Exception {
         driver.get(baseUrl);
@@ -93,6 +95,7 @@ public class queryTests {
         Thread.sleep(3000);
     }
 
+    @Ignore
     @Test   //Phone Model (Net Eng.)
     public void testUserStory10() throws Exception {
         driver.get(baseUrl);
@@ -122,7 +125,8 @@ public class queryTests {
         Thread.sleep(3000);
     }
 
-    @Test   //Phone Model (Net Eng.)
+    @Ignore
+    @Test   //Failure List (Sup Eng.)
     public void testUserStory7() throws Exception {
         driver.get(baseUrl);
         Thread.sleep(1000);
@@ -143,19 +147,233 @@ public class queryTests {
         Thread.sleep(2000);
         driver.findElement(By.id("fail-list-sup")).click();
         Thread.sleep(2000);
-        driver.findElement(By.id("fromDate")).click();
+        //driver.findElement(By.id("fromDate")).click();
         Thread.sleep(1000);
-        driver.findElement(By.id("fromDate")).clear();
+        //driver.findElement(By.id("fromDate")).clear();
         Thread.sleep(1000);
         driver.findElement(By.id("fromDate")).sendKeys("01/01/2013");
         Thread.sleep(1000);
-        driver.findElement(By.id("toDate")).clear();
+        //driver.findElement(By.id("toDate")).clear();
         Thread.sleep(1000);
         driver.findElement(By.id("toDate")).sendKeys("01/12/2013");
         Thread.sleep(1000);
         driver.findElement(By.id("queryBtn")).click();
         Thread.sleep(3000);
     }
+
+    @Ignore
+    @Test   //Top 10 IMSI (Net Eng.)
+    public void testUserStory12() throws Exception {
+        driver.get(baseUrl);
+        Thread.sleep(1000);
+        driver.findElement(By.id("user-login")).clear();
+        Thread.sleep(1000);
+        driver.findElement(By.id("user-login")).sendKeys("admin");
+        Thread.sleep(1000);
+        driver.findElement(By.id("password-login")).clear();
+        Thread.sleep(1000);
+        driver.findElement(By.id("password-login")).sendKeys("@Admin123");
+        Thread.sleep(1000);
+        driver.findElement(By.id("login-submit")).click();
+        Thread.sleep(3000);
+
+        //IMSI:  344930000000011
+
+        driver.findElement(By.linkText("Call Failure")).click();
+        Thread.sleep(2000);
+        driver.findElement(By.id("top-imsi-netengn")).click();
+        Thread.sleep(2000);
+        //driver.findElement(By.id("fromDate")).click();
+        Thread.sleep(1000);
+        //driver.findElement(By.id("fromDate")).clear();
+        Thread.sleep(1000);
+        driver.findElement(By.id("fromDate")).sendKeys("01/01/2013");
+        Thread.sleep(1000);
+        //driver.findElement(By.id("toDate")).clear();
+        Thread.sleep(1000);
+        driver.findElement(By.id("toDate")).sendKeys("01/12/2013");
+        Thread.sleep(1000);
+        driver.findElement(By.id("queryBtn")).click();
+        Thread.sleep(3000);
+    }
+
+    @Ignore
+    @Test   //IMSI (Net Eng.)
+    public void testUserStory9() throws Exception {
+        driver.get(baseUrl);
+        Thread.sleep(1000);
+        driver.findElement(By.id("user-login")).clear();
+        Thread.sleep(1000);
+        driver.findElement(By.id("user-login")).sendKeys("admin");
+        Thread.sleep(1000);
+        driver.findElement(By.id("password-login")).clear();
+        Thread.sleep(1000);
+        driver.findElement(By.id("password-login")).sendKeys("@Admin123");
+        Thread.sleep(1000);
+        driver.findElement(By.id("login-submit")).click();
+        Thread.sleep(3000);
+
+        //IMSI:  344930000000011
+
+        driver.findElement(By.linkText("Counts")).click();
+        Thread.sleep(2000);
+        driver.findElement(By.id("count-imsi-netengn")).click();
+        Thread.sleep(2000);
+        //driver.findElement(By.id("fromDate")).click();
+        Thread.sleep(1000);
+        //driver.findElement(By.id("fromDate")).clear();
+        Thread.sleep(1000);
+        driver.findElement(By.id("fromDate")).sendKeys("01/01/2013");
+        Thread.sleep(1000);
+        //driver.findElement(By.id("toDate")).clear();
+        Thread.sleep(1000);
+        driver.findElement(By.id("toDate")).sendKeys("01/12/2013");
+        Thread.sleep(1000);
+        driver.findElement(By.id("queryBtn")).click();
+        Thread.sleep(3000);
+    }
+    @Ignore
+    @Test   //Phone Module (Sup Eng.)
+    public void testUserStory8() throws Exception {
+        driver.get(baseUrl);
+        Thread.sleep(1000);
+        driver.findElement(By.id("user-login")).clear();
+        Thread.sleep(1000);
+        driver.findElement(By.id("user-login")).sendKeys("admin");
+        Thread.sleep(1000);
+        driver.findElement(By.id("password-login")).clear();
+        Thread.sleep(1000);
+        driver.findElement(By.id("password-login")).sendKeys("@Admin123");
+        Thread.sleep(1000);
+        driver.findElement(By.id("login-submit")).click();
+        Thread.sleep(3000);
+
+        //IMSI:  344930000000011
+
+        driver.findElement(By.linkText("Counts")).click();
+        Thread.sleep(2000);
+        driver.findElement(By.id("count-phone-sup")).click();
+        Thread.sleep(2000);
+        driver.findElement(By.id("phone_model_text")).clear();
+        Thread.sleep(1000);
+        driver.findElement(By.id("phone_model_text")).sendKeys("VEA3");
+        Thread.sleep(1000);
+
+        //driver.findElement(By.id("fromDate")).click();
+        Thread.sleep(1000);
+        //driver.findElement(By.id("fromDate")).clear();
+        Thread.sleep(1000);
+        driver.findElement(By.id("fromDate")).sendKeys("01/01/2013");
+        Thread.sleep(1000);
+        //driver.findElement(By.id("toDate")).clear();
+        Thread.sleep(1000);
+        driver.findElement(By.id("toDate")).sendKeys("01/12/2013");
+        Thread.sleep(1000);
+        driver.findElement(By.id("queryBtn")).click();
+        Thread.sleep(3000);
+    }
+    @Ignore
+    @Test   //IMSI(Cust.)
+    public void testUserStory5() throws Exception {
+        driver.get(baseUrl);
+        Thread.sleep(1000);
+        driver.findElement(By.id("user-login")).clear();
+        Thread.sleep(1000);
+        driver.findElement(By.id("user-login")).sendKeys("admin");
+        Thread.sleep(1000);
+        driver.findElement(By.id("password-login")).clear();
+        Thread.sleep(1000);
+        driver.findElement(By.id("password-login")).sendKeys("@Admin123");
+        Thread.sleep(1000);
+        driver.findElement(By.id("login-submit")).click();
+        Thread.sleep(3000);
+
+        //IMSI:  344930000000011
+
+        driver.findElement(By.linkText("Counts")).click();
+        Thread.sleep(2000);
+        driver.findElement(By.id("count-imsi-cust")).click();
+        Thread.sleep(2000);
+        driver.findElement(By.id("imsi_text")).clear();
+        Thread.sleep(1000);
+        driver.findElement(By.id("imsi_text")).sendKeys("344930000000011");
+        Thread.sleep(1000);
+
+        //driver.findElement(By.id("fromDate")).click();
+        Thread.sleep(1000);
+        //driver.findElement(By.id("fromDate")).clear();
+        Thread.sleep(1000);
+        driver.findElement(By.id("fromDate")).sendKeys("01/01/2013");
+        Thread.sleep(1000);
+        //driver.findElement(By.id("toDate")).clear();
+        Thread.sleep(1000);
+        driver.findElement(By.id("toDate")).sendKeys("01/12/2013");
+        Thread.sleep(1000);
+        driver.findElement(By.id("queryBtn")).click();
+        Thread.sleep(3000);
+    }
+
+    @Test   //MCC/MNC for Time (Net Eng.)
+    public void testUserStory11() throws Exception {
+        driver.get(baseUrl);
+        Thread.sleep(1000);
+        driver.findElement(By.id("user-login")).clear();
+        Thread.sleep(1000);
+        driver.findElement(By.id("user-login")).sendKeys("admin");
+        Thread.sleep(1000);
+        driver.findElement(By.id("password-login")).clear();
+        Thread.sleep(1000);
+        driver.findElement(By.id("password-login")).sendKeys("@Admin123");
+        Thread.sleep(1000);
+        driver.findElement(By.id("login-submit")).click();
+        Thread.sleep(3000);
+
+        //IMSI:  344930000000011
+
+        driver.findElement(By.linkText("MCC/MNC")).click();
+        Thread.sleep(2000);
+        driver.findElement(By.id("mcc-mnc-time-netengn")).click();
+        Thread.sleep(2000);
+        //driver.findElement(By.id("fromDate")).click();
+        Thread.sleep(1000);
+        //driver.findElement(By.id("fromDate")).clear();
+        Thread.sleep(1000);
+        driver.findElement(By.id("fromDate")).sendKeys("01/01/2013");
+        Thread.sleep(1000);
+        //driver.findElement(By.id("toDate")).clear();
+        Thread.sleep(1000);
+        driver.findElement(By.id("toDate")).sendKeys("01/12/2013");
+        Thread.sleep(1000);
+        driver.findElement(By.id("queryBtn")).click();
+        Thread.sleep(3000);
+    }
+
+    @Test   //MCC/MNC Graph (Net Eng.)
+    public void testUserStory13() throws Exception {
+        driver.get(baseUrl);
+        Thread.sleep(1000);
+        driver.findElement(By.id("user-login")).clear();
+        Thread.sleep(1000);
+        driver.findElement(By.id("user-login")).sendKeys("admin");
+        Thread.sleep(1000);
+        driver.findElement(By.id("password-login")).clear();
+        Thread.sleep(1000);
+        driver.findElement(By.id("password-login")).sendKeys("@Admin123");
+        Thread.sleep(1000);
+        driver.findElement(By.id("login-submit")).click();
+        Thread.sleep(3000);
+
+        //IMSI:  344930000000011
+
+        driver.findElement(By.linkText("MCC/MNC")).click();
+        Thread.sleep(2000);
+        driver.findElement(By.id("mcc-mnc-graph-netengn")).click();
+        Thread.sleep(2000);
+
+        driver.findElement(By.id("queryBtn")).click();
+        Thread.sleep(3000);
+    }
+
 
     @After
     public void tearDown() throws Exception {
