@@ -3,6 +3,7 @@ package dao;
 import entities.UserEventType;
 
 import javax.ejb.Local;
+import java.util.Collection;
 import java.util.HashSet;
 
 /**
@@ -13,4 +14,5 @@ import java.util.HashSet;
 public interface UserEventTypeDAOLocal {
     HashSet<Integer> getUserEventSet();
     void addUserEventType(UserEventType userEventType);
+    Collection<?> allUserEventTypes();
 }

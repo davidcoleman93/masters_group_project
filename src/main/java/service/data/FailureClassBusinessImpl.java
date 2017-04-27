@@ -13,6 +13,7 @@ import javax.ejb.TransactionManagement;
 import javax.ejb.TransactionManagementType;
 import javax.inject.Inject;
 import java.io.File;
+import java.util.Collection;
 import java.util.HashSet;
 
 /**
@@ -94,5 +95,9 @@ public class FailureClassBusinessImpl implements FailureClassBusinessLocal {
             LineIterator.closeQuietly(lineIterator);
         }
         System.out.println("COMPLETED");
+    }
+
+    public Collection<?> allFailureClasses(){
+        return failureClassBean.allFailureClasses();
     }
 }

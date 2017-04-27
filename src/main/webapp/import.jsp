@@ -54,7 +54,7 @@
 
 </head>
 
-<body onload = "runFileListener()">
+<body onload = 'runFileListener()'>
 	<section id="container">
 		<!-- *******TOP BAR CONTENT & NOTIFICATIONS******** -->
 		<!--header start-->
@@ -125,7 +125,7 @@ alert(username); --%>
 			//making sure content has been posted.
 			if (content != null) {
 			    //Should be absolute path of the destination directory
-				String filePath = "C:\\test\\Files\\" + fileName + ".csv";
+				String filePath = "C:\\Code\\FinalPush\\masters_group_project\\Files\\" + fileName + ".csv";
 				try {
 					out.println(filePath);
 					PrintWriter pw = new PrintWriter(new FileOutputStream(filePath));
@@ -225,6 +225,16 @@ footer end-->
 	<!--script for this page-->
 	<script src="assets/js/sparkline-chart.js"></script>
 	<script src="assets/js/zabuto_calendar.js"></script>
+	<!-- New script for queries. Added by David C -->
+	<script src="assets/js/sorting-tables.js"></script>
+	<script src="assets/js/autocomplete.js"></script>
+	<script src="assets/js/dropdown.js"></script>
+	<script src="assets/js/user-stories.js"></script>
+
+	<!-- For query front-end structure -->
+	<script src="assets/js/default_query_template.js"></script>
+	<script src="assets/js/user_story_specific_front-end.js"></script>
+	<script src = "assets/js/page_partition.js"></script>
 	<!-- Side bar Script-->
 	<script>
             $(document).ready(function () {

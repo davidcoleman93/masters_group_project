@@ -19,12 +19,23 @@ function userStory4(){
                 "Description " + "</th>" + "<th onclick = 'sortTable(3)'>");
             document.getElementById("searched").innerHTML = "Searched: " + imsi + "<br>";
             document.getElementById("searched").innerHTML += story4.length + " results found!";
-            $.each(story4, function (index, value) {
-                $("#results").append("<tr><td>" +
-                    value.eventCauseID.eventID  + "</td><td>" +
-                    value.eventCauseID.causeCode + "</td><td>" +
-                    value.description + "</td></tr>");
-            });
+
+
+                if( story4.length < 250 ){
+                    $.each(story4, function (index, value) {
+                        $("#results").append("<tr><td>" +
+                            value.eventCauseID.eventID + "</td><td>" +
+                            value.eventCauseID.causeCode + "</td><td>" +
+                            value.description + "</td></tr>");
+                    });
+                }else{
+                    for( var i = 0; i < 50; i++ ){
+                        $("#results").append("<tr><td>" +
+                            story4[i].eventCauseID.eventID + "</td><td>" +
+                            story4[i].eventCauseID.causeCode + "</td><td>" +
+                            story4[i].description + "</td></tr>");
+                    }
+                }
         }
     });
 }
@@ -64,12 +75,23 @@ function userStory6(){
             $("#results").append("<th onclick = 'sortTable(0)'>" + "Cause Code" + '<span id = "sort_arrow" class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>' +  "</th>" + "<th onclick = 'sortTable(1)'>"+ "Count" + "</th>" );
             document.getElementById("searched").innerHTML = "Searched: " + imsi + "<br>";
             document.getElementById("searched").innerHTML += story6.length + " results found!";
-            $.each(story6, function (index, value) {
-                var eventCause = value[0];
-                $("#results").append("<tr><td>" +
-                    eventCause.eventCauseID.causeCode + "</td><td>" +
-                    value[1] + "</td></tr>");
-            });
+
+            if( story6.length < 250 ){
+                $.each(story6, function (index, value) {
+                    var eventCause = value[0];
+                    $("#results").append("<tr><td>" +
+                        eventCause.eventCauseID.causeCode + "</td><td>" +
+                        value[1] + "</td></tr>");
+                });
+            }else {
+                for( var i = 0; i < 50; i++ ){
+                    var eventCause = story6[i][0];
+                    $("#results").append("<tr><td>" +
+                        eventCause.eventCauseID.causeCode + "</td><td>" +
+                        story6[i][1] + "</td></tr>");
+                }
+            }
+
         }
     });
 }
@@ -103,16 +125,29 @@ function userStory7(){
 
             //var cellID, date, duration, eventCause, failureClass, id, imsi, marketOperator, neVersion, userEventType;
 
-            $.each(story7, function (index, value) {
-                $("#results").append("<tr><td>" +
-                    getDate(value.dateTime) + "</td><td>" +
-                    value.imsi + "</td><td>" +
-                    value.eventCause.description + "</td><td>" +
-                    value.marketOperator.country + "</td><td>" +
-                    value.marketOperator.operator + "</td><td>" +
-                    value.failureClass.description + "</td><td>" +
-                    value.userEventType.manufacturer + "</td></tr>");
-            });
+            if( story7.length < 250 ){
+                $.each(story7, function (index, value) {
+                    $("#results").append("<tr><td>" +
+                        getDate(value.dateTime) + "</td><td>" +
+                        value.imsi + "</td><td>" +
+                        value.eventCause.description + "</td><td>" +
+                        value.marketOperator.country + "</td><td>" +
+                        value.marketOperator.operator + "</td><td>" +
+                        value.failureClass.description + "</td><td>" +
+                        value.userEventType.manufacturer + "</td></tr>");
+                });
+            }else {
+                for( var i = 0; i < 50; i++ ){
+                    $("#results").append("<tr><td>" +
+                        getDate(value.dateTime) + "</td><td>" +
+                        story7[i].imsi + "</td><td>" +
+                        story7[i].eventCause.description + "</td><td>" +
+                        story7[i].marketOperator.country + "</td><td>" +
+                        story7[i].marketOperator.operator + "</td><td>" +
+                        story7[i].failureClass.description + "</td><td>" +
+                        story7[i].userEventType.manufacturer + "</td></tr>");
+                }
+            }
         }
     });
 }
@@ -158,11 +193,20 @@ function userStory9( chart ){
                 var numFailures = [];
                 var failures = [];
 
-                $.each(story9, function (index, value) {
-                    totalDuration.push(parseInt(value[1]));
-                    numFailures.push(parseInt(value[2]));
-                    failures.push(value[0].toString());
-                });
+                if( story9.length < 250 ) {
+                    $.each(story9, function (index, value) {
+                        totalDuration.push(parseInt(value[1]));
+                        numFailures.push(parseInt(value[2]));
+                        failures.push(value[0].toString());
+                    });
+                }else {
+                    for( var i = 0; i < 250; i++ ){
+                        var value = story9[i];
+                        totalDuration.push(parseInt(value[1]));
+                        numFailures.push(parseInt(value[2]));
+                        failures.push(value[0].toString());
+                    }
+                }
 
                 var data = [{
                     x: totalDuration,
@@ -181,12 +225,24 @@ function userStory9( chart ){
                 //var shade = false;
                 document.getElementById("searched").innerHTML = "Searched range: " + startDate + " to " + endDate + "<br>";
                 document.getElementById("searched").innerHTML += story9.length + " results found!";
-                $.each(story9, function (index, value) {
-                    $("#results").append("<tr><td>" +
-                        value[0] + "</td><td>" +
-                        value[1] + "</td><td>" +
-                        value[2] + "</td></tr>");
-                });
+
+                if( story9.length < 250 ) {
+                    $.each(story9, function (index, value) {
+                        $("#results").append("<tr><td>" +
+                            value[0] + "</td><td>" +
+                            value[1] + "</td><td>" +
+                            value[2] + "</td></tr>");
+                    });
+                }else {
+                    for( var j = 0; j < 50; j++ ) {
+                        var v = story9[j];
+                        $("#results").append("<tr><td>" +
+                            v[0] + "</td><td>" +
+                            v[1] + "</td><td>" +
+                            v[2] + "</td></tr>");
+                    }
+                }
+
             }
         },error: function () {
             console.log("Error");
@@ -209,10 +265,19 @@ function userStory10( chart ){
                 var eventcause = [];
                 var counts = [];
 
-                $.each(story10, function (index, value) {
-                    eventcause.push(value[0].eventCauseID.eventID + "/" + value[0].eventCauseID.causeCode);
-                    counts.push(parseInt(value[1]));
-                });
+                if( story10.length < 250 ){
+                    $.each(story10, function (index, value) {
+                        eventcause.push(value[0].eventCauseID.eventID + "/" + value[0].eventCauseID.causeCode);
+                        counts.push(parseInt(value[1]));
+                    });
+                }else {
+                    for( var i = 0; i < 250; i++ ) {
+                        var value = story10[i];
+                        eventcause.push(value[0].eventCauseID.eventID + "/" + value[0].eventCauseID.causeCode);
+                        counts.push(parseInt(value[1]));
+                    }
+                }
+
 
                 var data = [{
                     x: eventcause,
@@ -237,14 +302,28 @@ function userStory10( chart ){
 
                 document.getElementById("searched").innerHTML = "Searched: " + phoneModel + "<br>";
                 document.getElementById("searched").innerHTML += story10.length + " results found!";
-                $.each(story10, function (index, value) {
-                    var eventCause = value[0];
-                    $("#results").append("<tr><td>" +
-                        eventCause.eventCauseID.eventID + "</td><td>" +
-                        eventCause.eventCauseID.causeCode + "</td><td>" +
-                        eventCause.description + "</td><td>" +
-                        value[1] + "</td></tr>");
-                });
+
+
+                    if( story10.length < 250 ){
+                        $.each(story10, function (index, value) {
+                            var eventCause = value[0];
+                            $("#results").append("<tr><td>" +
+                                eventCause.eventCauseID.eventID + "</td><td>" +
+                                eventCause.eventCauseID.causeCode + "</td><td>" +
+                                eventCause.description + "</td><td>" +
+                                value[1] + "</td></tr>");
+                        });
+                    }else {
+                        for( var j = 0; j < 50; j++ ) {
+                            var v = story10[j];
+                            var eventCause = value[0];
+                            $("#results").append("<tr><td>" +
+                                eventCause.eventCauseID.eventID + "</td><td>" +
+                                eventCause.eventCauseID.causeCode + "</td><td>" +
+                                eventCause.description + "</td><td>" +
+                                v[1] + "</td></tr>");
+                        }
+                    }
             }
         }
     });
@@ -268,22 +347,27 @@ function userStory11( charts ){
                 var mccCombos = [];
                 var totals = [];
 
-                $.each(story11, function (index, value) {
-                    mccCombos.push( value[0].country
-                        + "/" + value[0].market + "/" + parseInt(value[1]) );
-                    totals.push(parseInt(value[2]));
-                });
+                if( story11.length < 250 ){
+                    $.each(story11, function (index, value) {
+                        mccCombos.push( value[0].country
+                            + "/" + value[0].market + "/" + parseInt(value[1]) );
+                        totals.push(parseInt(value[2]));
+                    });
+                }else {
+                    for( var i = 0; i < 50; i++ ){
+                        var value = story11[i];
+                        mccCombos.push( value[0].country
+                            + "/" + value[0].market + "/" + parseInt(value[1]) );
+                        totals.push(parseInt(value[2]));
+                    }
+                }
 
                 var data = [{
                     values: totals,
                     labels: mccCombos,
                     type: 'pie'
                 }];
-                var layout = {
-                    height: 400,
-                    width: 500
-                };
-                Plotly.newPlot('query_output', data, layout);
+                Plotly.newPlot('query_output', data);
 
             }else {
 
@@ -295,15 +379,29 @@ function userStory11( charts ){
                     "<th onclick = 'sortTable(4)'>" + "Total" + "</th>");
 
                 document.getElementById("searched").innerHTML += story11.length + " results found!";
-                $.each(story11, function (index, value) {
-                    $("#results").append("<tr><td>" +
-                        (index + 1) + "</td><td>" +
-                        value[0].operatorCode.marketCode + "</td><td>" +
-                        value[0].operatorCode.operatorCode + "</td><td>" +
-                        value[1] + "</td><td>" +
-                        value[2] + "</td></tr>"
-                    );
-                });
+
+                if( story11.length < 250 ) {
+                    $.each(story11, function (index, value) {
+                        $("#results").append("<tr><td>" +
+                            (index + 1) + "</td><td>" +
+                            value[0].operatorCode.marketCode + "</td><td>" +
+                            value[0].operatorCode.operatorCode + "</td><td>" +
+                            value[1] + "</td><td>" +
+                            value[2] + "</td></tr>"
+                        );
+                    });
+                }else {
+                    for( var j = 0; j < 50; j++ ){
+                        var v = story11[j];
+                        $("#results").append("<tr><td>" +
+                            (index + 1) + "</td><td>" +
+                            v[0].operatorCode.marketCode + "</td><td>" +
+                            v[0].operatorCode.operatorCode + "</td><td>" +
+                            v[1] + "</td><td>" +
+                            v[2] + "</td></tr>"
+                        );
+                    }
+                }
             }
         }
     });
@@ -328,10 +426,18 @@ function userStory12( charts ){
                 var imsis = [];
                 var totals = [];
 
-                $.each(story12, function (index, value) {
-                    imsis.push(parseInt(value[0]));
-                    totals.push(parseInt(value[1]));
-                });
+                if( story12.length < 250 ){
+                    $.each(story12, function (index, value) {
+                        imsis.push(parseInt(value[0]));
+                        totals.push(parseInt(value[1]));
+                    });
+                }else {
+                    for( var i = 0; i < 250; i++ ){
+                        var value = story12[i];
+                        imsis.push(parseInt(value[0]));
+                        totals.push(parseInt(value[1]));
+                    }
+                }
 
                 var data = [{
                     values: totals,
@@ -353,12 +459,21 @@ function userStory12( charts ){
                     "TOTAL" + "</th>");
 
                 document.getElementById("searched").innerHTML = story12.length + " results found!";
-                $.each(story12, function (index, value) {
-                    console.log(value);
-                    $("#results").append("<tr><td>" +
-                        value[0] + "</td><td>" +
-                        value[1] + "</td></tr>");
-                });
+
+                if( story12.length < 250 ){
+                    $.each(story12, function (index, value) {
+                        $("#results").append("<tr><td>" +
+                            value[0] + "</td><td>" +
+                            value[1] + "</td></tr>");
+                    });
+                }else {
+                    for( var j = 0; j < 50; j++ ){
+                        var v = story12[j];
+                        $("#results").append("<tr><td>" +
+                            v[0] + "</td><td>" +
+                            v[1] + "</td></tr>");
+                    }
+                }
             }
         }
     });
@@ -375,49 +490,35 @@ function userStory13( charts ){
             var story13 = aList;
             if( charts === "charts" ){
 
-                var market = [];
-                var operator = [];
-                var cellID = [];
                 var totals = [];
                 var percentages = [];
+                var combos = [];
 
-                $.each(story13, function (index, value) {
-                    market.push(parseInt(value[0].operatorCode.marketCode));
-                    operator.push(parseInt(value[0].operatorCode.operatorCode));
-                    cellID.push(parseInt(value[1]));
-                    totals.push(parseInt(value[2]));
-                    percentages.push(parseInt(value[3]));
-                });
+                if( story13.length < 250 ){
+                    $.each(story13, function (index, value) {
+                        combos.push(value[0].country +
+                            "/" + value[0].operator +
+                            "/" + parseInt(value[1]));
+                        totals.push(parseInt(value[2]));
+                        percentages.push(parseInt(value[3]));
+                    });
+                }else {
+                    for( var i = 0; i < 250; i++ ){
+                        var value = story13[i];
+                        combos.push(value[0].country +
+                            "/" + value[0].operator +
+                            "/" + parseInt(value[1]));
+                        totals.push(parseInt(value[2]));
+                        percentages.push(parseInt(value[3]));
+                    }
+                }
 
                 var data = [{
-                    values: [totals, percentages],
-                    labels: [market, operator, cellID],
-                    domain: {
-                        x: [0, .48]
-                    },
-                    name: 'MCC/MNC/CELL ID',
-                    hoverinfo: 'label+percent+name',
-                    hole: .4,
+                    values: percentages,
+                    labels: combos,
                     type: 'pie'
                 }];
-
-                var layout = {
-                    title: 'MCC/MNC/CELL ID',
-                    annotations: [
-                        {
-                            font: {
-                                size: 20
-                            },
-                            showarrow: false,
-                            text: 'MCC/MNC/CELL ID',
-                            x: 0.17,
-                            y: 0.5
-                        }
-                    ],
-                    height: 600,
-                    width: 600
-                };
-                Plotly.newPlot('query_output', data, layout);
+                Plotly.newPlot('query_output', data);
             }else {
                 $("#results").append(
                     "<th onclick = 'sortTable(0)'>" + "Number" + '<span id = "sort_arrow" class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>' + "</th>" +
@@ -428,16 +529,31 @@ function userStory13( charts ){
                     "<th onclick = 'sortTable(3)'>" + "%"  + "</th>");
 
                 document.getElementById("searched").innerHTML += story13.length + " results found!";
-                $.each(story13, function (index, value) {
-                    $("#results").append("<tr><td>" +
-                        (index + 1) + "</td><td>" +
-                        value[0].operatorCode.marketCode + "</td><td>" +
-                        value[0].operatorCode.operatorCode + "</td><td>" +
-                        value[1] + "</td><td>" +
-                        value[2] + "</td><td>" +
-                        value[3] + "</td></tr>"
-                    );
-                });
+
+                if( story13.length < 250 ){
+                    $.each(story13, function (index, value) {
+                        $("#results").append("<tr><td>" +
+                            (index + 1) + "</td><td>" +
+                            value[0].operatorCode.marketCode + "</td><td>" +
+                            value[0].operatorCode.operatorCode + "</td><td>" +
+                            value[1] + "</td><td>" +
+                            value[2] + "</td><td>" +
+                            value[3] + "</td></tr>"
+                        );
+                    });
+                }else {
+                    for( var j = 0; j < 50; j++ ){
+                        var v = story13[j];
+                        $("#results").append("<tr><td>" +
+                            (index + 1) + "</td><td>" +
+                            v[0].operatorCode.marketCode + "</td><td>" +
+                            v[0].operatorCode.operatorCode + "</td><td>" +
+                            v[1] + "</td><td>" +
+                            v[2] + "</td><td>" +
+                            v[3] + "</td></tr>"
+                        );
+                    }
+                }
             }
         }
     });
@@ -445,17 +561,17 @@ function userStory13( charts ){
 }
 
 function userStory14(){
-    var failure_class = $('#query_dropdown').val();
+    var failure_class = $('#failure_class_text').val();
     $("#results").html("");
     $.ajax({
         type: 'GET',
-        url: 'api/data/failure_class/get_imsis/' + 3,
+        url: 'api/data/failure_class/get_imsis/' + failure_class,
         contentType: 'application/json',
         dataType: 'json',
         success: function (aList) {
             var story14 = aList;
             $("#results").append(
-                "<th onclick = 'sortTable(0)'>" + "Date" + '<span id = "sort_arrow" class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>' +  "</th>" +
+                "<th onclick = 'sortTable(0)'>" + "Date" + '<span id = "sort_arrow" class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>' + "</th>" +
                 "<th onclick = 'sortTable(1)'>" + "IMSI" + "</th>" +
                 "<th onclick = 'sortTable(2)'>" + "Event Cause" + "</th>" +
                 "<th onclick = 'sortTable(3)'>" + "Country" + "</th>" +
@@ -465,21 +581,31 @@ function userStory14(){
 
             document.getElementById("searched").innerHTML = "Searched: " + failure_class + "<br>";
             document.getElementById("searched").innerHTML += story14.length + " results found!";
-            //$.each(story14, function (index, value) {
-            console.log(story14.length);
-            for(var i = 0; i < 20; i++) {
-                var value = story14[i];
-                $("#results").append("<tr><td>" +
-                    getDate(value.dateTime) + "</td><td>" +
-                    value.imsi + "</td><td>" +
-                    value.eventCause.description + "</td><td>" +
-                    value.marketOperator.country + "</td><td>" +
-                    value.marketOperator.operator + "</td><td>" +
-                    value.failureClass.description + "</td><td>" +
-                    value.userEventType.manufacturer + "</td></tr>");
-            }
-                //});
 
+            if (story14.length < 250) {
+                $.each(story14, function (index, value) {
+                    $("#results").append("<tr><td>" +
+                        getDate(value.dateTime) + "</td><td>" +
+                        value.imsi + "</td><td>" +
+                        value.eventCause.description + "</td><td>" +
+                        value.marketOperator.country + "</td><td>" +
+                        value.marketOperator.operator + "</td><td>" +
+                        value.failureClass.description + "</td><td>" +
+                        value.userEventType.manufacturer + "</td></tr>");
+                });
+            } else {
+                for (var i = 0; i < 20; i++) {
+                    var value = story14[i];
+                    $("#results").append("<tr><td>" +
+                        getDate(value.dateTime) + "</td><td>" +
+                        value.imsi + "</td><td>" +
+                        value.eventCause.description + "</td><td>" +
+                        value.marketOperator.country + "</td><td>" +
+                        value.marketOperator.operator + "</td><td>" +
+                        value.failureClass.description + "</td><td>" +
+                        value.userEventType.manufacturer + "</td></tr>");
+                }
+            }
         }
     });
 
@@ -501,31 +627,6 @@ function getDate( date ) {
     }
     return dd + '/' + mm + '/' + yyyy;
 }
-
-/*
-function querySpecifcStructure(heading, description, label_text, input_id,
-        placeholder_text, button_method)
-{
-    //Query Info
-    $("#info_heading").append(heading);
-    $("#info_description").append(description);
-
-    //Query Input
-    var text_field = document.getElementById("query_field");
-    text_field.setAttribute("id", input_id);
-
-    if(placeholder_text != null) {
-        text_field.placeholder = placeholder_text;
-    }
-
-    var label = document.getElementById("query_label");
-    label.setAttribute("for", "uetype_text");
-    label.innerHTML = label_text;
-
-    var queryBtn = document.getElementById("queryBtn");
-    queryBtn.setAttribute("onclick", button_method);
-
-}*/
 
 function showEventCauseTable() {
     $('#results').innerHTML = "";
@@ -549,5 +650,91 @@ function showEventCauseTable() {
             });
         }
     });
+}
 
+function showFailureClassTable() {
+    $('#results').innerHTML = "";
+    $.ajax({
+        type: 'GET',
+        url: 'api/data/failure_classes',
+        contentType: 'application/json',
+        dataType: 'json',
+        success: function (aList) {
+            $("#results").append(
+                "<th>" + "Failure Class" + "</th>" +
+                "<th>" + "Description"  + "</th>"
+            );
+            $.each(aList, function (index, value) {
+                $("#results").append("<tr><td>" +
+                    value.failureClass + "</td><td>" +
+                    value.description + "</td></tr>"
+                );
+            });
+        }
+    });
+}
+
+function showUserEventTypeTable() {
+    $('#results').innerHTML = "";
+    $.ajax({
+        type: 'GET',
+        url: 'api/data/user_event_types',
+        contentType: 'application/json',
+        dataType: 'json',
+        success: function (aList) {
+            $("#results").append(
+                "<th>" + "Failure Class" + "</th>" +
+                "<th>" + "Marketing Name" + "</th>" +
+                "<th>" + "Manufacturer" + "</th>" +
+                "<th>" + "Access Capability" + "</th>" +
+                "<th>" + "Model" + "</th>" +
+                "<th>" + "UE Type" + "</th>" +
+                "<th>" + "OS" + "</th>" +
+                "<th>" + "Input Mode" + "</th>"
+            );
+            $.each(aList, function (index, value) {
+                $("#results").append(
+                    "<tr><td>" +
+                    value.tac + "</td><td>" +
+                    value.marketingName + "</td><td>" +
+                    value.manufacturer + "</td><td>" +
+                    value.accessCapability + "</td><td>" +
+                    value.model + "</td><td>" +
+                    value.vendorName + "</td><td>" +
+                    value.ueDevice + "</td><td>" +
+                    value.operatingSystem + "</td><td>" +
+                    value.inputMode +
+                    "</td></tr>"
+                );
+            });
+        }
+    });
+}
+
+function showMarketOperatorTable() {
+    $('#results').innerHTML = "";
+    $.ajax({
+        type: 'GET',
+        url: 'api/data/market_operators',
+        contentType: 'application/json',
+        dataType: 'json',
+        success: function (aList) {
+            $("#results").append(
+                "<th>" + "MCC" + "</th>" +
+                "<th>" + "MNC" + "</th>" +
+                "<th>" + "Country" + "</th>" +
+                "<th>" + "Operator" + "</th>"
+            );
+            $.each(aList, function (index, value) {
+                $("#results").append(
+                    "<tr><td>" +
+                    value.operatorCode.marketCode + "</td><td>" +
+                    value.operatorCode.operatorCode + "</td><td>" +
+                    value.country + "</td><td>" +
+                    value.operator + "</td><td>" +
+                    "</td></tr>"
+                );
+            });
+        }
+    });
 }

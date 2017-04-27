@@ -14,4 +14,5 @@ import java.util.HashSet;
 public interface FailureClassDAOLocal {
     HashSet<Integer> getFailureClassSet();
     void addFailureClass(FailureClass failureClass);
+    Collection<?> allFailureClasses();
 }

@@ -25,6 +25,12 @@ public class DATAController {
     private DataServiceEJBLocal dataEJB;
     @EJB
     private EventCauseValidationEJBLocal eventCauseEJB;
+    @EJB
+    private MarketOperatorValidationEJBLocal marketOperatorEJB;
+    @EJB
+    private UserEventValidationEJBLocal userEventEJB;
+    @EJB
+    private FailureClassBusinessLocal failureClassEJB;
 
     //ALL FAILURE EVENT DATA
     @GET
@@ -82,11 +88,35 @@ public class DATAController {
     	return dataEJB.getAllUniqueIMSIsV2(imsi);
     }
 
+    /*
+        LOOKUP TABLES
+     */
     @GET
     @Path("/event_causes")
     @Produces(MediaType.APPLICATION_JSON)
     public Collection<?> allEventCauses(){
         return eventCauseEJB.allEventCauses();
+    }
+
+    @GET
+    @Path("/market_operators")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Collection<?> allMarketOperators(){
+        return marketOperatorEJB.allMarketOperators();
+    }
+
+    @GET
+    @Path("/user_event_types")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Collection<?> allUserEventTypes(){
+        return userEventEJB.allUserEventTypes();
+    }
+
+    @GET
+    @Path("/failure_classes")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Collection<?> allFailureClasses(){
+        return failureClassEJB.allFailureClasses();
     }
 
     //USER STORY #4

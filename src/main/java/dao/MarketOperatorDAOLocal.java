@@ -14,4 +14,5 @@ import java.util.Collection;
 public interface MarketOperatorDAOLocal {
     Multimap<Integer, Integer> getMarketOpMap();
     void addMarketOperator(MarketOperator marketOperator);
+    Collection<?> allMarketOperators();
 }

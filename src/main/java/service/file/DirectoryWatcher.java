@@ -24,7 +24,7 @@ public class DirectoryWatcher implements DirectoryWatcherLocal {
     private static WatchService dirWatcher; //JAVA Watcher API.
     private static Path targetDirectory;
     private static WatchKey watcherKey; //The WatchKey determines the types of events to listen for.
-    private static String DIR_PATH = "C:\\LTEFileUpload";
+    private static String DIR_PATH = "C:\\Code\\FinalPush\\masters_group_project\\Files\\";
 
     /*@EJB
     private CSVMediatorLocal csvEJB;
@@ -68,7 +68,7 @@ public class DirectoryWatcher implements DirectoryWatcherLocal {
 
                 if (eventKind == ENTRY_CREATE) {
                     //ATM WE SEND THE BASE DATA WORKBOOK
-                    String fileName = DIR_PATH + "\\" + ev.context();
+                    String FILE_PATH = DIR_PATH + ev.context();
                     //csvEJB.scanFirstLineCSV(file);
                     //WE WILL FIX THIS FOR SPRINT 2 -> MAYBE USE A MEDIATOR THAT SCANS THE FIRST LINE OF THE CSV???
                     /*if(fileName.contains("Event")){
@@ -91,9 +91,9 @@ public class DirectoryWatcher implements DirectoryWatcherLocal {
                             marketOperatorEJB.updateMarketOperator(fileName);
                         }
                     }*/
-                    if(fileName.contains("Base")){
+                    if(FILE_PATH.contains("Base")){
                         synchronized (this){
-                            failureEventEJB.postCSV(fileName);
+                            failureEventEJB.postCSV(FILE_PATH, DIR_PATH);
                         }
                     }
                 }

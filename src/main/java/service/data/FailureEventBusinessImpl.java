@@ -45,7 +45,10 @@ public class FailureEventBusinessImpl implements FailureEventBusinessLocal {
     @Inject
     private FailureEventLogDAOLocal feLogBean;
 
-    public void postCSV(String fileName) {
+    private String DIR_PATH;
+
+    public void postCSV(String fileName, String DIR_PATH) {
+        this.DIR_PATH = DIR_PATH;
         /*
             Objects for scanning CSV file
          */
@@ -299,15 +302,19 @@ public class FailureEventBusinessImpl implements FailureEventBusinessLocal {
             dataBean.addDataImport(new DataImportLog(new Date(), true, numImports, numErrors));
         }
         synchronized (this){
-            removeFile(fileName);
+            deleteFiles();
         }
     }
 
-    private void removeFile(String fileName){
-        try{
-            Files.deleteIfExists(Paths.get(fileName));
-        }catch (Exception e){
-            System.out.println("File does not exist");
+    private void deleteFiles() {
+        File fin = new File(DIR_PATH);
+        for (File file : fin.listFiles()) {
+            try {
+                FileDeleteStrategy.FORCE.delete(file);
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
         }
     }
 }

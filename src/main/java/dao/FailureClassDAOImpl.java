@@ -34,4 +34,8 @@ public class FailureClassDAOImpl implements FailureClassDAOLocal {
     public void addFailureClass(FailureClass failureClass){
         em.persist(failureClass);
     }
+
+    public Collection<?> allFailureClasses(){
+        return (List<FailureClass>) em.createQuery( "FROM FailureClass " ).getResultList();
+    }
 }

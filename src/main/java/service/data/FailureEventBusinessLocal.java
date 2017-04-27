@@ -8,5 +8,5 @@ import javax.ejb.Local;
 
 @Local
 public interface FailureEventBusinessLocal {
-    void postCSV(String fileName);
+    void postCSV(String FILE_PATH, String DIR_PATH);
 }

@@ -6,6 +6,7 @@ import javax.ejb.Local;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 
@@ -34,5 +35,9 @@ public class UserEventTypeDAOImpl implements UserEventTypeDAOLocal {
 
     public void addUserEventType(UserEventType userEventType){
         em.persist(userEventType);
+    }
+
+    public Collection<?> allUserEventTypes(){
+        return (List<UserEventType>) em.createQuery("FROM UserEventType ").getResultList();
     }
 }

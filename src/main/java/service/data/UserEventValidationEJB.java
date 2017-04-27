@@ -12,6 +12,7 @@ import javax.ejb.TransactionManagement;
 import javax.ejb.TransactionManagementType;
 import javax.inject.Inject;
 import java.io.File;
+import java.util.Collection;
 import java.util.HashSet;
 
 /**
@@ -151,5 +152,9 @@ public class UserEventValidationEJB implements UserEventValidationEJBLocal {
             LineIterator.closeQuietly(lineIterator);
         }
         System.out.println("COMPLETED");
+    }
+
+    public Collection<?> allUserEventTypes(){
+        return userEventBean.allUserEventTypes();
     }
 }

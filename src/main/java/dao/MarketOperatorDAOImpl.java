@@ -8,6 +8,7 @@ import javax.ejb.Local;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -35,5 +36,9 @@ public class MarketOperatorDAOImpl implements MarketOperatorDAOLocal {
 
     public void addMarketOperator(MarketOperator marketOperator){
         em.persist(marketOperator);
+    }
+
+    public Collection<?> allMarketOperators(){
+        return (List<MarketOperator>) em.createQuery( "FROM MarketOperator " ).getResultList();
     }
 }
