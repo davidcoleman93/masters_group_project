@@ -19,6 +19,32 @@ body {
     font-size:13px;
 }
 
+#query_label {
+    padding: 10px;
+}
+
+#phone_model_text, #imsi_text {
+    margin: 15px;
+}
+
+#toDate {
+    margin-left: 15px;
+    margin-right: 25px;
+}
+
+#fromDate {
+    margin-left: 15px;
+}
+
+#query_info {
+    margin-left: 15px;
+}
+
+#failure_class_text {
+    margin-left: 10px;
+    margin-right: 15px;
+}
+
 ul li {
     list-style: none;
 }

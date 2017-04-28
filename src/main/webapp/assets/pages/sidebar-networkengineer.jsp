@@ -31,7 +31,7 @@
                 </ul>
             </li>
             <li class="sub-menu">
-                <a href="javascript:;"> <i class="fa fa-phone-square"></i> <span>Call Failure</span> </a>
+                <a href="javascript:;"> <i class="fa fa-phone-square"></i> <span>MCC/MNC</span> </a>
                 <ul class="sub">
                     <li><a id="mcc-mnc-time-netengn">MCC / MNC TIME (Net Engn)</a></li>
                     <li><a id="mcc-mnc-graph-netengn">MCC / MNC GRAPH (Net Engn)</a></li>
@@ -40,11 +40,11 @@
             <li class="sub-menu">
                 <a href="javascript:;"> <i class="fa fa-bar-chart-o"></i> <span>Data Charts</span> </a>
                 <ul class="sub">
-                    <li><a id="chart9">Chart 9</a></li>
-                    <li><a id="chart10">Chart 10</a></li>
-                    <li><a id="chart11">Chart 11</a></li>
-                    <li><a id="chart12">Chart 12</a></li>
-                    <li><a id="chart13">Chart 13</a></li>
+                    <li><a id="chart9">IMSI (Net Engn)</a></li>
+                    <li><a id="chart10">Phone Model (Net Engn)</a></li>
+                    <li><a id="chart11">MCC / MNC TIME (Net Engn)</a></li>
+                    <li><a id="chart12">Top 10 IMSI (Net Engn)</a></li>
+                    <li><a id="chart13">MCC / MNC GRAPH (Net Engn)</a></li>
                 </ul>
             </li>
             <li class="sub-menu">

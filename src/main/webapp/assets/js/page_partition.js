@@ -20,7 +20,7 @@ $(document).ready(function () {
 
         /* Unique display per query */
         querySpecificStructure(
-            "User Story 4",
+            "IMSI (Cus Rep)",
             "Display, for a given affected IMSI, the Event ID and Cause Code for any / all failures affecting that IMSI",
             "IMSI",
             "imsi_text",
@@ -48,7 +48,7 @@ $(document).ready(function () {
 
         /* Unique display per query */
         querySpecificStructure(
-            "User Story 5", // heading: User Story 1
+            "IMSI (Cus Rep)", // heading: User Story 1
             "Count, for a given IMSI, the number of failures they have had during a given time period.", // description: For a given affected IMSI...
             "IMSI", // label_text: Eg. IMSI or Phone Model
             "imsi_text", // input_id: imsi_text
@@ -75,7 +75,7 @@ $(document).ready(function () {
 
         /* Unique display per query */
         querySpecificStructure(
-            "User Story 6", // heading: User Story 1
+            "Causes Code (Cus Rep)", // heading: User Story 1
             "For a given IMSI, all the unique Cause Codes associated with its call failures", // description: For a given affected IMSI...
             "IMSI", // label_text: Eg. IMSI or Phone Model
             "imsi_text", // input_id: imsi_text
@@ -99,7 +99,7 @@ $(document).ready(function () {
         /* Displays input field corresponding to query */
         queryFromAndToDateStructure();
 
-        $("#info_heading").append("User Story 7");
+        $("#info_heading").append("Failure List (Sup Engn)");
         $("#info_description").append("List of all IMSIs with call failures during a given time period");
 
         $('#queryBtn').click(function () {
@@ -125,7 +125,7 @@ $(document).ready(function () {
 
         /* Unique display per query */
         querySpecificStructure(
-            "User Story 8", // heading: User Story 1
+            "Phone Module (Sup Engn)", // heading: User Story 1
             "Count, for a given model of phone, the number of call failures it has had during a given time period.", // description: For a given affected IMSI...
             "Phone Model", // label_text: Eg. IMSI or Phone Model
             "phone_model_text", // input_id: imsi_text
@@ -150,7 +150,7 @@ $(document).ready(function () {
         /* Displays input field corresponding to query */
         queryFromAndToDateStructure();
 
-        $("#info_heading").append("User Story 9");
+        $("#info_heading").append("IMSI (Net Engn)");
         $("#info_description").append("Count, for each IMSI, the number of call failures and their total duration during a given time period");
 
         $('#queryBtn').click(function () {
@@ -198,7 +198,7 @@ $(document).ready(function () {
         /* Displays input field corresponding to query */
         queryFromAndToDateStructure();
 
-        $("#info_heading").append("User Story 11");
+        $("#info_heading").append("MCC / MNC TIME (Net Engn)");
         $("#info_description").append("Top 10 Market/Operator/Cell ID combinations that had call failures during a time period");
 
         $('#queryBtn').click(function () {
@@ -222,7 +222,7 @@ $(document).ready(function () {
         /* Displays input field corresponding to query */
         queryFromAndToDateStructure();
 
-        $("#info_heading").append("User Story 12");
+        $("#info_heading").append("Top 10 IMSI (Net Engn)");
         $("#info_description").append("Top 10 IMSIs that had call failures during a time period");
 
         $('#queryBtn').click(function () {
@@ -243,7 +243,7 @@ $(document).ready(function () {
         /* Displays input field corresponding to query */
         queryOneButtonFieldStructure();
 
-        $("#info_heading").append("User Story 13");
+        $("#info_heading").append("MCC / MNC GRAPH (Net Engn)");
         $("#info_description").append("Graphical Representation of the Top 10 Market/Operator/Cell ID combinations with call failures showing Node, Number of failures & % of all failures");
 
         $('#queryBtn').click(function () {
@@ -268,7 +268,7 @@ $(document).ready(function () {
             id:"failure_class_text"
         });
 
-        $("#info_heading").append("User Story 14");
+        $("#info_heading").append("Affected IMSI (Sup Engn)");
         $("#info_description").append("Display, for a given failure Cause Class, the IMSIs that were affected.");
 
         $('#queryBtn').click(function () {
@@ -347,7 +347,7 @@ $(document).ready(function () {
         /* Displays input field corresponding to query */
         queryFromAndToDateStructure();
 
-        $("#info_heading").append("User Story 11");
+        $("#info_heading").append("MCC / MNC TIME (Net Engn)");
         $("#info_description").append("Top 10 Market/Operator/Cell ID combinations that had call failures during a time period");
 
         $('#queryBtn').click(function () {
@@ -372,7 +372,7 @@ $(document).ready(function () {
         /* Displays input field corresponding to query */
         queryFromAndToDateStructure();
 
-        $("#info_heading").append("User Story 12");
+        $("#info_heading").append("Top 10 IMSI (Net Engn)");
         $("#info_description").append("Top 10 IMSIs that had call failures during a time period");
 
         $('#queryBtn').click(function () {
@@ -397,7 +397,7 @@ $(document).ready(function () {
         /* Displays input field corresponding to query */
         queryOneButtonFieldStructure();
 
-        $("#info_heading").append("User Story 13");
+        $("#info_heading").append("MCC / MNC GRAPH (Net Engn)");
         $("#info_description").append("Graphical Representation of the Top 10 Market/Operator/Cell ID combinations with call failures showing Node, Number of failures & % of all failures");
 
         $('#queryBtn').click(function () {

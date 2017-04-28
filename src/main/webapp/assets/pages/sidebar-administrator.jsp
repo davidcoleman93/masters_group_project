@@ -32,6 +32,25 @@
                     <li><a id="mcc-mnc-graph-netengn" class = "us-13">MCC / MNC Graph(Net Engn)</a></li>
                 </ul>
             </li>
+             <li class="sub-menu">
+                <a href="javascript:;"> <i class="fa fa-bar-chart-o"></i> <span>Data Charts</span> </a>
+                <ul class="sub">
+                    <li><a id="chart9">IMSI (Net Engn)</a></li>
+                    <li><a id="chart10">Phone Model (Net Engn)</a></li>
+                    <li><a id="chart11">MCC / MNC TIME (Net Engn)</a></li>
+                    <li><a id="chart12">Top 10 IMSI (Net Engn)</a></li>
+                    <li><a id="chart13">MCC / MNC GRAPH (Net Engn)</a></li>
+                </ul>
+            </li>
+            <li class="sub-menu">
+                <a href="javascript:;"> <i class="fa fa-bar-chart-o"></i> <span>Lookup tables</span> </a>
+                <ul class="sub">
+                    <li><a id="eventCauses">Event Causes</a></li>
+                    <li><a id="failureClasses">Failure Classes</a></li>
+                    <li><a id="ueTypes">User Event Types</a></li>
+                    <li><a id="marketOperators">Market Operators</a></li>
+                </ul>
+            </li>
             <li class="sub-menu">
                 <a href="assets/pages/data_import.jsp"> <i class="	fa fa-cloud-upload"></i> <span> Imports</span> </a>
                 <ul class="sub">

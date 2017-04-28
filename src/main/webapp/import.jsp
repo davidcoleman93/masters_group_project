@@ -54,7 +54,7 @@
 
 </head>
 
-<body onload = 'runFileListener()'>
+<body onload='runFileListener()'>
 	<section id="container">
 		<!-- *******TOP BAR CONTENT & NOTIFICATIONS******** -->
 		<!--header start-->
@@ -83,13 +83,13 @@ alert(username); --%>
 				<div class="row">
 					<div class="row mtbox">
 						<div class="col-lg-12">
-							<div id = "uploadCase">
+							<div id="uploadCase">
 								<p>
 									<input type="file" accept=".xls,.xlsx,.xlsm,.xlsb" id="excel"
-									value="csv">
-									<p id="uploadMsg">Select XlS File</p>
-								<p id = "successfulUpload"></p>
-									<button id="isubmit">Submit</button>
+										value="csv">
+								<p id="uploadMsg">Select XlS File</p>
+								<p id="successfulUpload"></p>
+								<button id="isubmit">Submit</button>
 								</p>
 							</div>
 							<p id="display"></p>
@@ -124,8 +124,8 @@ alert(username); --%>
 			String fileName = request.getParameter("fileName");
 			//making sure content has been posted.
 			if (content != null) {
-			    //Should be absolute path of the destination directory
-				String filePath = "C:\\Code\\FinalPush\\masters_group_project\\Files\\" + fileName + ".csv";
+				//Should be absolute path of the destination directory
+				String filePath = "/Users/bobaikato/Documents/project/" + fileName + ".csv";
 				try {
 					out.println(filePath);
 					PrintWriter pw = new PrintWriter(new FileOutputStream(filePath));
@@ -137,7 +137,7 @@ alert(username); --%>
 			}%>
                                                                     /*JSP Ends*/
                                                                     $('#display').text("Upload successful");
-                                                                    $('#uploadCase').hide(1000).delay(1000).show(0, function () {
+                                                                    $('#uploadCase').hide(1000).delay(13000).show(0, function () {
                                                                         // alert("works");
                                                                         location.reload();
                                                                     });
@@ -234,7 +234,7 @@ footer end-->
 	<!-- For query front-end structure -->
 	<script src="assets/js/default_query_template.js"></script>
 	<script src="assets/js/user_story_specific_front-end.js"></script>
-	<script src = "assets/js/page_partition.js"></script>
+	<script src="assets/js/page_partition.js"></script>
 	<!-- Side bar Script-->
 	<script>
             $(document).ready(function () {
