@@ -31,7 +31,7 @@ public class queryTests {
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
     }
 
-    @Ignore
+
     @Test   //IMSI (Cust Rep)
     public void testUserStory4() throws Exception {
         driver.get(baseUrl);
@@ -63,7 +63,7 @@ public class queryTests {
         Thread.sleep(3000);
     }
 
-    @Ignore
+
     @Test   //Cause Code (Cust Rep)
     public void testUserStory6() throws Exception {
         driver.get(baseUrl);
@@ -95,7 +95,7 @@ public class queryTests {
         Thread.sleep(3000);
     }
 
-    @Ignore
+
     @Test   //Phone Model (Net Eng.)
     public void testUserStory10() throws Exception {
         driver.get(baseUrl);
@@ -125,7 +125,7 @@ public class queryTests {
         Thread.sleep(3000);
     }
 
-    @Ignore
+
     @Test   //Failure List (Sup Eng.)
     public void testUserStory7() throws Exception {
         driver.get(baseUrl);
@@ -161,7 +161,7 @@ public class queryTests {
         Thread.sleep(3000);
     }
 
-    @Ignore
+
     @Test   //Top 10 IMSI (Net Eng.)
     public void testUserStory12() throws Exception {
         driver.get(baseUrl);
@@ -197,7 +197,7 @@ public class queryTests {
         Thread.sleep(3000);
     }
 
-    @Ignore
+
     @Test   //IMSI (Net Eng.)
     public void testUserStory9() throws Exception {
         driver.get(baseUrl);
@@ -232,7 +232,7 @@ public class queryTests {
         driver.findElement(By.id("queryBtn")).click();
         Thread.sleep(3000);
     }
-    @Ignore
+
     @Test   //Phone Module (Sup Eng.)
     public void testUserStory8() throws Exception {
         driver.get(baseUrl);
@@ -272,7 +272,7 @@ public class queryTests {
         driver.findElement(By.id("queryBtn")).click();
         Thread.sleep(3000);
     }
-    @Ignore
+
     @Test   //IMSI(Cust.)
     public void testUserStory5() throws Exception {
         driver.get(baseUrl);
@@ -370,6 +370,33 @@ public class queryTests {
         driver.findElement(By.id("mcc-mnc-graph-netengn")).click();
         Thread.sleep(2000);
 
+        driver.findElement(By.id("queryBtn")).click();
+        Thread.sleep(3000);
+    }
+
+    @Test   //Affected IMSI
+    public void testUserStory14() throws Exception {
+        driver.get(baseUrl);
+        Thread.sleep(1000);
+        driver.findElement(By.id("user-login")).clear();
+        Thread.sleep(1000);
+        driver.findElement(By.id("user-login")).sendKeys("admin");
+        Thread.sleep(1000);
+        driver.findElement(By.id("password-login")).clear();
+        Thread.sleep(1000);
+        driver.findElement(By.id("password-login")).sendKeys("@Admin123");
+        Thread.sleep(1000);
+        driver.findElement(By.id("login-submit")).click();
+        Thread.sleep(3000);
+
+        //IMSI:  344930000000011
+
+        driver.findElement(By.linkText("Call Failure")).click();
+        Thread.sleep(2000);
+        driver.findElement(By.id("aff-imsi-sup")).click();
+        Thread.sleep(2000);
+        new Select(driver.findElement(By.id("failure_class_text"))).selectByVisibleText("2/MT ACCESS");
+        Thread.sleep(1000);
         driver.findElement(By.id("queryBtn")).click();
         Thread.sleep(3000);
     }
